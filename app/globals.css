@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(40 30% 96%);
+  --color-surface: hsl(40 25% 92%);
+  --color-foreground: hsl(30 20% 12%);
+  --color-accent: hsl(12 80% 40%);
+  --color-accent-foreground: hsl(0 0% 100%);
+  --color-muted: hsl(30 10% 55%);
+  --color-border: hsl(30 15% 85%);
+
+  --font-display: "Playfair Display", sans-serif;
+  --font-body: "Lora", sans-serif;
+
+  --radius-control: 4px;
+  --radius-surface: calc(4px * 3);
+
+  --spacing-s1: 0.25rem;
+  --spacing-s2: 0.5rem;
+  --spacing-s3: 1rem;
+  --spacing-s4: 2.5rem;
+  --spacing-s5: 5rem;
+  --spacing-s6: 10rem;
+}
+
+@layer base {
+  *:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  html { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+  /* Premium foundation (awwwards-web-architect): light body weight, tight
+   * display tracking, one easing voice — the details that read expensive. */
+  body { background: var(--color-background); color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.04em; }
+  ::selection { background: hsl(12 80% 40%); color: hsl(0 0% 100%); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+}
+
+:root {
+  --ease-out-cubic: cubic-bezier(0.2, 0.6, 0.35, 1);
+  --ease-in-out-quart: cubic-bezier(0.8, 0, 0.2, 1);
+  --space-act: clamp(6.5rem, 10vw, 12.5rem);
+}
+
+/* — WOW layer — */
+.rp-cursor-on, .rp-cursor-on a, .rp-cursor-on button { cursor: none; }
+@keyframes rpPreRise { from { opacity: 0; transform: translateY(1.2em); } to { opacity: 1; transform: translateY(0); } }
+.preloader-rise { animation: rpPreRise 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+.rp-reveal { overflow: hidden; }
+/* pad+negative-margin so tight leading never clips descenders (у, р, g) */
+.rp-reveal-inner { display: block; transform: translateY(110%); opacity: 0.001; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.rp-revealed .rp-reveal-inner { transform: translateY(0); opacity: 1; transition: transform 0.9s cubic-bezier(0.22,1,0.36,1) var(--rp-delay, 0s), opacity 0.6s ease var(--rp-delay, 0s); }
+@keyframes rpMarquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+.rp-marquee { animation: rpMarquee var(--rp-marquee-s, 26s) linear infinite; }
+.rp-marquee:hover { animation-play-state: paused; }
+.rp-pan-item { width: clamp(280px, 42vw, 460px); }
+.rp-watermark { position: absolute; inset-inline: 0; pointer-events: none; user-select: none; font-family: var(--font-display); font-weight: 700; line-height: 0.8; letter-spacing: -0.04em; font-size: clamp(6rem, 24vw, 22rem); opacity: 0.05; white-space: nowrap; }
+.rp-graded { filter: saturate(0.94) contrast(1.06) brightness(0.99); }
+.rp-actno { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.55; display: inline-flex; align-items: center; gap: 0.75rem; }
+.rp-actno::before { content: ""; width: 2.5rem; height: 1px; background: currentColor; opacity: 0.6; }
+.rp-grain { position: relative; }
+.rp-grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.05; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E"); }
+@media (prefers-reduced-motion: reduce) {
+  .rp-marquee { animation: none; }
+  .rp-reveal-inner, .rp-revealed .rp-reveal-inner { transform: none; opacity: 1; transition: none; }
+}
