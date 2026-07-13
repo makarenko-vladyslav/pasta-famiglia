@@ -56,7 +56,9 @@ export function SectionBookingContact() {
           </Reveal>
         </div>
 
-        
+        <div className="mt-20 grid gap-6 text-sm text-accent-foreground/80 lg:grid-cols-3 lg:mt-32">
+          <Reveal delay={0.4}>
+            
           </Reveal>
 
           <Reveal delay={0.5}>
