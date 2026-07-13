@@ -12,7 +12,7 @@ export function SectionGallery() {
     <section id="gallery" className="relative overflow-hidden bg-surface">
       <div className="mx-auto max-w-[92rem] px-4 pt-[var(--space-act)] lg:px-10">
         <span className="rp-actno mb-5 text-muted uppercase tracking-widest text-[10px] font-mono block">
-          ACT III: АТМОСФЕРА
+          АТМОСФЕРА
         </span>
         <Reveal>
           <h2 className="font-display font-bold leading-[0.9] tracking-[-0.03em] text-[clamp(2.4rem,5vw,4.5rem)] max-w-[16ch]">

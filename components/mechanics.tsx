@@ -2,25 +2,30 @@
 import { Component, useEffect, useRef, useState, type ReactNode } from "react";
 
 const REDUCED = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const COARSE = () => typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
 
-/** Opening curtain: brand name rises, curtain splits, hero underneath. Once per session. */
+/** Opening curtain: brand name rises, curtain splits, hero underneath.
+ *  Plays on EVERY full page load (owner verdict: a missing curtain reads as
+ *  a bug). Reduced motion gets a shorter motion-free fade. The CSS layer has
+ *  a self-opening animation fallback so a page can never stay walled if
+ *  hydration dies. */
 export function PreloaderCurtain({ brand }: { brand: string }) {
   const [phase, setPhase] = useState<"boot" | "open" | "done">("boot");
   useEffect(() => {
-    if (REDUCED() || sessionStorage.getItem("rp-preloaded")) { setPhase("done"); return; }
-    sessionStorage.setItem("rp-preloaded", "1");
+    const openAt = REDUCED() ? 450 : 1150;
+    const doneAt = REDUCED() ? 950 : 2050;
     document.body.style.overflow = "hidden";
-    const t1 = setTimeout(() => setPhase("open"), 1150);
-    const t2 = setTimeout(() => { setPhase("done"); document.body.style.overflow = ""; }, 2050);
+    const t1 = setTimeout(() => setPhase("open"), openAt);
+    const t2 = setTimeout(() => { setPhase("done"); document.body.style.overflow = ""; }, doneAt);
     return () => { clearTimeout(t1); clearTimeout(t2); document.body.style.overflow = ""; };
   }, []);
   if (phase === "done") return null;
   return (
-    <div aria-hidden className="fixed inset-0 z-[100] pointer-events-none">
-      <div className={"absolute inset-x-0 top-0 h-1/2 bg-[hsl(var(--color-foreground))] transition-transform duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] " + (phase === "open" ? "-translate-y-full" : "")} />
-      <div className={"absolute inset-x-0 bottom-0 h-1/2 bg-[hsl(var(--color-foreground))] transition-transform duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] " + (phase === "open" ? "translate-y-full" : "")} />
+    <div aria-hidden className={"rp-curtain fixed inset-0 z-[100] pointer-events-none" + (phase === "open" ? " rp-curtain-open" : "")}>
+      <div className="rp-curtain-top absolute inset-x-0 top-0 h-1/2 bg-[hsl(var(--color-foreground))]" />
+      <div className="rp-curtain-bot absolute inset-x-0 bottom-0 h-1/2 bg-[hsl(var(--color-foreground))]" />
       <div className="absolute inset-0 grid place-items-center overflow-hidden">
-        <span className={"font-[family-name:var(--font-display)] text-[clamp(1.6rem,4.5vw,3.4rem)] tracking-tight text-[hsl(var(--color-background))] transition-all duration-700 " + (phase === "open" ? "opacity-0 -translate-y-6" : "preloader-rise")}>{brand}</span>
+        <span className="rp-curtain-brand font-[family-name:var(--font-display)] text-[clamp(1.6rem,4.5vw,3.4rem)] tracking-tight text-[hsl(var(--color-background))]">{brand}</span>
       </div>
     </div>
   );
@@ -40,7 +45,9 @@ export class ActBoundary extends Component<{ children: ReactNode }, { broken: bo
 export function HeaderShell({ children, overDarkHero = true }: { children: ReactNode; overDarkHero?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 48);
+    // Hysteresis (72 down / 24 up): a single threshold flickers when iOS
+    // momentum bounces around it.
+    const on = () => setScrolled((s) => window.scrollY > (s ? 24 : 72));
     on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
@@ -119,7 +126,9 @@ export function Reveal({ children, delay = 0, as: Tag = "div" }: { children: Rea
     const el = ref.current;
     if (!el) return;
     if (REDUCED()) { el.classList.add("rp-revealed"); return; }
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add("rp-revealed"); io.disconnect(); } }, { threshold: 0.25 });
+    // Low threshold + bottom margin: tall mobile headings could never hit
+    // 25% visibility on iOS, leaving text clipped inside the reveal mask.
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add("rp-revealed"); io.disconnect(); } }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -205,10 +214,16 @@ export function AmbientCanvas({ className = "" }: { className?: string }) {
  *  the finished state. */
 export function ScrollScene({ children, heightVh = 220 }: { children: ReactNode; heightVh?: number }) {
   const wrapRef = useRef<HTMLDivElement>(null);
+  const [flat, setFlat] = useState(false);
   useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
-    if (REDUCED()) { wrap.style.setProperty("--scene-p", "1"); return; }
+    // Touch devices and reduced motion get the scene as ONE normal screen:
+    // no scroll-jack, no sticky, no tall empty runway. iOS Safari vh/sticky
+    // physics made the pinned variant flicker and stretch into voids; the
+    // .rp-scene-flat CSS neutralises every --scene-p-driven inline style so
+    // the full poster is simply visible.
+    if (REDUCED() || COARSE()) { setFlat(true); return; }
     let raf = 0;
     const onScroll = () => {
       if (raf) return;
@@ -224,9 +239,16 @@ export function ScrollScene({ children, heightVh = 220 }: { children: ReactNode;
     onScroll();
     return () => { window.removeEventListener("scroll", onScroll); if (raf) cancelAnimationFrame(raf); };
   }, []);
+  if (flat) {
+    return (
+      <div ref={wrapRef} style={{ ["--scene-p" as string]: "0" }} className="rp-scene-flat relative min-h-[100svh] overflow-hidden">
+        {children}
+      </div>
+    );
+  }
   return (
-    <div ref={wrapRef} style={{ height: `${heightVh}vh`, ["--scene-p" as string]: "0" }} className="relative">
-      <div className="sticky top-0 h-screen overflow-hidden">{children}</div>
+    <div ref={wrapRef} style={{ height: `${heightVh}vh`, ["--scene-p" as string]: "0" }} className="rp-scene relative">
+      <div className="rp-scene-win sticky top-0 h-[100svh] overflow-hidden">{children}</div>
     </div>
   );
 }
@@ -259,7 +281,10 @@ export function HorizontalPan({ children, heightVh = 240 }: { children: ReactNod
   useEffect(() => {
     const wrap = wrapRef.current, track = trackRef.current;
     if (!wrap || !track) return;
-    if (REDUCED()) { setReduced(true); return; }
+    // Touch: scroll-jacking a vertical gesture into a sideways track feels
+    // broken on phones (the page moves down AND sideways at once) — a native
+    // swipe strip with snap is the correct touch idiom.
+    if (REDUCED() || COARSE()) { setReduced(true); return; }
     // Wrapper height matches the track overflow 1:1 — no dead scroll past
     // the strip, no half-empty pinned screens.
     const sync = () => {
@@ -285,17 +310,18 @@ export function HorizontalPan({ children, heightVh = 240 }: { children: ReactNod
     return () => { window.removeEventListener("scroll", onScroll); ro.disconnect(); if (raf) cancelAnimationFrame(raf); };
   }, []);
   if (reduced) {
-    // a11y + honest screenshots: a plain horizontal scroller, natural height
+    // a11y + touch + honest screenshots: a native horizontal scroller with
+    // snap, natural height, hidden scrollbar.
     return (
-      <div className="overflow-x-auto">
-        <div className="flex gap-6 pl-[6vw] py-4">{children}</div>
+      <div className="rp-pan-native overflow-x-auto">
+        <div className="flex gap-6 px-[6vw] py-4">{children}</div>
       </div>
     );
   }
   return (
-    <div ref={wrapRef} style={{ height: `${heightVh}vh` }} className="relative">
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-        <div ref={trackRef} className="flex gap-6 will-change-transform pl-[6vw]">{children}</div>
+    <div ref={wrapRef} style={{ height: `${heightVh}vh` }} className="rp-pan relative">
+      <div className="rp-pan-win sticky top-0 h-[100svh] overflow-hidden flex items-center">
+        <div ref={trackRef} className="rp-pan-track flex gap-6 will-change-transform pl-[6vw]">{children}</div>
       </div>
     </div>
   );

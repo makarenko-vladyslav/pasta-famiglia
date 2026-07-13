@@ -43,7 +43,18 @@
 /* — WOW layer — */
 .rp-cursor-on, .rp-cursor-on a, .rp-cursor-on button { cursor: none; }
 @keyframes rpPreRise { from { opacity: 0; transform: translateY(1.2em); } to { opacity: 1; transform: translateY(0); } }
-.preloader-rise { animation: rpPreRise 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+/* Preloader curtain: JS drives phases; the delayed auto-open keyframes are a
+   no-JS/broken-hydration fallback so the page can never stay walled. */
+.rp-curtain-top, .rp-curtain-bot { transition: transform 0.9s cubic-bezier(0.76,0,0.24,1); }
+.rp-curtain-top { animation: rpCurtainTop 0.9s cubic-bezier(0.76,0,0.24,1) 3.2s forwards; }
+.rp-curtain-bot { animation: rpCurtainBot 0.9s cubic-bezier(0.76,0,0.24,1) 3.2s forwards; }
+.rp-curtain-open .rp-curtain-top { transform: translateY(-100%); }
+.rp-curtain-open .rp-curtain-bot { transform: translateY(100%); }
+.rp-curtain-brand { animation: rpPreRise 0.8s cubic-bezier(0.16,1,0.3,1) both, rpCurtainFade 0.5s ease 3s forwards; }
+.rp-curtain-open .rp-curtain-brand { opacity: 0; transform: translateY(-1.4rem); transition: opacity 0.5s ease, transform 0.5s ease; animation: none; }
+@keyframes rpCurtainTop { to { transform: translateY(-100%); } }
+@keyframes rpCurtainBot { to { transform: translateY(100%); } }
+@keyframes rpCurtainFade { to { opacity: 0; } }
 .rp-reveal { overflow: hidden; }
 /* pad+negative-margin so tight leading never clips descenders (у, р, g) */
 .rp-reveal-inner { display: block; transform: translateY(110%); opacity: 0.001; padding-bottom: 0.14em; margin-bottom: -0.14em; }
@@ -52,6 +63,24 @@
 .rp-marquee { animation: rpMarquee var(--rp-marquee-s, 26s) linear infinite; }
 .rp-marquee:hover { animation-play-state: paused; }
 .rp-pan-item { width: clamp(280px, 42vw, 460px); }
+/* Native pan strip (touch/reduced): momentum swipe + soft snap, no scrollbar */
+.rp-pan-native { -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; scrollbar-width: none; }
+.rp-pan-native::-webkit-scrollbar { display: none; }
+.rp-pan-native .rp-pan-item { scroll-snap-align: center; flex-shrink: 0; }
+/* Flat scene (touch/reduced): neutralise every --scene-p-driven inline style
+   so the complete poster simply shows. */
+.rp-scene-flat [style*="scene-p"] { opacity: 1 !important; transform: none !important; }
+/* Pre-hydration touch safety: if JS has not switched the pinned variants to
+   their flat/native forms yet (or never will), unpin them with pure CSS —
+   no 200vh+ runways, no sticky, native sideways scroll. */
+@media (pointer: coarse) {
+  .rp-scene { height: auto !important; }
+  .rp-scene .rp-scene-win { position: relative; height: auto; min-height: 100svh; }
+  .rp-scene [style*="scene-p"] { opacity: 1 !important; transform: none !important; }
+  .rp-pan { height: auto !important; }
+  .rp-pan .rp-pan-win { position: relative; height: auto; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .rp-pan .rp-pan-track { transform: none !important; padding-block: 1rem; }
+}
 .rp-watermark { position: absolute; inset-inline: 0; pointer-events: none; user-select: none; font-family: var(--font-display); font-weight: 700; line-height: 0.8; letter-spacing: -0.04em; font-size: clamp(6rem, 24vw, 22rem); opacity: 0.05; white-space: nowrap; }
 .rp-graded { filter: saturate(0.94) contrast(1.06) brightness(0.99); }
 .rp-actno { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.55; display: inline-flex; align-items: center; gap: 0.75rem; }

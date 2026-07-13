@@ -31,7 +31,7 @@ export function SectionSocialProof() {
         <TiltCard>
           <div className="p-8 lg:p-12">
             {/* ACT LABEL */}
-            <span className="rp-actno mb-8 block text-background/70">ACT IV: The Proof.</span>
+            <span className="rp-actno mb-8 block text-background/70">The Proof.</span>
             
             {/* Visual Quotation Mark */}
             <span

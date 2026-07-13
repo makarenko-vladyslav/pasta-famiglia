@@ -27,7 +27,7 @@ export function SectionFaq() {
       <div className="mx-auto grid max-w-[88rem] gap-12 px-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:px-10">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <span className="rp-actno mb-5 block font-display text-sm tracking-widest text-muted uppercase">
-            Act IV — Докази
+            Докази
           </span>
           <Reveal>
             <h2 className="font-display font-bold leading-[0.9] tracking-[-0.03em] text-[clamp(2.4rem,5vw,4.5rem)]">

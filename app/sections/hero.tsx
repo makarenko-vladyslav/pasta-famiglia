@@ -27,7 +27,7 @@ export function SectionHero() {
           <img 
             src="https://images.pexels.com/photos/14590691/pexels-photo-14590691.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" 
             alt="Процес приготування свіжої пасти в Pasta Famiglia" 
-            className="rp-graded absolute inset-0 h-full w-full object-cover opacity-70 mix-blend-multiply transition-transform duration-300"
+            className="rp-graded absolute inset-0 h-full w-full object-cover opacity-70 mix-blend-multiply"
             style={{ 
               transform: "scale(calc(1.18 - var(--scene-p) * 0.18))",
               objectPosition: "center 40%"
@@ -41,7 +41,7 @@ export function SectionHero() {
         {/* Content Layer: Poster typography and interactive elements */}
         <div className="relative z-10 flex h-full flex-col justify-between px-4 pb-24 pt-28 lg:px-10">
           <div 
-            className="my-auto transition-transform duration-300 ease-out" 
+            className="my-auto" 
             style={{ 
               transform: "translateY(calc(var(--scene-p) * 8vh)) scale(calc(1 - var(--scene-p) * 0.22))", 
               transformOrigin: "left center" 
@@ -70,7 +70,7 @@ export function SectionHero() {
           </div>
 
           <div 
-            className="flex flex-wrap items-end justify-between gap-6 transition-all duration-500 ease-out" 
+            className="flex flex-wrap items-end justify-between gap-6" 
             style={{ 
               opacity: "var(--scene-p)", 
               transform: "translateY(calc((1 - var(--scene-p)) * 3vh))" 

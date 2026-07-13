@@ -9,7 +9,7 @@ export function SectionCraft() {
         {/* Content Block with Overlap */}
         <div className="relative order-2 flex flex-col justify-center px-4 py-16 lg:order-1 lg:-mr-24 lg:px-0 lg:py-28">
           <div className="relative z-10 bg-surface p-8 lg:p-14 lg:shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)]">
-            <span className="rp-actno mb-5 block font-display text-sm tracking-widest text-muted">ACT III</span>
+            <span className="rp-actno mb-5 block font-display text-sm tracking-widest text-muted">07</span>
             
             <Reveal>
               <h2 className="font-display font-bold leading-[0.92] tracking-[-0.03em] text-[clamp(2.4rem,5vw,4.5rem)]">

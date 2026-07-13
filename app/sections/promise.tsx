@@ -33,7 +33,7 @@ export function SectionPromise() {
 
         <div className="relative flex flex-col justify-center px-4 py-16 lg:-ml-24 lg:px-0 lg:py-28 z-10">
           <div className="bg-surface p-8 lg:p-14 lg:shadow-[0_40px_80px_-40px_rgba(0,0,0,0.35)] border-t border-foreground/5 lg:border-none">
-            <span className="rp-actno mb-5 block text-xs tracking-widest uppercase text-muted">Акт I — Обіцянка</span>
+            <span className="rp-actno mb-5 block text-xs tracking-widest uppercase text-muted">Обіцянка</span>
             
             <Reveal>
               <h2 className="font-display font-bold leading-[0.92] tracking-[-0.03em] text-[clamp(2.4rem,5vw,4.5rem)] text-foreground">
@@ -62,13 +62,9 @@ export function SectionPromise() {
 
               {/* STAT 2: 0 % */}
               <div>
-                <span className="font-display text-[clamp(1.8rem,3.2vw,3rem)] font-extrabold text-accent leading-none">
-                  0
-                </span>
-                <span className="font-display text-xl font-bold text-accent ml-1">%</span>
-                <p className="mt-1 text-[10px] lg:text-xs uppercase tracking-[0.18em] text-muted leading-tight">
-                  Прихований сервіс
-                </p>
+                <span className="font-display text-[clamp(1.8rem,3.2vw,3rem)] font-extrabold text-accent leading-none">127</span>
+                
+                <p className="mt-1 text-[10px] lg:text-xs uppercase tracking-[0.18em] text-muted leading-tight">Відгуків у Google</p>
               </div>
 
               {/* STAT 3: 4.9 Rating */}

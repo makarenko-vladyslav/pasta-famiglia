@@ -9,7 +9,7 @@ export function SectionDelivery() {
       <div className="mx-auto max-w-[88rem] px-4 lg:px-10">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div className="flex flex-col gap-5">
-            <span className="rp-actno">ACT III: THE SOUL</span>
+            <span className="rp-actno">THE SOUL</span>
             <Reveal>
               <h2 className="max-w-[16ch] font-display text-[clamp(2.4rem,5vw,4.5rem)] font-bold leading-[0.9] tracking-[-0.03em]">
                 Гаряча піца вдома
