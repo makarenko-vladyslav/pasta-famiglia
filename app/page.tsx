@@ -1,15 +1,14 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionThePromise } from "./sections/the_promise";
-import { SectionSignatureGallery } from "./sections/signature_gallery";
-import { SectionMarqueeSeparator } from "./sections/marquee_separator";
-import { SectionMenuEditorial } from "./sections/menu_editorial";
-import { SectionAtmosphere } from "./sections/atmosphere";
-import { SectionProofSpotlight } from "./sections/proof_spotlight";
-import { SectionLocationMap } from "./sections/location_map";
-import { SectionBookingFinal } from "./sections/booking_final";
+import { SectionMenuPasta } from "./sections/menu_pasta";
+import { SectionSignature } from "./sections/signature";
+import { SectionMarqueeInterstitial } from "./sections/marquee_interstitial";
+import { SectionProof } from "./sections/proof";
+import { SectionGallery } from "./sections/gallery";
+import { SectionLocation } from "./sections/location";
+import { SectionBooking } from "./sections/booking";
 
-const NAV = [];
+const NAV = [{ href: "#proof", label: "Відгуки" }, { href: "#gallery", label: "Галерея" }];
 
 export default function Page() {
   return (
@@ -36,14 +35,13 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionThePromise /></ActBoundary>
-        <ActBoundary><SectionSignatureGallery /></ActBoundary>
-        <ActBoundary><SectionMarqueeSeparator /></ActBoundary>
-        <ActBoundary><SectionMenuEditorial /></ActBoundary>
-        <ActBoundary><SectionAtmosphere /></ActBoundary>
-        <ActBoundary><SectionProofSpotlight /></ActBoundary>
-        <ActBoundary><SectionLocationMap /></ActBoundary>
-        <ActBoundary><SectionBookingFinal /></ActBoundary>
+        <ActBoundary><SectionMenuPasta /></ActBoundary>
+        <ActBoundary><SectionSignature /></ActBoundary>
+        <ActBoundary><SectionMarqueeInterstitial /></ActBoundary>
+        <ActBoundary><SectionProof /></ActBoundary>
+        <ActBoundary><SectionGallery /></ActBoundary>
+        <ActBoundary><SectionLocation /></ActBoundary>
+        <ActBoundary><SectionBooking /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-8 pt-16 lg:grid-cols-3 lg:px-6">
