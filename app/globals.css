@@ -1,37 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: hsl(38 35% 96%);
-  --color-surface: hsl(38 30% 91%);
-  --color-foreground: hsl(24 25% 12%);
-  --color-accent: hsl(14 82% 44%);
-  --color-accent-foreground: hsl(38 35% 98%);
-  --color-muted: hsl(24 15% 45%);
-  --color-border: hsl(38 20% 82%);
+  --color-background: hsl(35 12% 96%);
+  --color-surface: hsl(35 12% 91%);
+  --color-foreground: hsl(25 10% 15%);
+  --color-accent: hsl(32 90% 55%);
+  --color-accent-foreground: hsl(25 10% 15%);
+  --color-muted: hsl(35 10% 32%);
+  --color-border: hsl(35 15% 85%);
 
-  --font-display: "Jost", sans-serif;
-  --font-body: "Rubik", sans-serif;
+  --font-display: "Playfair Display", sans-serif;
+  --font-body: "Lora", sans-serif;
 
-  --radius-control: 1.5rem;
-  --radius-surface: calc(1.5rem * 3);
+  --radius-control: 24px;
+  --radius-surface: calc(24px * 3);
 
   --spacing-s1: 0.25rem;
   --spacing-s2: 0.75rem;
   --spacing-s3: 1.5rem;
   --spacing-s4: 4rem;
-  --spacing-s5: 10rem;
+  --spacing-s5: 8rem;
+  --spacing-s6: 12rem;
 }
 
 @layer base {
   *:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
   /* html carries the FOOTER color: iOS rubber-band past the footer shows the
      html canvas — a light canvas there reads as "the page keeps scrolling". */
-  html { background: var(--color-foreground); text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+  html { background: var(--color-foreground); overscroll-behavior-y: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
   /* Premium foundation (awwwards-web-architect): light body weight, tight
    * display tracking, one easing voice — the details that read expensive. */
   body { background: var(--color-background); color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: var(--tracking-display, -0.04em); }
-  ::selection { background: hsl(14 82% 44%); color: hsl(38 35% 98%); }
+  ::selection { background: hsl(32 90% 55%); color: hsl(25 10% 15%); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 }
 
@@ -39,7 +40,7 @@
   --ease-out-cubic: cubic-bezier(0.2, 0.6, 0.35, 1);
   --ease-in-out-quart: cubic-bezier(0.8, 0, 0.2, 1);
   --space-act: clamp(3.5rem, 10vw, 12.5rem);
-  --tracking-display: -0.04em;
+  --tracking-display: -0.005em;
 }
 
 /* — WOW layer — */
@@ -63,8 +64,9 @@
    it, its own CTA duplicate stays hidden and returns with the solid state. */
 .rp-header-transparent .rp-header-cta { opacity: 0; pointer-events: none; }
 .rp-reveal { overflow: hidden; }
-/* pad+negative-margin so tight leading never clips descenders (у, р, g) */
-.rp-reveal-inner { display: block; transform: translateY(110%); opacity: 0.001; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+/* pad+negative-margin so tight leading never clips descenders (у, р, g) —
+   0.14em still clipped serif tails (owner: «в букві р немає хвоста знизу») */
+.rp-reveal-inner { display: block; transform: translateY(110%); opacity: 0.001; padding-bottom: 0.28em; margin-bottom: -0.28em; }
 .rp-revealed .rp-reveal-inner { transform: translateY(0); opacity: 1; transition: transform 0.9s cubic-bezier(0.22,1,0.36,1) var(--rp-delay, 0s), opacity 0.6s ease var(--rp-delay, 0s); }
 @keyframes rpMarquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 .rp-marquee { animation: rpMarquee var(--rp-marquee-s, 26s) linear infinite; }

@@ -4,40 +4,37 @@ import { Reveal, Marquee } from "@/components/mechanics";
 
 /**
  * SECTION: Marquee Interstitial
- * ROLE: Transition band of signature brand attributes.
- * STYLE: Typographic poster crawl, Jost (font-display), tracking-tighter.
+ * ROLE: Signature ingredients band
+ * STACK: Next.js + Tailwind 4
  */
 export function SectionMarqueeInterstitial() {
-  const attributes = [
+  // Verbatim content from SPEC (translated to site language: uk)
+  const ingredients = [
     "СВІЖА ПАСТА",
-    "ДРОВ'ЯНА ПІЧ",
     "БОРОШНО CAPUTO",
-    "20 ХВИЛИН",
-    "БЕЗ СЕРВІСНОГО ЗБОРУ",
-    "ІТАЛІЙСЬКІ ТРАДИЦІЇ",
-    "ВЛАСНЕ ВИРОБНИЦТВО",
+    "БЕЗ ПРИХОВАНИХ ПЛАТЕЖІВ",
+    "AL DENTE",
+    "СВІЖА ПАСТА",
+    "БОРОШНО CAPUTO",
+    "БЕЗ ПРИХОВАНИХ ПЛАТЕЖІВ",
+    "AL DENTE",
   ];
 
   return (
-    <section 
-      className="relative w-full overflow-hidden border-y border-foreground/10 bg-background py-10 lg:py-14"
-      aria-hidden="true"
-    >
+    <section className="relative w-full overflow-hidden bg-accent text-accent-foreground border-y border-foreground/10">
       <Reveal delay={0.1}>
-        <div className="flex items-center">
-          <Marquee 
-            items={attributes} 
-            className="font-display text-[2.2rem] md:text-[3rem] lg:text-[clamp(2.5rem,5vw,4rem)] font-semibold uppercase tracking-tighter text-foreground"
-          />
+        <div className="py-6 lg:py-10 flex items-center">
+          {/* 
+            Typography Spec: 
+            - Mono font, uppercase, tracking 0.1em. 
+            - Font size scales down 40% on mobile (lg:text-5xl ≈ 3rem -> text-2xl ≈ 1.5rem is ~50%, text-3xl is ~60%).
+            - Using text-3xl to lg:text-5xl to respect the 40% scale down logic closely.
+          */}
+          <div className="w-full font-mono uppercase tracking-[0.1em] text-3xl lg:text-5xl whitespace-nowrap">
+            <Marquee items={ingredients} />
+          </div>
         </div>
       </Reveal>
-      
-      {/* Decorative vertical accent for large screens only */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:block">
-        <span className="text-[10px] uppercase tracking-[0.4em] text-muted [writing-mode:vertical-lr] opacity-40">
-          PASTA FAMIGLIA • KYIV
-        </span>
-      </div>
     </section>
   );
 }

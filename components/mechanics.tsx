@@ -59,7 +59,7 @@ export class ActBoundary extends Component<{ children: ReactNode }, { broken: bo
 
 /** Smart site header: transparent (light text) while over the dark hero,
  *  solid token surface after the fold. One implementation for every site. */
-export function HeaderShell({ children, overDarkHero = true }: { children: ReactNode; overDarkHero?: boolean }) {
+export function HeaderShell({ children, overDarkHero = false }: { children: ReactNode; overDarkHero?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     // Hysteresis (72 down / 24 up): a single threshold flickers when iOS
@@ -69,17 +69,15 @@ export function HeaderShell({ children, overDarkHero = true }: { children: React
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
+  // The owner rejected every transparent-over-hero treatment (gradient band,
+  // pure shadow) — the header is ALWAYS a solid token surface now; the hero
+  // CTA duplicate still hides until the fold is passed.
   const transparent = overDarkHero && !scrolled;
-  // Transparent state: NO band, no border — a gradient strip over a dark hero
-  // read as dirt (owner: «хедер уродський до скролу»). The children stay
-  // readable on any photo via a drop-shadow filter; the header CTA hides
-  // (.rp-header-cta via CSS) — the hero owns that CTA.
   return (
     <header className={
-      "sticky top-0 z-40 transition-colors duration-300 " +
-      (transparent
-        ? "rp-header-transparent border-b border-transparent bg-transparent text-white drop-shadow-[0_1px_10px_rgba(0,0,0,0.6)]"
-        : "border-b border-border bg-background/95 text-foreground backdrop-blur")
+      "sticky top-0 z-40 transition-colors duration-300 border-b " +
+      (transparent ? "rp-header-transparent " : "") +
+      "border-border bg-background/95 text-foreground backdrop-blur"
     }>
       {children}
     </header>

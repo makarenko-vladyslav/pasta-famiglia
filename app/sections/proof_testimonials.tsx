@@ -3,9 +3,9 @@
 import { Reveal } from "@/components/mechanics";
 
 /**
- * SECTION: ACT IV — The Proof.
- * Spotlight on client experiences with high-contrast poster typography.
- * Follows the EXACT skeleton layout for Pasta Famiglia.
+ * ACT IV — The Proof: Social proof spotlight
+ * A centered, high-contrast inverted section featuring a dominant quote 
+ * and supplementary guest testimonials.
  */
 export function SectionProofTestimonials() {
   return (
@@ -13,69 +13,66 @@ export function SectionProofTestimonials() {
       id="proof_testimonials" 
       className="relative overflow-hidden bg-foreground py-[var(--space-act)] text-background"
     >
-      {/* Texture overlay */}
-      <div className="rp-grain absolute inset-0 pointer-events-none opacity-40" />
+      {/* Decorative grain overlay for premium texture */}
+      <div className="rp-grain absolute inset-0 pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 lg:px-10">
-        {/* ACT LABEL - Ukrainian rubric */}
-        <span className="block mb-8 text-sm uppercase tracking-[0.3em] font-body text-background/70">
-          Відгуки гостей
-        </span>
+        {/* ACT LABEL */}
+        <Reveal>
+          <span className="rp-actno mb-8 block text-sm uppercase tracking-[0.3em] text-background/60">
+            Відгуки
+          </span>
+        </Reveal>
 
-        {/* POSTER QUOTE START */}
-        <span aria-hidden className="block font-display text-[clamp(4rem,10vw,7rem)] leading-none text-accent/80 select-none">
+        {/* LARGE QUOTE DECOR */}
+        <span aria-hidden className="block font-display text-[clamp(4rem,10vw,7rem)] leading-none text-accent mb-[-0.2em] select-none">
           “
         </span>
 
-        <div className="max-w-4xl">
-          <Reveal>
-            <blockquote className="font-display font-semibold leading-[1.08] text-[clamp(1.9rem,4.2vw,3.6rem)]">
-              Найкраща паста в моєму житті. Атмосфера справжньої Італії прямо в центрі Києва. Сюди хочеться повертатися за кожним шматочком фокачі.
-            </blockquote>
-          </Reveal>
-        </div>
+        {/* SPOTLIGHT QUOTE */}
+        <Reveal>
+          <blockquote className="font-display font-medium italic leading-[1.08] text-[clamp(1.9rem,4.2vw,3.6rem)] max-w-[18ch] lg:max-w-[22ch]">
+            Найкраща карбонара за межами Риму. В Pasta Famiglia панує справжня італійська душа в кожній деталі.
+          </blockquote>
+        </Reveal>
 
+        {/* AUTHOR & RATING LINE */}
         <Reveal delay={0.15}>
-          <figcaption className="mt-8 flex items-center gap-4 text-sm font-body text-background/70">
+          <figcaption className="mt-10 flex flex-wrap items-center gap-4 text-sm md:text-base text-background/70">
             <span className="h-px w-12 bg-accent" aria-hidden />
-            <span className="font-medium text-background">Тетяна Ковальчук</span>
-            <span className="opacity-50">·</span>
-            <span>★ 4.9 · 127 відгуків · вул. Антоновича, 44</span>
+            <span className="font-medium text-background">Олександр Пономаренко</span>
+            <span className="hidden md:inline text-background/30">•</span>
+            <p className="flex items-center gap-2">
+              <span className="text-accent">★ 4.9</span>
+              <span className="opacity-60">· 127 відгуків · вул. Антоновича, 44</span>
+            </p>
           </figcaption>
         </Reveal>
 
-        {/* ADDITIONAL TESTIMONIALS GRID */}
-        <div className="mt-14 grid gap-10 border-t border-background/15 pt-10 lg:grid-cols-2">
-          <figure>
-            <Reveal delay={0.2}>
-              <blockquote className="text-base lg:text-lg leading-relaxed text-background/85 italic">
-                «Різотто з грибами — це справжнє мистецтво. Обслуговування на найвищому рівні, неймовірно уважний персонал та затишок.»
+        {/* SECONDARY QUOTES GRID */}
+        <div className="mt-20 grid gap-12 border-t border-background/15 pt-12 lg:grid-cols-2 lg:gap-20">
+          <Reveal delay={0.2}>
+            <figure className="max-w-md">
+              <blockquote className="text-lg leading-relaxed text-background/85">
+                «Домашня паста та бездоганний сервіс. Обов'язково спробуйте їхню фірмову лазанью — це справжнє гастрономічне відкриття для нашої родини.»
               </blockquote>
-              <figcaption className="mt-4 text-xs uppercase tracking-widest text-background/50 font-body">
-                Марко Соколов
+              <figcaption className="mt-4 text-sm uppercase tracking-widest text-background/50">
+                — Олена Ващук
               </figcaption>
-            </Reveal>
-          </figure>
+            </figure>
+          </Reveal>
 
-          <figure>
-            <Reveal delay={0.3}>
-              <blockquote className="text-base lg:text-lg leading-relaxed text-background/85 italic">
-                «Тут готують справжню карбонару без вершків, як і має бути за каноном. Велика винна карта та дуже смачне домашнє вино.»
+          <Reveal delay={0.3}>
+            <figure className="max-w-md">
+              <blockquote className="text-lg leading-relaxed text-background/85">
+                «Затишок, який рідко зустрінеш у великому місті. Відчуваємо себе як удома в Італії щоразу, коли приходимо на недільний обід.»
               </blockquote>
-              <figcaption className="mt-4 text-xs uppercase tracking-widest text-background/50 font-body">
-                Олена Задорожна
+              <figcaption className="mt-4 text-sm uppercase tracking-widest text-background/50">
+                — Марк Остапчук
               </figcaption>
-            </Reveal>
-          </figure>
+            </figure>
+          </Reveal>
         </div>
-      </div>
-
-      {/* Decorative vertical label for desktop */}
-      <div 
-        aria-hidden 
-        className="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 [writing-mode:vertical-rl] rotate-180 text-background/5 text-[8vw] font-display font-bold leading-none select-none"
-      >
-        FAMIGLIA
       </div>
     </section>
   );

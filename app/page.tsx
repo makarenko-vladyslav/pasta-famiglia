@@ -1,16 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionOfferingIntro } from "./sections/offering_intro";
-import { SectionMenuSignature } from "./sections/menu_signature";
-import { SectionOfferingPizza } from "./sections/offering_pizza";
+import { SectionMenuOffering } from "./sections/menu_offering";
+import { SectionSignatureItems } from "./sections/signature_items";
+import { SectionBusinessLunch } from "./sections/business_lunch";
 import { SectionMarqueeInterstitial } from "./sections/marquee_interstitial";
-import { SectionCraftProcess } from "./sections/craft_process";
-import { SectionStoryValues } from "./sections/story_values";
+import { SectionStoryCraft } from "./sections/story_craft";
+import { SectionProcessProduction } from "./sections/process_production";
 import { SectionGallery } from "./sections/gallery";
-import { SectionProofStats } from "./sections/proof_stats";
+import { SectionValuesFamily } from "./sections/values_family";
 import { SectionProofTestimonials } from "./sections/proof_testimonials";
+import { SectionFaq } from "./sections/faq";
 import { SectionLocationHours } from "./sections/location_hours";
-import { SectionBookingFinal } from "./sections/booking_final";
+import { SectionBookingContact } from "./sections/booking_contact";
 
 const NAV = [{ href: "#gallery", label: "Галерея" }];
 
@@ -32,24 +33,25 @@ export default function Page() {
             {NAV.map((l) => (<a key={l.href} href={l.href} className="hover:text-accent transition-colors">{l.label}</a>))}
           </nav>
           <div className="flex items-center gap-2">
-            <Magnetic><a href={"tel:+380443332211"} className="rp-header-cta hidden lg:inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Звʼязатися</a></Magnetic>
-            <MobileMenu links={NAV} cta={{ href: "tel:+380443332211", label: "Звʼязатися" }} phone={"+380 (44) 333-22-11"} />
+            <Magnetic><a href={"#booking_contact"} className="rp-header-cta hidden lg:inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Звʼязатися</a></Magnetic>
+            <MobileMenu links={NAV} cta={{ href: "#booking_contact", label: "Звʼязатися" }} phone={"+380 (44) 333-22-11"} />
           </div>
         </div>
       </HeaderShell>
       <main id="top">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionOfferingIntro /></ActBoundary>
-        <ActBoundary><SectionMenuSignature /></ActBoundary>
-        <ActBoundary><SectionOfferingPizza /></ActBoundary>
+        <ActBoundary><SectionMenuOffering /></ActBoundary>
+        <ActBoundary><SectionSignatureItems /></ActBoundary>
+        <ActBoundary><SectionBusinessLunch /></ActBoundary>
         <ActBoundary><SectionMarqueeInterstitial /></ActBoundary>
-        <ActBoundary><SectionCraftProcess /></ActBoundary>
-        <ActBoundary><SectionStoryValues /></ActBoundary>
+        <ActBoundary><SectionStoryCraft /></ActBoundary>
+        <ActBoundary><SectionProcessProduction /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionProofStats /></ActBoundary>
+        <ActBoundary><SectionValuesFamily /></ActBoundary>
         <ActBoundary><SectionProofTestimonials /></ActBoundary>
+        <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocationHours /></ActBoundary>
-        <ActBoundary><SectionBookingFinal /></ActBoundary>
+        <ActBoundary><SectionBookingContact /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-8 pt-16 lg:grid-cols-3 lg:px-6">
