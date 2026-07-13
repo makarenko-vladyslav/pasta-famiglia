@@ -1,5 +1,5 @@
-import { Reveal, CountUp } from "@/components/mechanics";
 "use client";
+import { Reveal, CountUp } from "@/components/mechanics";
 
 // Assuming standard toolkit availability as per skeleton
 
