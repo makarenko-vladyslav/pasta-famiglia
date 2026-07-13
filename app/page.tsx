@@ -1,15 +1,16 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionSignatureItems } from "./sections/signature_items";
-import { SectionMenuMain } from "./sections/menu_main";
-import { SectionInterstitialMarquee } from "./sections/interstitial_marquee";
-import { SectionStoryWorkshop } from "./sections/story_workshop";
-import { SectionProcessCraft } from "./sections/process_craft";
-import { SectionSocialProof } from "./sections/social_proof";
-import { SectionLocationHours } from "./sections/location_hours";
-import { SectionBookingFinal } from "./sections/booking_final";
+import { SectionMarqueeSignatures } from "./sections/marquee_signatures";
+import { SectionMenuPasta } from "./sections/menu_pasta";
+import { SectionMenuLunch } from "./sections/menu_lunch";
+import { SectionStoryCraft } from "./sections/story_craft";
+import { SectionProcess } from "./sections/process";
+import { SectionProof } from "./sections/proof";
+import { SectionFaq } from "./sections/faq";
+import { SectionLocation } from "./sections/location";
+import { SectionBooking } from "./sections/booking";
 
-const NAV = [{ href: "#signature_items", label: "Меню" }, { href: "#story_workshop", label: "Про нас" }, { href: "#social_proof", label: "Відгуки" }, { href: "#location_hours", label: "Контакти" }];
+const NAV = [{ href: "#marquee_signatures", label: "Меню" }, { href: "#story_craft", label: "Про нас" }, { href: "#process", label: "Як працює" }, { href: "#proof", label: "Відгуки" }, { href: "#faq", label: "Питання" }];
 
 export default function Page() {
   return (
@@ -36,14 +37,15 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionSignatureItems /></ActBoundary>
-        <ActBoundary><SectionMenuMain /></ActBoundary>
-        <ActBoundary><SectionInterstitialMarquee /></ActBoundary>
-        <ActBoundary><SectionStoryWorkshop /></ActBoundary>
-        <ActBoundary><SectionProcessCraft /></ActBoundary>
-        <ActBoundary><SectionSocialProof /></ActBoundary>
-        <ActBoundary><SectionLocationHours /></ActBoundary>
-        <ActBoundary><SectionBookingFinal /></ActBoundary>
+        <ActBoundary><SectionMarqueeSignatures /></ActBoundary>
+        <ActBoundary><SectionMenuPasta /></ActBoundary>
+        <ActBoundary><SectionMenuLunch /></ActBoundary>
+        <ActBoundary><SectionStoryCraft /></ActBoundary>
+        <ActBoundary><SectionProcess /></ActBoundary>
+        <ActBoundary><SectionProof /></ActBoundary>
+        <ActBoundary><SectionFaq /></ActBoundary>
+        <ActBoundary><SectionLocation /></ActBoundary>
+        <ActBoundary><SectionBooking /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-8 pt-16 lg:grid-cols-3 lg:px-6">
