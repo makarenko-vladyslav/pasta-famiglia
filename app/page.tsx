@@ -1,20 +1,18 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionPromise } from "./sections/promise";
-import { SectionMenuPasta } from "./sections/menu-pasta";
-import { SectionPizza } from "./sections/pizza";
-import { SectionLunch } from "./sections/lunch";
-import { SectionMarqueeSpacer } from "./sections/marquee-spacer";
-import { SectionCraft } from "./sections/craft";
+import { SectionOffering } from "./sections/offering";
+import { SectionMenuSignature } from "./sections/menu_signature";
+import { SectionMenuOven } from "./sections/menu_oven";
+import { SectionMarqueeInterstitial } from "./sections/marquee_interstitial";
+import { SectionStory } from "./sections/story";
 import { SectionGallery } from "./sections/gallery";
-import { SectionKids } from "./sections/kids";
-import { SectionDelivery } from "./sections/delivery";
-import { SectionSocialProof } from "./sections/social-proof";
+import { SectionAtmosphere } from "./sections/atmosphere";
+import { SectionProof } from "./sections/proof";
 import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
-import { SectionContacts } from "./sections/contacts";
+import { SectionBooking } from "./sections/booking";
 
-const NAV = [{ href: "#gallery", label: "Галерея" }];
+const NAV = [{ href: "#offering", label: "Послуги" }, { href: "#gallery", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
 
 export default function Page() {
   return (
@@ -29,31 +27,29 @@ export default function Page() {
       )}
       <HeaderShell>
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 lg:px-6">
-          <a href="#top" className="font-display text-xl font-bold tracking-tight">Pasta Famiglia</a>
+          <a href="#top" className="whitespace-nowrap font-display text-lg lg:text-xl font-bold tracking-tight">Pasta Famiglia</a>
           <nav className="hidden lg:flex items-center gap-6 text-sm font-medium">
             {NAV.map((l) => (<a key={l.href} href={l.href} className="hover:text-accent transition-colors">{l.label}</a>))}
           </nav>
           <div className="flex items-center gap-2">
-            <Magnetic><a href={"#contacts"} className="rp-header-cta inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Забронювати стіл за 30 секунд</a></Magnetic>
-            <MobileMenu links={NAV} cta={{ href: "#contacts", label: "Забронювати стіл за 30 секунд" }} phone={"+380 (44) 333-22-11"} />
+            <Magnetic><a href={"tel:+380443332211"} className="rp-header-cta hidden lg:inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Звʼязатися</a></Magnetic>
+            <MobileMenu links={NAV} cta={{ href: "tel:+380443332211", label: "Звʼязатися" }} phone={"+380 (44) 333-22-11"} />
           </div>
         </div>
       </HeaderShell>
       <main id="top">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionPromise /></ActBoundary>
-        <ActBoundary><SectionMenuPasta /></ActBoundary>
-        <ActBoundary><SectionPizza /></ActBoundary>
-        <ActBoundary><SectionLunch /></ActBoundary>
-        <ActBoundary><SectionMarqueeSpacer /></ActBoundary>
-        <ActBoundary><SectionCraft /></ActBoundary>
+        <ActBoundary><SectionOffering /></ActBoundary>
+        <ActBoundary><SectionMenuSignature /></ActBoundary>
+        <ActBoundary><SectionMenuOven /></ActBoundary>
+        <ActBoundary><SectionMarqueeInterstitial /></ActBoundary>
+        <ActBoundary><SectionStory /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionKids /></ActBoundary>
-        <ActBoundary><SectionDelivery /></ActBoundary>
-        <ActBoundary><SectionSocialProof /></ActBoundary>
+        <ActBoundary><SectionAtmosphere /></ActBoundary>
+        <ActBoundary><SectionProof /></ActBoundary>
         <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
-        <ActBoundary><SectionContacts /></ActBoundary>
+        <ActBoundary><SectionBooking /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-8 pt-16 lg:grid-cols-3 lg:px-6">

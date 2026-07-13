@@ -22,9 +22,10 @@ export function PreloaderCurtain({ brand }: { brand: string }) {
   if (phase === "done") return null;
   // Inline var() fallbacks: before the token stylesheet parses the curtain
   // must ALREADY be opaque — a transparent curtain over a loading page reads
-  // as "the preloader is floating on top of the site".
-  const ink = "hsl(var(--color-foreground, 24 12% 10%))";
-  const paper = "hsl(var(--color-background, 40 30% 96%))";
+  // as "the preloader is floating on top of the site". Theme tokens are FULL
+  // hsl(...) values, so consume them bare — never re-wrap in hsl().
+  const ink = "var(--color-foreground, hsl(24 12% 10%))";
+  const paper = "var(--color-background, hsl(40 30% 96%))";
   return (
     <div aria-hidden className={"rp-curtain fixed inset-0 z-[100] pointer-events-none" + (phase === "open" ? " rp-curtain-open" : "")}>
       <div className="rp-curtain-top absolute inset-x-0 top-0 h-1/2" style={{ background: ink }} />
@@ -32,8 +33,9 @@ export function PreloaderCurtain({ brand }: { brand: string }) {
       <div className="absolute inset-0 grid place-items-center overflow-hidden">
         <div className="rp-curtain-brand grid justify-items-center gap-4" style={{ color: paper }}>
           <span className="font-[family-name:var(--font-display)] text-[clamp(1.7rem,4.5vw,3.4rem)] font-semibold tracking-tight leading-none">{brand}</span>
-          <span className="rp-curtain-line block h-px w-40 overflow-hidden" style={{ background: "hsl(var(--color-background, 40 30% 96%) / 0.25)" }}>
-            <span className="block h-full w-full origin-left" style={{ background: paper }} />
+          <span className="rp-curtain-line relative block h-px w-40 overflow-hidden">
+            <span className="absolute inset-0 opacity-25" style={{ background: paper }} />
+            <span className="relative block h-full w-full origin-left" style={{ background: paper }} />
           </span>
         </div>
       </div>
@@ -106,8 +108,8 @@ export function CustomCursor() {
   }, []);
   return (
     <div aria-hidden className="hidden lg:block">
-      <div ref={dotRef} className="fixed left-0 top-0 z-[95] h-1.5 w-1.5 rounded-full bg-[hsl(var(--color-accent))] pointer-events-none" />
-      <div ref={ringRef} className="fixed left-0 top-0 z-[95] h-9 w-9 rounded-full border border-[hsl(var(--color-accent))] pointer-events-none transition-[opacity] duration-200" style={{ mixBlendMode: "difference" }} />
+      <div ref={dotRef} className="fixed left-0 top-0 z-[95] h-1.5 w-1.5 rounded-full bg-accent pointer-events-none" />
+      <div ref={ringRef} className="fixed left-0 top-0 z-[95] h-9 w-9 rounded-full border border-accent pointer-events-none transition-[opacity] duration-200" style={{ mixBlendMode: "difference" }} />
     </div>
   );
 }
@@ -191,13 +193,18 @@ export function AmbientCanvas({ className = "" }: { className?: string }) {
     ];
     let raf = 0, w = 0, h = 0, visible = true;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Size from the HOST, never from the canvas itself: observing the canvas
+    // reacts to its own width= attribute and feedback-loops to the browser
+    // maximum (a 33-million-px canvas shipped once). Clamp as a hard stop.
+    const host = canvas.parentElement ?? canvas;
     const resize = () => {
-      w = canvas.offsetWidth; h = canvas.offsetHeight;
+      w = Math.min(host.clientWidth || window.innerWidth, window.innerWidth * 2);
+      h = Math.min(host.clientHeight || window.innerHeight, window.innerHeight * 3);
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
-    const ro = new ResizeObserver(resize); ro.observe(canvas);
+    const ro = new ResizeObserver(resize); ro.observe(host);
     const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; });
     io.observe(canvas);
     const draw = (t: number) => {
@@ -219,7 +226,7 @@ export function AmbientCanvas({ className = "" }: { className?: string }) {
     else raf = requestAnimationFrame(draw);
     return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); };
   }, []);
-  return <canvas ref={ref} className={"pointer-events-none absolute inset-0 h-full w-full " + className} aria-hidden />;
+  return <canvas ref={ref} className={"pointer-events-none absolute inset-0 " + className} style={{ width: "100%", height: "100%" }} aria-hidden />;
 }
 
 /** Pinned scroll scene: a tall wrapper with a sticky viewport window; the
@@ -362,7 +369,7 @@ export function MobileMenu({ links = [], cta, phone, openLabel = "Menu", closeLa
       </button>
       <div className={"fixed inset-0 z-50 overflow-hidden transition-opacity duration-300 " + (open ? "opacity-100" : "pointer-events-none opacity-0")} onClick={() => setOpen(false)}>
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-        <nav className={"absolute right-0 top-0 h-full w-[82%] max-w-sm bg-[hsl(var(--color-background))] p-8 pt-24 shadow-2xl transition-transform duration-500 " + (open ? "translate-x-0" : "translate-x-full")}
+        <nav className={"absolute right-0 top-0 h-full w-[82%] max-w-sm bg-background p-8 pt-24 shadow-2xl transition-transform duration-500 " + (open ? "translate-x-0" : "translate-x-full")}
           style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }} onClick={(e) => e.stopPropagation()}>
           <ul className="flex flex-col gap-1">
             {links.map((l, i) => (
@@ -374,7 +381,7 @@ export function MobileMenu({ links = [], cta, phone, openLabel = "Menu", closeLa
           </ul>
           <div className={"mt-8 flex flex-col gap-4 transition-all duration-500 " + (open ? "translate-x-0 opacity-100" : "translate-x-6 opacity-0")} style={{ transitionDelay: open ? "400ms" : "0ms" }}>
             {phone && <a href={"tel:" + phone.replace(/[^+\d]/g, "")} className="text-lg font-medium">{phone}</a>}
-            {cta && <a href={cta.href} onClick={() => setOpen(false)} style={{ borderRadius: "var(--radius-control, 9999px)" }} className="inline-flex justify-center bg-[hsl(var(--color-accent))] px-6 py-3.5 font-semibold text-[hsl(var(--color-accent-foreground))]">{cta.label}</a>}
+            {cta && <a href={cta.href} onClick={() => setOpen(false)} style={{ borderRadius: "var(--radius-control, 9999px)" }} className="inline-flex justify-center bg-accent px-6 py-3.5 font-semibold text-accent-foreground">{cta.label}</a>}
           </div>
         </nav>
       </div>

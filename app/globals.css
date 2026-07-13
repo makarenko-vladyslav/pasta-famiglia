@@ -1,36 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: hsl(40 30% 96%);
-  --color-surface: hsl(40 25% 92%);
-  --color-foreground: hsl(30 20% 12%);
-  --color-accent: hsl(12 80% 40%);
-  --color-accent-foreground: hsl(0 0% 100%);
-  --color-muted: hsl(30 10% 55%);
-  --color-border: hsl(30 15% 85%);
+  --color-background: hsl(38 25% 96%);
+  --color-surface: hsl(38 15% 90%);
+  --color-foreground: hsl(38 15% 12%);
+  --color-accent: hsl(24 75% 45%);
+  --color-accent-foreground: hsl(38 25% 98%);
+  --color-muted: hsl(38 10% 65%);
+  --color-border: hsl(38 15% 88%);
 
   --font-display: "Playfair Display", sans-serif;
   --font-body: "Lora", sans-serif;
 
-  --radius-control: 4px;
-  --radius-surface: calc(4px * 3);
+  --radius-control: 8px;
+  --radius-surface: calc(8px * 3);
 
   --spacing-s1: 0.25rem;
   --spacing-s2: 0.5rem;
   --spacing-s3: 1rem;
-  --spacing-s4: 2.5rem;
-  --spacing-s5: 5rem;
-  --spacing-s6: 10rem;
+  --spacing-s4: 2rem;
+  --spacing-s5: 4rem;
+  --spacing-s6: 8rem;
 }
 
 @layer base {
   *:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-  html { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+  /* html carries the FOOTER color: iOS rubber-band past the footer shows the
+     html canvas — a light canvas there reads as "the page keeps scrolling". */
+  html { background: var(--color-foreground); text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
   /* Premium foundation (awwwards-web-architect): light body weight, tight
    * display tracking, one easing voice — the details that read expensive. */
   body { background: var(--color-background); color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.04em; }
-  ::selection { background: hsl(12 80% 40%); color: hsl(0 0% 100%); }
+  ::selection { background: hsl(24 75% 45%); color: hsl(38 25% 98%); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 }
 
@@ -92,6 +94,11 @@
 @media (max-width: 1023px) {
   .rp-watermark { display: none; }
 }
+/* Grid blowout guard: a grid child has min-width:auto, so one long Ukrainian
+   display word («БЕЗКОШТОВНИЙ») widens the whole layout viewport past the
+   phone screen. Kill the class systemically, not per-case. */
+main [class~="grid"] > *, footer [class~="grid"] > * { min-width: 0; }
+main h1, main h2, main h3, main h4 { overflow-wrap: break-word; }
 .rp-watermark { position: absolute; inset-inline: 0; pointer-events: none; user-select: none; font-family: var(--font-display); font-weight: 700; line-height: 0.8; letter-spacing: -0.04em; font-size: clamp(6rem, 24vw, 22rem); opacity: 0.05; white-space: nowrap; }
 .rp-graded { filter: saturate(0.94) contrast(1.06) brightness(0.99); }
 .rp-actno { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.55; display: inline-flex; align-items: center; gap: 0.75rem; }
