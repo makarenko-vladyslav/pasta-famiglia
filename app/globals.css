@@ -1,25 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: hsl(38 10% 96%);
-  --color-surface: hsl(38 12% 91%);
-  --color-foreground: hsl(25 15% 12%);
-  --color-accent: hsl(25 75% 45%);
-  --color-accent-foreground: hsl(38 10% 98%);
-  --color-muted: hsl(38 5% 32%);
-  --color-border: hsl(25 10% 82%);
+  --color-background: hsl(35 12% 95%);
+  --color-surface: hsl(35 10% 89%);
+  --color-foreground: hsl(24 25% 12%);
+  --color-accent: hsl(18 70% 42%);
+  --color-accent-foreground: hsl(35 10% 98%);
+  --color-muted: hsl(65 18% 45%);
+  --color-border: hsl(35 15% 82%);
 
   --font-display: "Playfair Display", sans-serif;
   --font-body: "Lora", sans-serif;
 
-  --radius-control: 4px;
-  --radius-surface: calc(4px * 3);
+  --radius-control: 12px;
+  --radius-surface: calc(12px * 3);
 
   --spacing-s1: 0.25rem;
   --spacing-s2: 0.75rem;
   --spacing-s3: 1.5rem;
   --spacing-s4: 3rem;
   --spacing-s5: 6rem;
+  --spacing-s6: 12rem;
 }
 
 @layer base {
@@ -31,7 +32,7 @@
    * display tracking, one easing voice — the details that read expensive. */
   body { background: var(--color-foreground); color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: var(--tracking-display, -0.04em); line-height: var(--leading-display, 1); }
-  ::selection { background: hsl(25 75% 45%); color: hsl(38 10% 98%); }
+  ::selection { background: hsl(18 70% 42%); color: hsl(35 10% 98%); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 }
 
@@ -40,7 +41,7 @@
   --ease-in-out-quart: cubic-bezier(0.8, 0, 0.2, 1);
   --space-act: clamp(3.5rem, 10vw, 12.5rem);
   --tracking-display: -0.005em;
-  --leading-display: 1.08;
+  --leading-display: 1.14;
 }
 
 /* — WOW layer — */
@@ -99,13 +100,16 @@
 /* Section edge discipline: vertical air comes from the section padding —
    a first-child top margin or last-child bottom margin doubles it and makes
    every act breathe differently (owner: «різні відступи зверху та знизу»). */
+/* One breathing rhythm for every act (owner: «різні відступи», «франкенштейн»):
+   content sections share the act token; hero and the accent finale opt out. */
+main > section:not(#hero):not(:first-child):not(:last-child) { padding-block: var(--space-act); }
 main section > :first-child { margin-top: 0 !important; }
 main section > :last-child { margin-bottom: 0 !important; }
 /* Grid blowout guard: a grid child has min-width:auto, so one long Ukrainian
    display word («БЕЗКОШТОВНИЙ») widens the whole layout viewport past the
    phone screen. Kill the class systemically, not per-case. */
 main [class~="grid"] > *, footer [class~="grid"] > * { min-width: 0; }
-main h1, main h2, main h3, main h4 { overflow-wrap: break-word; }
+main h1, main h2, main h3, main h4 { overflow-wrap: anywhere; hyphens: auto; }
 .rp-watermark { position: absolute; inset-inline: 0; pointer-events: none; user-select: none; font-family: var(--font-display); font-weight: 700; line-height: 0.8; letter-spacing: -0.04em; font-size: clamp(6rem, 24vw, 22rem); opacity: 0.05; white-space: nowrap; }
 .rp-graded { filter: saturate(0.94) contrast(1.06) brightness(0.99); }
 .rp-actno { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.55; display: inline-flex; align-items: center; gap: 0.75rem; }

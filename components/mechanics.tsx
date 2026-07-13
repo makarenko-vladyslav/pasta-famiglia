@@ -28,8 +28,10 @@ export function PreloaderCurtain({ brand }: { brand: string }) {
     document.body.style.overflow = "hidden";
     const t1 = setTimeout(() => setPhase("open"), openAt);
     const t2 = setTimeout(() => { setPhase("done"); document.body.style.overflow = ""; }, doneAt);
+    const onShow = (e: PageTransitionEvent) => { if (e.persisted && !location.hash) window.scrollTo(0, 0); };
+    window.addEventListener("pageshow", onShow);
     const t3 = setTimeout(() => cancelAnimationFrame(lockRaf), doneAt);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); cancelAnimationFrame(lockRaf); document.body.style.overflow = ""; };
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); cancelAnimationFrame(lockRaf); window.removeEventListener("pageshow", onShow); document.body.style.overflow = ""; };
   }, []);
   if (phase === "done") return null;
   // Inline var() fallbacks: before the token stylesheet parses the curtain
@@ -379,8 +381,9 @@ export function MobileMenu({ links = [], cta, phone, openLabel = "Menu", closeLa
         <span className={"absolute h-0.5 w-6 bg-current transition-all duration-300 " + (open ? "-rotate-45" : "translate-y-2")} />
       </button>
       <div className={"fixed inset-0 z-[70] transition-opacity duration-300 " + (open ? "opacity-100" : "pointer-events-none opacity-0")}
-        style={{ background: "var(--color-background, hsl(40 30% 96%))" }}>
-        <nav className="flex h-full w-full flex-col justify-between px-6 pb-10 pt-24" onClick={(e) => e.stopPropagation()}>
+        style={{ background: "var(--color-background, hsl(40 30% 96%))", backgroundColor: "var(--color-background, hsl(40 30% 96%))" }}>
+        <div aria-hidden style={{ position: "absolute", inset: 0, background: "var(--color-background, hsl(40 30% 96%))" }} />
+        <nav className="relative flex h-full w-full flex-col justify-between px-6 pb-10 pt-24" onClick={(e) => e.stopPropagation()}>
           <ul className="flex flex-col">
             {links.map((l, i) => (
               <li key={l.href} className={"border-b border-current/10 transition-all duration-500 " + (open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")}
