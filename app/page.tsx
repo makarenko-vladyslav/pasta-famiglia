@@ -1,17 +1,18 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionOfferIntro } from "./sections/offer_intro";
-import { SectionMenuEditorial } from "./sections/menu_editorial";
+import { SectionOfferingIntro } from "./sections/offering_intro";
+import { SectionMenuSignature } from "./sections/menu_signature";
+import { SectionOfferingPizza } from "./sections/offering_pizza";
 import { SectionMarqueeInterstitial } from "./sections/marquee_interstitial";
-import { SectionStoryCraft } from "./sections/story_craft";
-import { SectionProcessSpeed } from "./sections/process_speed";
-import { SectionGalleryPan } from "./sections/gallery_pan";
-import { SectionProofTestimonial } from "./sections/proof_testimonial";
-import { SectionFaqPolicy } from "./sections/faq_policy";
-import { SectionLocationMap } from "./sections/location_map";
+import { SectionCraftProcess } from "./sections/craft_process";
+import { SectionStoryValues } from "./sections/story_values";
+import { SectionGallery } from "./sections/gallery";
+import { SectionProofStats } from "./sections/proof_stats";
+import { SectionProofTestimonials } from "./sections/proof_testimonials";
+import { SectionLocationHours } from "./sections/location_hours";
 import { SectionBookingFinal } from "./sections/booking_final";
 
-const NAV = [];
+const NAV = [{ href: "#gallery", label: "Галерея" }];
 
 export default function Page() {
   return (
@@ -38,15 +39,16 @@ export default function Page() {
       </HeaderShell>
       <main id="top">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionOfferIntro /></ActBoundary>
-        <ActBoundary><SectionMenuEditorial /></ActBoundary>
+        <ActBoundary><SectionOfferingIntro /></ActBoundary>
+        <ActBoundary><SectionMenuSignature /></ActBoundary>
+        <ActBoundary><SectionOfferingPizza /></ActBoundary>
         <ActBoundary><SectionMarqueeInterstitial /></ActBoundary>
-        <ActBoundary><SectionStoryCraft /></ActBoundary>
-        <ActBoundary><SectionProcessSpeed /></ActBoundary>
-        <ActBoundary><SectionGalleryPan /></ActBoundary>
-        <ActBoundary><SectionProofTestimonial /></ActBoundary>
-        <ActBoundary><SectionFaqPolicy /></ActBoundary>
-        <ActBoundary><SectionLocationMap /></ActBoundary>
+        <ActBoundary><SectionCraftProcess /></ActBoundary>
+        <ActBoundary><SectionStoryValues /></ActBoundary>
+        <ActBoundary><SectionGallery /></ActBoundary>
+        <ActBoundary><SectionProofStats /></ActBoundary>
+        <ActBoundary><SectionProofTestimonials /></ActBoundary>
+        <ActBoundary><SectionLocationHours /></ActBoundary>
         <ActBoundary><SectionBookingFinal /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">

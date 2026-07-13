@@ -4,37 +4,40 @@ import { Reveal, Marquee } from "@/components/mechanics";
 
 /**
  * SECTION: Marquee Interstitial
- * ROLE: The living idle layer between Acts II and III.
- * STYLING: Low-contrast display type, surface background, hairline dividers.
+ * ROLE: Transition band of signature brand attributes.
+ * STYLE: Typographic poster crawl, Jost (font-display), tracking-tighter.
  */
 export function SectionMarqueeInterstitial() {
-  const marqueeItems = [
-    "Свіжа паста",
-    "Борошно Semola",
-    "Al Dente",
-    "Доставка за 20 хв",
-    "Без сервісного збору",
-    "Відкрита кухня",
+  const attributes = [
+    "СВІЖА ПАСТА",
+    "ДРОВ'ЯНА ПІЧ",
+    "БОРОШНО CAPUTO",
+    "20 ХВИЛИН",
+    "БЕЗ СЕРВІСНОГО ЗБОРУ",
+    "ІТАЛІЙСЬКІ ТРАДИЦІЇ",
+    "ВЛАСНЕ ВИРОБНИЦТВО",
   ];
 
   return (
-    <section className="w-full py-8 border-y border-foreground/5 bg-background overflow-hidden">
+    <section 
+      className="relative w-full overflow-hidden border-y border-foreground/10 bg-background py-10 lg:py-14"
+      aria-hidden="true"
+    >
       <Reveal delay={0.1}>
         <div className="flex items-center">
           <Marquee 
-            items={marqueeItems.map((item, idx) => (
-              <span 
-                key={idx} 
-                className="font-display italic text-4xl lg:text-6xl text-foreground/20 whitespace-nowrap px-8"
-              >
-                {item}
-              </span>
-            ))}
-            speed="slow"
-            direction="left"
+            items={attributes} 
+            className="font-display text-[2.2rem] md:text-[3rem] lg:text-[clamp(2.5rem,5vw,4rem)] font-semibold uppercase tracking-tighter text-foreground"
           />
         </div>
       </Reveal>
+      
+      {/* Decorative vertical accent for large screens only */}
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:block">
+        <span className="text-[10px] uppercase tracking-[0.4em] text-muted [writing-mode:vertical-lr] opacity-40">
+          PASTA FAMIGLIA • KYIV
+        </span>
+      </div>
     </section>
   );
 }
