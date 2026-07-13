@@ -1,26 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: hsl(38 25% 96%);
-  --color-surface: hsl(38 15% 90%);
-  --color-foreground: hsl(38 15% 12%);
-  --color-accent: hsl(24 75% 45%);
-  --color-accent-foreground: hsl(38 25% 98%);
-  --color-muted: hsl(38 10% 65%);
-  --color-border: hsl(38 15% 88%);
+  --color-background: hsl(38 40% 96%);
+  --color-surface: hsl(38 30% 90%);
+  --color-foreground: hsl(15 15% 15%);
+  --color-accent: hsl(28 88% 45%);
+  --color-accent-foreground: hsl(38 40% 98%);
+  --color-muted: hsl(38 10% 32%);
+  --color-border: hsl(38 20% 84%);
 
   --font-display: "Playfair Display", sans-serif;
   --font-body: "Lora", sans-serif;
 
-  --radius-control: 8px;
-  --radius-surface: calc(8px * 3);
+  --radius-control: 0.25rem;
+  --radius-surface: calc(0.25rem * 3);
 
-  --spacing-s1: 0.25rem;
-  --spacing-s2: 0.5rem;
-  --spacing-s3: 1rem;
-  --spacing-s4: 2rem;
-  --spacing-s5: 4rem;
-  --spacing-s6: 8rem;
+  --spacing-s1: 0.5rem;
+  --spacing-s2: 1rem;
+  --spacing-s3: 2rem;
+  --spacing-s4: 4rem;
+  --spacing-s5: 8rem;
 }
 
 @layer base {
@@ -31,8 +30,8 @@
   /* Premium foundation (awwwards-web-architect): light body weight, tight
    * display tracking, one easing voice — the details that read expensive. */
   body { background: var(--color-background); color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
-  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.04em; }
-  ::selection { background: hsl(24 75% 45%); color: hsl(38 25% 98%); }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: var(--tracking-display, -0.04em); }
+  ::selection { background: hsl(28 88% 45%); color: hsl(38 40% 98%); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 }
 
@@ -40,6 +39,7 @@
   --ease-out-cubic: cubic-bezier(0.2, 0.6, 0.35, 1);
   --ease-in-out-quart: cubic-bezier(0.8, 0, 0.2, 1);
   --space-act: clamp(3.5rem, 10vw, 12.5rem);
+  --tracking-display: -0.005em;
 }
 
 /* — WOW layer — */

@@ -1,18 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionOffering } from "./sections/offering";
-import { SectionMenuSignature } from "./sections/menu_signature";
-import { SectionMenuOven } from "./sections/menu_oven";
+import { SectionOfferIntro } from "./sections/offer_intro";
+import { SectionMenuEditorial } from "./sections/menu_editorial";
 import { SectionMarqueeInterstitial } from "./sections/marquee_interstitial";
-import { SectionStory } from "./sections/story";
-import { SectionGallery } from "./sections/gallery";
-import { SectionAtmosphere } from "./sections/atmosphere";
-import { SectionProof } from "./sections/proof";
-import { SectionFaq } from "./sections/faq";
-import { SectionLocation } from "./sections/location";
-import { SectionBooking } from "./sections/booking";
+import { SectionStoryCraft } from "./sections/story_craft";
+import { SectionProcessSpeed } from "./sections/process_speed";
+import { SectionGalleryPan } from "./sections/gallery_pan";
+import { SectionProofTestimonial } from "./sections/proof_testimonial";
+import { SectionFaqPolicy } from "./sections/faq_policy";
+import { SectionLocationMap } from "./sections/location_map";
+import { SectionBookingFinal } from "./sections/booking_final";
 
-const NAV = [{ href: "#offering", label: "Послуги" }, { href: "#gallery", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
+const NAV = [];
 
 export default function Page() {
   return (
@@ -39,17 +38,16 @@ export default function Page() {
       </HeaderShell>
       <main id="top">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionOffering /></ActBoundary>
-        <ActBoundary><SectionMenuSignature /></ActBoundary>
-        <ActBoundary><SectionMenuOven /></ActBoundary>
+        <ActBoundary><SectionOfferIntro /></ActBoundary>
+        <ActBoundary><SectionMenuEditorial /></ActBoundary>
         <ActBoundary><SectionMarqueeInterstitial /></ActBoundary>
-        <ActBoundary><SectionStory /></ActBoundary>
-        <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionAtmosphere /></ActBoundary>
-        <ActBoundary><SectionProof /></ActBoundary>
-        <ActBoundary><SectionFaq /></ActBoundary>
-        <ActBoundary><SectionLocation /></ActBoundary>
-        <ActBoundary><SectionBooking /></ActBoundary>
+        <ActBoundary><SectionStoryCraft /></ActBoundary>
+        <ActBoundary><SectionProcessSpeed /></ActBoundary>
+        <ActBoundary><SectionGalleryPan /></ActBoundary>
+        <ActBoundary><SectionProofTestimonial /></ActBoundary>
+        <ActBoundary><SectionFaqPolicy /></ActBoundary>
+        <ActBoundary><SectionLocationMap /></ActBoundary>
+        <ActBoundary><SectionBookingFinal /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-8 pt-16 lg:grid-cols-3 lg:px-6">

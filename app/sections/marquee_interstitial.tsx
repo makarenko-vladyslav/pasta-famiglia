@@ -4,43 +4,37 @@ import { Reveal, Marquee } from "@/components/mechanics";
 
 /**
  * SECTION: Marquee Interstitial
- * ROLE: ACT II: Transition - The Living Layer.
- * LAYOUT: Full-bleed horizontal crawl, high-contrast ribbon.
+ * ROLE: The living idle layer between Acts II and III.
+ * STYLING: Low-contrast display type, surface background, hairline dividers.
  */
 export function SectionMarqueeInterstitial() {
-  const ingredients = [
-    "SEMOLA CAPUTO",
-    "БЕЗ ПЛАТИ ЗА ОБСЛУГОВУВАННЯ",
-    "20 ХВИЛИН АБО БЕЗКОШТОВНО",
-    "PASTA FAMIGLIA",
-    "ВЛАСНЕ ВИРОБНИЦТВО",
-    "TRADIZIONE ITALIANA",
-    "AL DENTE ALWAYS",
-    "КИЇВ • АНТОНОВИЧА 44",
-    "FRESH PASTA DAILY",
-    "CASA DELLA PASTA"
+  const marqueeItems = [
+    "Свіжа паста",
+    "Борошно Semola",
+    "Al Dente",
+    "Доставка за 20 хв",
+    "Без сервісного збору",
+    "Відкрита кухня",
   ];
 
   return (
-    <section className="relative w-full py-8 overflow-hidden bg-foreground text-background select-none">
+    <section className="w-full py-8 border-y border-foreground/5 bg-background overflow-hidden">
       <Reveal delay={0.1}>
-        <div className="flex items-center font-mono uppercase text-[1.1rem] lg:text-[1.2rem] tracking-[0.2em] lg:tracking-widest whitespace-nowrap">
+        <div className="flex items-center">
           <Marquee 
-            items={ingredients} 
-            // The Marquee component from mechanics typically accepts an array 
-            // and handles the infinite loop internally.
+            items={marqueeItems.map((item, idx) => (
+              <span 
+                key={idx} 
+                className="font-display italic text-4xl lg:text-6xl text-foreground/20 whitespace-nowrap px-8"
+              >
+                {item}
+              </span>
+            ))}
+            speed="slow"
+            direction="left"
           />
         </div>
       </Reveal>
-      
-      {/* Subtle overlay to ensure the "speed" feels consistent across viewport widths */}
-      <style jsx global>{`
-        @media (max-width: 768px) {
-          .marquee-container {
-            animation-duration: 15s !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

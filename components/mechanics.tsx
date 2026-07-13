@@ -12,6 +12,11 @@ const COARSE = () => typeof window !== "undefined" && window.matchMedia("(pointe
 export function PreloaderCurtain({ brand }: { brand: string }) {
   const [phase, setPhase] = useState<"boot" | "open" | "done">("boot");
   useEffect(() => {
+    // The curtain means "the show starts from the top": Safari restores the
+    // previous scroll offset on reload, so the curtain opened onto the MIDDLE
+    // of the page. Anchor links keep their target.
+    try { history.scrollRestoration = "manual"; } catch { /* older browsers */ }
+    if (!location.hash) window.scrollTo(0, 0);
     const openAt = REDUCED() ? 450 : 1150;
     const doneAt = REDUCED() ? 950 : 2050;
     document.body.style.overflow = "hidden";
@@ -65,14 +70,15 @@ export function HeaderShell({ children, overDarkHero = true }: { children: React
     return () => window.removeEventListener("scroll", on);
   }, []);
   const transparent = overDarkHero && !scrolled;
-  // Transparent state carries a top scrim so the wordmark stays readable on
-  // ANY hero photo (a light ceiling swallowed light logo text), and hides the
-  // header CTA (.rp-header-cta via CSS) — the hero already owns that CTA.
+  // Transparent state: NO band, no border — a gradient strip over a dark hero
+  // read as dirt (owner: «хедер уродський до скролу»). The children stay
+  // readable on any photo via a drop-shadow filter; the header CTA hides
+  // (.rp-header-cta via CSS) — the hero owns that CTA.
   return (
     <header className={
       "sticky top-0 z-40 transition-colors duration-300 " +
       (transparent
-        ? "rp-header-transparent border-b border-transparent bg-gradient-to-b from-black/45 to-transparent text-white"
+        ? "rp-header-transparent border-b border-transparent bg-transparent text-white drop-shadow-[0_1px_10px_rgba(0,0,0,0.6)]"
         : "border-b border-border bg-background/95 text-foreground backdrop-blur")
     }>
       {children}
