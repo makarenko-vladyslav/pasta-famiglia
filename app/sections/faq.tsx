@@ -2,68 +2,64 @@
 
 import { Reveal } from "@/components/mechanics";
 
-/**
- * ACT IV: The Proof — FAQ Section
- * A trust-building component featuring an editorial accordion layout.
- * Translates the Pasta Famiglia brand into a clear, functional dialogue with the guest.
- */
 export function SectionFaq() {
-  const faqData = [
+  const faqItems = [
     {
-      question: "Чи потрібно бронювати столик заздалегідь?",
-      answer: "Ми рекомендуємо бронювати столик за 1-2 дні до візиту, особливо якщо ви плануєте завітати до нас у вечір п'ятниці або вихідні. Для невеликих компаній у будні дні зазвичай завжди знайдеться вільне місце."
+      q: "Чи є у вас паркування?",
+      a: "Так, для наших гостей передбачені місця для авто поруч із рестораном."
     },
     {
-      question: "Яка кухня представлена у вашому закладі?",
-      answer: "Наша основа — автентична італійська кухня. Ми готуємо домашню пасту за сімейними рецептами, неаполітанську піцу на дровах та класичні десерти. Кожна страва готується з використанням італійського борошна та локальних фермерських продуктів."
+      q: "Чи можна з собакою?",
+      a: "Звісно, ми дружні до тварин і завжди запропонуємо воду вашому улюбленцю."
     },
     {
-      question: "Чи працює ресторан під час вимкнень світла?",
-      answer: "Так, Pasta Famiglia повністю енергонезалежна. Ми встановили потужний генератор, тому світло, гарячі страви та затишна атмосфера у нас є завжди, незалежно від графіків енергопостачання."
+      q: "Як швидко підтверджуєте бронь?",
+      a: "Надсилаємо підтвердження у Telegram або Viber протягом 30 секунд після заявки."
     },
     {
-      question: "Чи є у вас вегетаріанські або безглютенові страви?",
-      answer: "У нашому меню є широкий вибір вегетаріанських позицій. Також ми можемо приготувати будь-яку пасту з безглютенової муки на ваше прохання. Будь ласка, попередьте офіціанта про ваші дієтичні вподобання."
-    },
-    {
-      question: "Чи можна замовити ресторан для святкування події?",
-      answer: "Звичайно. Ми маємо досвід у проведенні днів народжень, камерних весіль та корпоративних вечорів. Наш шеф-кухар допоможе скласти індивідуальне банкетне меню, яке вразить ваших гостей."
+      q: "Чи є знижка на самовивіз?",
+      a: "Так, забирайте замовлення самі та отримуйте знижку на все меню."
     }
   ];
 
   return (
-    <section id="faq" className="relative bg-background py-[var(--space-act)]">
+    <section id="faq" className="relative bg-surface py-[var(--space-act)]">
       <div className="mx-auto grid max-w-[88rem] gap-12 px-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:px-10">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <span className="rp-actno mb-5 text-sm uppercase tracking-[0.3em]">Питання</span>
+          <span className="mb-5 block text-sm uppercase tracking-[0.3em] text-muted">
+            Питання
+          </span>
           <Reveal>
             <h2 className="font-display font-bold leading-[0.9] text-[clamp(2.4rem,5vw,4.5rem)]">
-              Відповіді на ваші запитання
+              Відповіді на питання
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
             <p className="mt-6 max-w-sm text-base leading-relaxed text-muted">
-              Ми зібрали відповіді на питання, які найчастіше цікавлять наших гостей, щоб ви могли спланувати ідеальний візит до нашої родини.
+              Ми подбали про те, щоб ваш візит до Pasta Famiglia був максимально комфортним, та зібрали відповіді на найчастіші запитання.
             </p>
           </Reveal>
         </div>
-        
+
         <div className="divide-y divide-foreground/10">
-          {faqData.map((item, index) => (
+          {faqItems.map((item, index) => (
             <details key={index} className="group py-6">
               <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 [&::-webkit-details-marker]:hidden">
                 <h3 className="font-display text-[clamp(1.2rem,2vw,1.7rem)] font-semibold leading-snug transition-colors duration-200 group-open:text-accent">
-                  {item.question}
+                  {item.q}
                 </h3>
-                <span aria-hidden className="font-display text-2xl leading-none text-accent transition-transform duration-300 group-open:rotate-45">
+                <span 
+                  aria-hidden 
+                  className="font-display text-2xl leading-none text-accent transition-transform duration-300 group-open:rotate-45"
+                >
                   +
                 </span>
               </summary>
-              <div className="overflow-hidden transition-all duration-300">
+              <Reveal delay={0.05}>
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
-                  {item.answer}
+                  {item.a}
                 </p>
-              </div>
+              </Reveal>
             </details>
           ))}
         </div>

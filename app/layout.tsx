@@ -3,14 +3,18 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Pasta Famiglia — Київ",
-  description: "Сімейний італійський ресторан у центрі Києва з власним виробництвом свіжої пасти та дитячою зоною для мешканців навколишніх ЖК та офісних працівників.",
-  openGraph: { title: "Pasta Famiglia", description: "Сімейний італійський ресторан у центрі Києва з власним виробництвом свіжої пасти та дитячою зоною для мешканців навколишніх ЖК та офісних працівників.", type: "website" },
+  description: "Pasta Famiglia — це сімейний італійський ресторан у центрі Києва, що спеціалізується на свіжій домашній пасті та піці на дровах для мешканців сусідніх ЖК т",
+  openGraph: { title: "Pasta Famiglia", description: "Pasta Famiglia — це сімейний італійський ресторан у центрі Києва, що спеціалізується на свіжій домашній пасті та піці на дровах для мешканців сусідніх ЖК т", type: "website" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="uk">
       <head>
+        {/* Kill scroll restoration BEFORE hydration: iOS Chrome re-applies the
+            saved offset after load, so the preloader opened onto the middle
+            of the page. Must run inline, not in a React effect. */}
+        <script dangerouslySetInnerHTML={{ __html: "try{history.scrollRestoration='manual'}catch(e){};if(!location.hash){window.scrollTo(0,0);addEventListener('load',function(){setTimeout(function(){window.scrollTo(0,0)},1)})}" }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet" />
