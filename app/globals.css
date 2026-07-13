@@ -30,7 +30,7 @@
   html { background: var(--color-foreground); overscroll-behavior-y: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
   /* Premium foundation (awwwards-web-architect): light body weight, tight
    * display tracking, one easing voice — the details that read expensive. */
-  body { background: var(--color-background); color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
+  body { background: var(--color-foreground); color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: var(--tracking-display, -0.04em); }
   ::selection { background: hsl(32 90% 55%); color: hsl(25 10% 15%); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -64,9 +64,9 @@
    it, its own CTA duplicate stays hidden and returns with the solid state. */
 .rp-header-transparent .rp-header-cta { opacity: 0; pointer-events: none; }
 .rp-reveal { overflow: hidden; }
-/* pad+negative-margin so tight leading never clips descenders (у, р, g) —
-   0.14em still clipped serif tails (owner: «в букві р немає хвоста знизу») */
-.rp-reveal-inner { display: block; transform: translateY(110%); opacity: 0.001; padding-bottom: 0.28em; margin-bottom: -0.28em; }
+/* pad+negative-margin so tight leading never clips ascenders OR descenders
+   (owner: «великі тексти обрізані зверху та знизу» — Ї dots, serif tails) */
+.rp-reveal-inner { display: block; transform: translateY(110%); opacity: 0.001; padding: 0.22em 0 0.28em; margin: -0.22em 0 -0.28em; }
 .rp-revealed .rp-reveal-inner { transform: translateY(0); opacity: 1; transition: transform 0.9s cubic-bezier(0.22,1,0.36,1) var(--rp-delay, 0s), opacity 0.6s ease var(--rp-delay, 0s); }
 @keyframes rpMarquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
 .rp-marquee { animation: rpMarquee var(--rp-marquee-s, 26s) linear infinite; }

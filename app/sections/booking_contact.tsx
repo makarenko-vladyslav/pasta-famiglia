@@ -58,11 +58,17 @@ export function SectionBookingContact() {
 
         <div className="mt-20 grid gap-6 text-sm text-accent-foreground/80 lg:grid-cols-3 lg:mt-32">
           <Reveal delay={0.4}>
-            
+            <div className="space-y-1">
+              <p className="uppercase tracking-wider opacity-60">Локація</p>
+              <p className="text-base font-medium">вул. Антоновича, 44, Київ</p>
+            </div>
           </Reveal>
 
           <Reveal delay={0.5}>
-            
+            <div className="space-y-1">
+              <p className="uppercase tracking-wider opacity-60">Години роботи</p>
+              <p className="text-base font-medium">Пн–Нд 11:00–22:00</p>
+            </div>
           </Reveal>
 
           <Reveal delay={0.6}>

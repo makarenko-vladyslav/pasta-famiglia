@@ -352,9 +352,9 @@ export function HorizontalPan({ children, heightVh = 240 }: { children: ReactNod
   );
 }
 
-/** Canonical mobile menu — one implementation for every generated site:
- *  toggles with an animated Menu/X, closes on link click / Escape / overlay,
- *  staggers link reveal, locks body scroll while open. */
+/** Canonical mobile menu — FULLSCREEN sheet (owner law: the burger opens
+ *  edge-to-edge, never a narrow drawer): display-scale links, tel + CTA
+ *  pinned to the bottom, staggered reveal, body scroll lock. */
 export function MobileMenu({ links = [], cta, phone, openLabel = "Menu", closeLabel = "Close" }: { links: { href: string; label: string }[]; cta?: { href: string; label: string }; phone?: string | null; openLabel?: string; closeLabel?: string }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -366,26 +366,25 @@ export function MobileMenu({ links = [], cta, phone, openLabel = "Menu", closeLa
   return (
     <div className="lg:hidden">
       <button type="button" onClick={() => setOpen(v => !v)} aria-label={open ? closeLabel : openLabel} aria-expanded={open}
-        className="relative z-[60] grid h-11 w-11 place-items-center">
+        className="relative z-[80] grid h-11 w-11 place-items-center">
         <span className={"absolute h-0.5 w-6 bg-current transition-all duration-300 " + (open ? "rotate-45" : "-translate-y-2")} />
         <span className={"absolute h-0.5 w-6 bg-current transition-all duration-300 " + (open ? "opacity-0" : "")} />
         <span className={"absolute h-0.5 w-6 bg-current transition-all duration-300 " + (open ? "-rotate-45" : "translate-y-2")} />
       </button>
-      <div className={"fixed inset-0 z-50 overflow-hidden transition-opacity duration-300 " + (open ? "opacity-100" : "pointer-events-none opacity-0")} onClick={() => setOpen(false)}>
-        <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-        <nav className={"absolute right-0 top-0 h-full w-[82%] max-w-sm bg-background p-8 pt-24 shadow-2xl transition-transform duration-500 " + (open ? "translate-x-0" : "translate-x-full")}
-          style={{ transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)" }} onClick={(e) => e.stopPropagation()}>
-          <ul className="flex flex-col gap-1">
+      <div className={"fixed inset-0 z-[70] transition-opacity duration-300 " + (open ? "opacity-100" : "pointer-events-none opacity-0")}
+        style={{ background: "var(--color-background, hsl(40 30% 96%))" }}>
+        <nav className="flex h-full w-full flex-col justify-between px-6 pb-10 pt-24" onClick={(e) => e.stopPropagation()}>
+          <ul className="flex flex-col">
             {links.map((l, i) => (
-              <li key={l.href} className={"border-b border-current/10 transition-all duration-500 " + (open ? "translate-x-0 opacity-100" : "translate-x-6 opacity-0")}
-                style={{ transitionDelay: open ? 120 + i * 70 + "ms" : "0ms" }}>
-                <a href={l.href} onClick={() => setOpen(false)} className="block py-4 text-2xl font-semibold">{l.label}</a>
+              <li key={l.href} className={"border-b border-current/10 transition-all duration-500 " + (open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")}
+                style={{ transitionDelay: open ? 100 + i * 60 + "ms" : "0ms" }}>
+                <a href={l.href} onClick={() => setOpen(false)} className="block py-5 font-[family-name:var(--font-display)] text-4xl font-semibold">{l.label}</a>
               </li>
             ))}
           </ul>
-          <div className={"mt-8 flex flex-col gap-4 transition-all duration-500 " + (open ? "translate-x-0 opacity-100" : "translate-x-6 opacity-0")} style={{ transitionDelay: open ? "400ms" : "0ms" }}>
-            {phone && <a href={"tel:" + phone.replace(/[^+\d]/g, "")} className="text-lg font-medium">{phone}</a>}
-            {cta && <a href={cta.href} onClick={() => setOpen(false)} style={{ borderRadius: "var(--radius-control, 9999px)" }} className="inline-flex justify-center bg-accent px-6 py-3.5 font-semibold text-accent-foreground">{cta.label}</a>}
+          <div className={"flex flex-col gap-4 transition-all duration-500 " + (open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0")} style={{ transitionDelay: open ? 100 + links.length * 60 + "ms" : "0ms" }}>
+            {phone && <a href={"tel:" + phone.replace(/[^+\d]/g, "")} className="text-xl font-medium">{phone}</a>}
+            {cta && <a href={cta.href} onClick={() => setOpen(false)} style={{ borderRadius: "var(--radius-control, 9999px)" }} className="inline-flex w-full justify-center bg-accent px-6 py-4 text-base font-semibold text-accent-foreground">{cta.label}</a>}
           </div>
         </nav>
       </div>

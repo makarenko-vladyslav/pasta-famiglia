@@ -38,7 +38,7 @@ export default function Page() {
           </div>
         </div>
       </HeaderShell>
-      <main id="top">
+      <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
         <ActBoundary><SectionMenuOffering /></ActBoundary>
         <ActBoundary><SectionSignatureItems /></ActBoundary>
