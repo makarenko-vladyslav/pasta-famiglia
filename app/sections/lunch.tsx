@@ -106,9 +106,6 @@ export function SectionLunch() {
       </div>
 
       {/* Marquee transition to next section */}
-      <div className="w-full mt-24 py-12 border-y border-foreground/10 overflow-hidden bg-surface">
-        <Marquee items={marqueeWords} />
-      </div>
-    </section>
+      </section>
   );
 }

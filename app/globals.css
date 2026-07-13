@@ -37,7 +37,7 @@
 :root {
   --ease-out-cubic: cubic-bezier(0.2, 0.6, 0.35, 1);
   --ease-in-out-quart: cubic-bezier(0.8, 0, 0.2, 1);
-  --space-act: clamp(4.5rem, 10vw, 12.5rem);
+  --space-act: clamp(3.5rem, 10vw, 12.5rem);
 }
 
 /* — WOW layer — */
@@ -52,9 +52,14 @@
 .rp-curtain-open .rp-curtain-bot { transform: translateY(100%); }
 .rp-curtain-brand { animation: rpPreRise 0.8s cubic-bezier(0.16,1,0.3,1) both, rpCurtainFade 0.5s ease 3s forwards; }
 .rp-curtain-open .rp-curtain-brand { opacity: 0; transform: translateY(-1.4rem); transition: opacity 0.5s ease, transform 0.5s ease; animation: none; }
+.rp-curtain-line > span { transform: scaleX(0); animation: rpCurtainLine 1.05s cubic-bezier(0.65,0,0.35,1) 0.15s forwards; }
+@keyframes rpCurtainLine { to { transform: scaleX(1); } }
 @keyframes rpCurtainTop { to { transform: translateY(-100%); } }
 @keyframes rpCurtainBot { to { transform: translateY(100%); } }
 @keyframes rpCurtainFade { to { opacity: 0; } }
+/* The hero owns the booking CTA — while the header floats transparent over
+   it, its own CTA duplicate stays hidden and returns with the solid state. */
+.rp-header-transparent .rp-header-cta { opacity: 0; pointer-events: none; }
 .rp-reveal { overflow: hidden; }
 /* pad+negative-margin so tight leading never clips descenders (у, р, g) */
 .rp-reveal-inner { display: block; transform: translateY(110%); opacity: 0.001; padding-bottom: 0.14em; margin-bottom: -0.14em; }
@@ -72,7 +77,7 @@
 .rp-scene-flat [style*="scene-p"] { opacity: 1 !important; transform: none !important; }
 /* Pre-hydration touch safety: if JS has not switched the pinned variants to
    their flat/native forms yet (or never will), unpin them with pure CSS —
-   no 200vh+ runways, no sticky, native sideways scroll. */
+   no 200vh+ runways, no sticky, native sideways scroll, no hidden text. */
 @media (pointer: coarse) {
   .rp-scene { height: auto !important; }
   .rp-scene .rp-scene-win { position: relative; height: auto; min-height: 100svh; }
@@ -80,6 +85,12 @@
   .rp-pan { height: auto !important; }
   .rp-pan .rp-pan-win { position: relative; height: auto; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .rp-pan .rp-pan-track { transform: none !important; padding-block: 1rem; }
+  .rp-reveal-inner, .rp-revealed .rp-reveal-inner { transform: none !important; opacity: 1 !important; }
+}
+/* Poster watermarks need a wide canvas — on phones they clip into noise
+   («FIRF») and fight the headings. Desktop-only. */
+@media (max-width: 1023px) {
+  .rp-watermark { display: none; }
 }
 .rp-watermark { position: absolute; inset-inline: 0; pointer-events: none; user-select: none; font-family: var(--font-display); font-weight: 700; line-height: 0.8; letter-spacing: -0.04em; font-size: clamp(6rem, 24vw, 22rem); opacity: 0.05; white-space: nowrap; }
 .rp-graded { filter: saturate(0.94) contrast(1.06) brightness(0.99); }

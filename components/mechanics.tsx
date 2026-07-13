@@ -20,12 +20,22 @@ export function PreloaderCurtain({ brand }: { brand: string }) {
     return () => { clearTimeout(t1); clearTimeout(t2); document.body.style.overflow = ""; };
   }, []);
   if (phase === "done") return null;
+  // Inline var() fallbacks: before the token stylesheet parses the curtain
+  // must ALREADY be opaque — a transparent curtain over a loading page reads
+  // as "the preloader is floating on top of the site".
+  const ink = "hsl(var(--color-foreground, 24 12% 10%))";
+  const paper = "hsl(var(--color-background, 40 30% 96%))";
   return (
     <div aria-hidden className={"rp-curtain fixed inset-0 z-[100] pointer-events-none" + (phase === "open" ? " rp-curtain-open" : "")}>
-      <div className="rp-curtain-top absolute inset-x-0 top-0 h-1/2 bg-[hsl(var(--color-foreground))]" />
-      <div className="rp-curtain-bot absolute inset-x-0 bottom-0 h-1/2 bg-[hsl(var(--color-foreground))]" />
+      <div className="rp-curtain-top absolute inset-x-0 top-0 h-1/2" style={{ background: ink }} />
+      <div className="rp-curtain-bot absolute inset-x-0 bottom-0 h-1/2" style={{ background: ink }} />
       <div className="absolute inset-0 grid place-items-center overflow-hidden">
-        <span className="rp-curtain-brand font-[family-name:var(--font-display)] text-[clamp(1.6rem,4.5vw,3.4rem)] tracking-tight text-[hsl(var(--color-background))]">{brand}</span>
+        <div className="rp-curtain-brand grid justify-items-center gap-4" style={{ color: paper }}>
+          <span className="font-[family-name:var(--font-display)] text-[clamp(1.7rem,4.5vw,3.4rem)] font-semibold tracking-tight leading-none">{brand}</span>
+          <span className="rp-curtain-line block h-px w-40 overflow-hidden" style={{ background: "hsl(var(--color-background, 40 30% 96%) / 0.25)" }}>
+            <span className="block h-full w-full origin-left" style={{ background: paper }} />
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -53,11 +63,14 @@ export function HeaderShell({ children, overDarkHero = true }: { children: React
     return () => window.removeEventListener("scroll", on);
   }, []);
   const transparent = overDarkHero && !scrolled;
+  // Transparent state carries a top scrim so the wordmark stays readable on
+  // ANY hero photo (a light ceiling swallowed light logo text), and hides the
+  // header CTA (.rp-header-cta via CSS) — the hero already owns that CTA.
   return (
     <header className={
       "sticky top-0 z-40 transition-colors duration-300 " +
       (transparent
-        ? "border-b border-transparent bg-transparent text-background"
+        ? "rp-header-transparent border-b border-transparent bg-gradient-to-b from-black/45 to-transparent text-white"
         : "border-b border-border bg-background/95 text-foreground backdrop-blur")
     }>
       {children}
@@ -125,9 +138,10 @@ export function Reveal({ children, delay = 0, as: Tag = "div" }: { children: Rea
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (REDUCED()) { el.classList.add("rp-revealed"); return; }
-    // Low threshold + bottom margin: tall mobile headings could never hit
-    // 25% visibility on iOS, leaving text clipped inside the reveal mask.
+    // Touch: no entrance choreography at all — fast momentum scrolling on
+    // phones outruns the observer and unrevealed blocks read as broken empty
+    // sections (owner: «пусті секції»). Desktop keeps the staged reveals.
+    if (REDUCED() || COARSE()) { el.classList.add("rp-revealed"); return; }
     const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add("rp-revealed"); io.disconnect(); } }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     io.observe(el);
     return () => io.disconnect();

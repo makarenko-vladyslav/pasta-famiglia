@@ -34,7 +34,7 @@ export default function Page() {
             {NAV.map((l) => (<a key={l.href} href={l.href} className="hover:text-accent transition-colors">{l.label}</a>))}
           </nav>
           <div className="flex items-center gap-2">
-            <Magnetic><a href={"#contacts"} className="inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Забронювати стіл за 30 секунд</a></Magnetic>
+            <Magnetic><a href={"#contacts"} className="rp-header-cta inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Забронювати стіл за 30 секунд</a></Magnetic>
             <MobileMenu links={NAV} cta={{ href: "#contacts", label: "Забронювати стіл за 30 секунд" }} phone={"+380 (44) 333-22-11"} />
           </div>
         </div>
