@@ -1,48 +1,37 @@
 "use client";
-
-import { Reveal, Marquee } from "@/components/mechanics";
+import { Marquee, Reveal } from "@/components/mechanics";
 
 /**
- * SECTION: Marquee Separator
- * ROLE: ACT II: The Offer (Interstitial)
+ * SectionMarqueeSeparator
+ * Role: Interstitial: The living layer.
  * 
- * A high-energy, editorial-style marquee that breaks the grid rhythm 
- * between the Signature act and the Differentiators act. 
- * Uses italicized display typography and a subtle surface background.
+ * A high-end editorial separator featuring a slow-moving marquee 
+ * with the restaurant's core manifestos.
  */
 export function SectionMarqueeSeparator() {
-  // Items transliterated to Ukrainian as per the Site Language (uk) 
-  // and the "No English on UA page" rule, while maintaining the spec's culinary content.
-  const marqueeItems = [
-    "КАРБОНАРА",
-    "АМАТРИЧАНА",
-    "ПІЧІ",
-    "ТАЛЬЯТЕЛЛЕ",
-    "СЕМОЛА",
-    "АЛЬ ДЕНТЕ",
-    "БЕЗ ПЛАТИ ЗА ОБСЛУГОВУВАННЯ",
-    "КИЇВ",
+  const manifestoItems = [
+    "PIZZA DAL FORNO",
+    "•",
+    "FRESH PASTA DAILY",
+    "•",
+    "AL DENTE MANIFESTO",
+    "•",
+    "PIZZA DAL FORNO",
+    "•",
+    "FRESH PASTA DAILY",
+    "•",
   ];
 
   return (
     <section 
-      className="w-full border-y border-foreground/10 py-6 overflow-hidden bg-background relative"
-      aria-label="Кулінарні акценти"
+      className="w-full border-y border-foreground/10 py-6 lg:py-10 overflow-hidden bg-surface"
+      aria-hidden="true"
     >
       <Reveal delay={0.1}>
         <div className="flex items-center">
           <Marquee 
-            speed={40} 
-            direction="left"
-            items={marqueeItems.map((item) => (
-              <span 
-                key={item} 
-                className="font-display italic text-2xl lg:text-4xl uppercase tracking-tighter mx-8 text-foreground"
-              >
-                {item}
-                <span className="ml-16 opacity-30 select-none">·</span>
-              </span>
-            ))}
+            items={manifestoItems} 
+            className="font-display text-[clamp(1.2rem,3vw,1.8rem)] uppercase tracking-[0.25em] text-foreground/90 flex items-center gap-8 lg:gap-12"
           />
         </div>
       </Reveal>

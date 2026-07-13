@@ -1,18 +1,15 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionOffering } from "./sections/offering";
-import { SectionSignature } from "./sections/signature";
+import { SectionThePromise } from "./sections/the_promise";
+import { SectionSignatureGallery } from "./sections/signature_gallery";
 import { SectionMarqueeSeparator } from "./sections/marquee_separator";
-import { SectionDifferentiators } from "./sections/differentiators";
-import { SectionCraft } from "./sections/craft";
-import { SectionPhilosophy } from "./sections/philosophy";
-import { SectionKids } from "./sections/kids";
-import { SectionGallery } from "./sections/gallery";
-import { SectionFaq } from "./sections/faq";
-import { SectionLocation } from "./sections/location";
-import { SectionFinalCta } from "./sections/final_cta";
+import { SectionMenuEditorial } from "./sections/menu_editorial";
+import { SectionAtmosphere } from "./sections/atmosphere";
+import { SectionProofSpotlight } from "./sections/proof_spotlight";
+import { SectionLocationMap } from "./sections/location_map";
+import { SectionBookingFinal } from "./sections/booking_final";
 
-const NAV = [{ href: "#offering", label: "Послуги" }, { href: "#differentiators", label: "Переваги" }, { href: "#gallery", label: "Галерея" }];
+const NAV = [];
 
 export default function Page() {
   return (
@@ -32,24 +29,21 @@ export default function Page() {
             {NAV.map((l) => (<a key={l.href} href={l.href} className="hover:text-accent transition-colors">{l.label}</a>))}
           </nav>
           <div className="flex items-center gap-2">
-            <Magnetic><a href={"#final_cta"} className="rp-header-cta hidden lg:inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Забронювати стіл</a></Magnetic>
-            <MobileMenu links={NAV} cta={{ href: "#final_cta", label: "Забронювати стіл" }} phone={"+380 (44) 333-22-11"} />
+            <Magnetic><a href={"tel:+380443332211"} className="rp-header-cta hidden lg:inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Звʼязатися</a></Magnetic>
+            <MobileMenu links={NAV} cta={{ href: "tel:+380443332211", label: "Звʼязатися" }} phone={"+380 (44) 333-22-11"} />
           </div>
         </div>
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionOffering /></ActBoundary>
-        <ActBoundary><SectionSignature /></ActBoundary>
+        <ActBoundary><SectionThePromise /></ActBoundary>
+        <ActBoundary><SectionSignatureGallery /></ActBoundary>
         <ActBoundary><SectionMarqueeSeparator /></ActBoundary>
-        <ActBoundary><SectionDifferentiators /></ActBoundary>
-        <ActBoundary><SectionCraft /></ActBoundary>
-        <ActBoundary><SectionPhilosophy /></ActBoundary>
-        <ActBoundary><SectionKids /></ActBoundary>
-        <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionFaq /></ActBoundary>
-        <ActBoundary><SectionLocation /></ActBoundary>
-        <ActBoundary><SectionFinalCta /></ActBoundary>
+        <ActBoundary><SectionMenuEditorial /></ActBoundary>
+        <ActBoundary><SectionAtmosphere /></ActBoundary>
+        <ActBoundary><SectionProofSpotlight /></ActBoundary>
+        <ActBoundary><SectionLocationMap /></ActBoundary>
+        <ActBoundary><SectionBookingFinal /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-8 pt-16 lg:grid-cols-3 lg:px-6">
