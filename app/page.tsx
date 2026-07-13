@@ -1,14 +1,13 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionMenuPasta } from "./sections/menu_pasta";
-import { SectionSignature } from "./sections/signature";
-import { SectionMarqueeInterstitial } from "./sections/marquee_interstitial";
-import { SectionProof } from "./sections/proof";
-import { SectionGallery } from "./sections/gallery";
+import { SectionOfferingPasta } from "./sections/offering_pasta";
+import { SectionOfferingPizza } from "./sections/offering_pizza";
+import { SectionMarqueeValues } from "./sections/marquee_values";
+import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 import { SectionBooking } from "./sections/booking";
 
-const NAV = [{ href: "#proof", label: "Відгуки" }, { href: "#gallery", label: "Галерея" }];
+const NAV = [{ href: "#offering_pasta", label: "Послуги" }, { href: "#offering_pizza", label: "Послуги" }];
 
 export default function Page() {
   return (
@@ -35,11 +34,10 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionMenuPasta /></ActBoundary>
-        <ActBoundary><SectionSignature /></ActBoundary>
-        <ActBoundary><SectionMarqueeInterstitial /></ActBoundary>
-        <ActBoundary><SectionProof /></ActBoundary>
-        <ActBoundary><SectionGallery /></ActBoundary>
+        <ActBoundary><SectionOfferingPasta /></ActBoundary>
+        <ActBoundary><SectionOfferingPizza /></ActBoundary>
+        <ActBoundary><SectionMarqueeValues /></ActBoundary>
+        <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
         <ActBoundary><SectionBooking /></ActBoundary>
       </main>

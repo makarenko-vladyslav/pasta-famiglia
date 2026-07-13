@@ -16,13 +16,20 @@ export function PreloaderCurtain({ brand }: { brand: string }) {
     // previous scroll offset on reload, so the curtain opened onto the MIDDLE
     // of the page. Anchor links keep their target.
     try { history.scrollRestoration = "manual"; } catch { /* older browsers */ }
-    if (!location.hash) window.scrollTo(0, 0);
+    // iOS Chrome re-applies the saved offset in frames AFTER load — hold the
+    // top with rAF for the whole curtain lifetime, not a single scrollTo.
+    let lockRaf = 0;
+    if (!location.hash) {
+      const lock = () => { window.scrollTo(0, 0); lockRaf = requestAnimationFrame(lock); };
+      lock();
+    }
     const openAt = REDUCED() ? 450 : 1150;
     const doneAt = REDUCED() ? 950 : 2050;
     document.body.style.overflow = "hidden";
     const t1 = setTimeout(() => setPhase("open"), openAt);
     const t2 = setTimeout(() => { setPhase("done"); document.body.style.overflow = ""; }, doneAt);
-    return () => { clearTimeout(t1); clearTimeout(t2); document.body.style.overflow = ""; };
+    const t3 = setTimeout(() => cancelAnimationFrame(lockRaf), doneAt);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); cancelAnimationFrame(lockRaf); document.body.style.overflow = ""; };
   }, []);
   if (phase === "done") return null;
   // Inline var() fallbacks: before the token stylesheet parses the curtain
