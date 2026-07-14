@@ -1,16 +1,18 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionSignatureMarquee } from "./sections/signature_marquee";
-import { SectionMenuPasta } from "./sections/menu_pasta";
-import { SectionMenuPizza } from "./sections/menu_pizza";
-import { SectionProcess } from "./sections/process";
-import { SectionStory } from "./sections/story";
-import { SectionMood } from "./sections/mood";
-import { SectionGallery } from "./sections/gallery";
-import { SectionProof } from "./sections/proof";
+import { SectionTransparency } from "./sections/transparency";
+import { SectionCraft } from "./sections/craft";
+import { SectionPizza } from "./sections/pizza";
+import { SectionLunch } from "./sections/lunch";
+import { SectionMarqueeDishes } from "./sections/marquee_dishes";
+import { SectionFamily } from "./sections/family";
+import { SectionOffers } from "./sections/offers";
+import { SectionSocialProof } from "./sections/social_proof";
+import { SectionGuarantee } from "./sections/guarantee";
+import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 
-const NAV = [{ href: "#signature_marquee", label: "Меню" }, { href: "#process", label: "Як працює" }, { href: "#story", label: "Про нас" }, { href: "#mood", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
+const NAV = [{ href: "#craft", label: "Про нас" }, { href: "#pizza", label: "Меню" }, { href: "#social_proof", label: "Відгуки" }, { href: "#faq", label: "Питання" }, { href: "#location", label: "Контакти" }];
 
 export default function Page() {
   return (
@@ -30,21 +32,23 @@ export default function Page() {
             {NAV.map((l) => (<a key={l.href} href={l.href} className="hover:text-accent transition-colors">{l.label}</a>))}
           </nav>
           <div className="flex items-center gap-2">
-            <Magnetic><a href={"tel:+380443332211"} className="rp-header-cta hidden lg:inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Звʼязатися</a></Magnetic>
-            <MobileMenu links={NAV} cta={{ href: "tel:+380443332211", label: "Звʼязатися" }} phone={"+380 (44) 333-22-11"} />
+            <Magnetic><a href={"tel:+380443332211"} className="rp-header-cta hidden lg:inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Забронювати стіл</a></Magnetic>
+            <MobileMenu links={NAV} cta={{ href: "tel:+380443332211", label: "Забронювати стіл" }} phone={"+380 (44) 333-22-11"} />
           </div>
         </div>
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionSignatureMarquee /></ActBoundary>
-        <ActBoundary><SectionMenuPasta /></ActBoundary>
-        <ActBoundary><SectionMenuPizza /></ActBoundary>
-        <ActBoundary><SectionProcess /></ActBoundary>
-        <ActBoundary><SectionStory /></ActBoundary>
-        <ActBoundary><SectionMood /></ActBoundary>
-        <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionProof /></ActBoundary>
+        <ActBoundary><SectionTransparency /></ActBoundary>
+        <ActBoundary><SectionCraft /></ActBoundary>
+        <ActBoundary><SectionPizza /></ActBoundary>
+        <ActBoundary><SectionLunch /></ActBoundary>
+        <ActBoundary><SectionMarqueeDishes /></ActBoundary>
+        <ActBoundary><SectionFamily /></ActBoundary>
+        <ActBoundary><SectionOffers /></ActBoundary>
+        <ActBoundary><SectionSocialProof /></ActBoundary>
+        <ActBoundary><SectionGuarantee /></ActBoundary>
+        <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">

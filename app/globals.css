@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: hsl(38 12% 96%);
-  --color-surface: hsl(38 10% 91%);
-  --color-foreground: hsl(28 15% 12%);
-  --color-accent: hsl(15 75% 45%);
+  --color-background: hsl(38 8% 95%);
+  --color-surface: hsl(38 12% 89%);
+  --color-foreground: hsl(25 10% 12%);
+  --color-accent: hsl(20 70% 45%);
   --color-accent-foreground: hsl(38 10% 98%);
-  --color-muted: hsl(38 8% 32%);
-  --color-border: hsl(38 10% 85%);
+  --color-muted: hsl(38 10% 45%);
+  --color-border: hsl(38 15% 82%);
 
-  --font-display: "Jost", sans-serif;
-  --font-body: "Rubik", sans-serif;
+  --font-display: "Playfair Display", sans-serif;
+  --font-body: "Lora", sans-serif;
 
-  --radius-control: 14px;
-  --radius-surface: 22px;
+  --radius-control: 12px;
+  --radius-surface: 19px;
 
-  --spacing-s1: 0.5rem;
-  --spacing-s2: 1rem;
-  --spacing-s3: 1.5rem;
-  --spacing-s4: 3rem;
-  --spacing-s5: 6rem;
-  --spacing-s6: 10rem;
+  --spacing-s1: 4px;
+  --spacing-s2: 8px;
+  --spacing-s3: 16px;
+  --spacing-s4: 32px;
+  --spacing-s5: 64px;
+  --spacing-s6: 128px;
 }
 
 @layer base {
@@ -32,7 +32,7 @@
    * display tracking, one easing voice — the details that read expensive. */
   body { background: var(--color-background); overscroll-behavior-y: none; color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: var(--tracking-display, -0.04em); line-height: var(--leading-display, 1); }
-  ::selection { background: hsl(15 75% 45%); color: hsl(38 10% 98%); }
+  ::selection { background: hsl(20 70% 45%); color: hsl(38 10% 98%); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 }
 
@@ -40,8 +40,8 @@
   --ease-out-cubic: cubic-bezier(0.2, 0.6, 0.35, 1);
   --ease-in-out-quart: cubic-bezier(0.8, 0, 0.2, 1);
   --space-act: clamp(3.5rem, 10vw, 12.5rem);
-  --tracking-display: -0.04em;
-  --leading-display: 1.05;
+  --tracking-display: -0.005em;
+  --leading-display: 1.14;
 }
 
 /* — WOW layer — */
