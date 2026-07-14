@@ -2,110 +2,103 @@
 
 import { Reveal, Magnetic } from "@/components/mechanics";
 
-/**
- * SectionLocation - ACT V: The Close
- * A premium contact and location act featuring high-contrast typography,
- * real-time map integration, and refined editorial lists for hours.
- */
 export function SectionLocation() {
-  const address = "вул. Антоновича, 44, Київ";
-  const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+  const facts = {
+    address: "вул. Антоновича, 44, Київ",
+    phone: "+380 (44) 333-22-11"
+  };
+
+  const copy = {
+    headline: "Де нас знайти",
+    items: [
+      "вул. Антоновича, 44, Київ",
+      "Пн–Нд 11:00–22:00",
+      "+380 (44) 333-22-11",
+      "e2e-pasta-client@example.com"
+    ],
+    cta: "Прокласти маршрут"
+  };
+
+  const mapImage = "https://images.pexels.com/photos/35380430/pexels-photo-35380430.png?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800";
+  const mapsSearchUrl = `https://maps.google.com/?q=${encodeURIComponent(facts.address)}`;
 
   return (
-    <section id="location" className="relative overflow-hidden bg-surface py-[var(--space-act)] text-foreground">
-      {/* Subtle film grain effect as requested in animation spec */}
-      <div className="rp-grain pointer-events-none absolute inset-0 opacity-15" />
-      
-      <div className="relative z-10 mx-auto grid max-w-[88rem] gap-12 px-4 lg:grid-cols-2 lg:px-10">
-        <div>
-          <span className="rp-actno mb-5 text-muted">Локація</span>
-          
-          <Reveal delay={0.1}>
-            <h2 className="font-display font-bold leading-[0.9] text-[clamp(2.4rem,5vw,4.5rem)]">
-              Чекаємо на вечерю
+    <section className="py-[var(--space-act)] px-4 md:px-8 bg-accent text-accent-foreground relative overflow-hidden">
+      <div className="mx-auto max-w-6xl w-full flex flex-col gap-12 md:gap-16 lg:px-6">
+        
+        {/* Headline Row */}
+        <div className="w-full">
+          <Reveal>
+            <h2 className="text-[clamp(3rem,7vw,6.5rem)] font-display leading-[0.92] uppercase">
+              {copy.headline}
             </h2>
-          </Reveal>
-          
-          <Reveal delay={0.2}>
-            <p className="mt-8 font-display text-[clamp(1.4rem,2.4vw,2rem)] font-semibold leading-snug">
-              вул. Антоновича, 44, Київ
-            </p>
-          </Reveal>
-
-          {/* Google map integration */}
-          <Reveal delay={0.3}>
-            <div 
-              className="relative mt-8 overflow-hidden bg-background/5" 
-              style={{ borderRadius: "var(--radius-surface)" }}
-            >
-              {/* Styled underlay for loading states */}
-              <div aria-hidden className="absolute inset-0 grid place-items-center bg-foreground/5">
-                <span className="px-6 text-center font-display text-lg font-semibold text-muted/40">
-                  {address}
-                </span>
-              </div>
-              
-              <iframe 
-                src={mapEmbedUrl} 
-                title={address} 
-                loading="lazy" 
-                className="relative aspect-[4/3] w-full border-0 grayscale-[0.3] contrast-[1.05] transition-all duration-1000" 
-                referrerPolicy="no-referrer-when-downgrade" 
-              />
-            </div>
           </Reveal>
         </div>
 
-        {/* Right column: Contact details & CTA */}
-        <div className="flex flex-col justify-center gap-8 lg:pl-6">
-          <Reveal delay={0.4}>
-            <div>
-              <h3 className="mb-4 text-sm uppercase tracking-[0.25em] text-muted">Графік роботи</h3>
-              <div className="divide-y divide-foreground/10 border-t border-foreground/10">
-                <div className="flex items-baseline justify-between py-3 text-base">
-                  <span className="text-muted">Пн–Нд</span>
-                  <span className="font-semibold font-display text-lg">11:00–22:00</span>
-                </div>
-              </div>
-            </div>
-          </Reveal>
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+          
+          {/* Contacts & CTA Column (Cols 1-4) */}
+          <div className="md:col-span-4 md:col-start-1 flex flex-col justify-between h-full gap-10">
+            <Reveal delay={0.1}>
+              <ul className="flex flex-col border-t border-accent-foreground/15">
+                {copy.items.map((item, index) => (
+                  <li 
+                    key={index}
+                    className="py-4 lg:py-5 border-b border-accent-foreground/15 flex items-center justify-between"
+                  >
+                    <span className="font-mono text-sm lg:text-base leading-tight tracking-tight">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
 
-          <Reveal delay={0.5}>
-            <div className="flex flex-col items-start gap-6">
-              <div className="space-y-2">
-                <a 
-                  href="tel:+380443332211" 
-                  className="block font-display text-2xl font-semibold hover:text-accent transition-colors duration-300"
-                >
-                  +380 (44) 333-22-11
-                </a>
-                <a 
-                  href="mailto:e2e-pasta-client@example.com" 
-                  className="block text-base text-muted hover:text-foreground transition-colors duration-300"
-                >
-                  e2e-pasta-client@example.com
-                </a>
-              </div>
-
+            <Reveal delay={0.2}>
               <Magnetic>
                 <a 
-                  href={directionsUrl} 
+                  href={mapsSearchUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-accent px-6 py-3.5 text-base font-semibold text-accent-foreground transition-transform hover:scale-[1.02]" 
+                  className="inline-flex items-center justify-center px-6 py-3.5 text-base font-medium bg-accent-foreground text-accent w-full md:w-auto hover:opacity-90 transition-opacity duration-200"
                   style={{ borderRadius: "var(--radius-control)" }}
                 >
-                  Прокласти маршрут
-                  <span aria-hidden className="text-xl">→</span>
+                  {copy.cta}
+                  <svg 
+                    className="ml-2 w-4 h-4" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor" 
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </a>
               </Magnetic>
+            </Reveal>
+          </div>
 
-              <p className="max-w-sm text-sm leading-relaxed text-muted/80">
-                вул. Антоновича, 44, Київ. Відчинені щодня Пн–Нд з 11:00 до 22:00.
-              </p>
-            </div>
-          </Reveal>
+          {/* Map / Image Container Column (Cols 6-12) */}
+          <div className="md:col-span-7 md:col-start-6">
+            <Reveal delay={0.3}>
+              <div 
+                className="relative w-full aspect-[4/5] md:aspect-[16/10] overflow-hidden group bg-accent-foreground/5"
+                style={{ borderRadius: "var(--radius-surface)" }}
+              >
+                {/* Simulated scale-down entrance overlay mask */}
+                <div className="absolute inset-0 z-10 pointer-events-none mix-blend-overlay bg-accent-foreground/10 transition-opacity duration-1000 group-hover:opacity-0" />
+                
+                <img 
+                  src={mapImage} 
+                  alt={copy.headline}
+                  loading="lazy"
+                  className="w-full h-full object-cover grayscale-[20%] transition-transform duration-1000 ease-out hover:scale-[1.04]"
+                />
+              </div>
+            </Reveal>
+          </div>
+
         </div>
       </div>
     </section>

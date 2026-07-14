@@ -1,18 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionTrustBar } from "./sections/trust-bar";
+import { SectionPricing } from "./sections/pricing";
+import { SectionPizza } from "./sections/pizza";
+import { SectionSpeed } from "./sections/speed";
 import { SectionCraft } from "./sections/craft";
-import { SectionMenuPreview } from "./sections/menu-preview";
-import { SectionInterstitialMarquee } from "./sections/interstitial-marquee";
-import { SectionGuarantee } from "./sections/guarantee";
-import { SectionProcess } from "./sections/process";
-import { SectionFamily } from "./sections/family";
 import { SectionGallery } from "./sections/gallery";
-import { SectionSocialProof } from "./sections/social-proof";
+import { SectionFamily } from "./sections/family";
+import { SectionBooking } from "./sections/booking";
+import { SectionSocialProof } from "./sections/social_proof";
 import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 
-const NAV = [{ href: "#craft", label: "Про нас" }, { href: "#menu-preview", label: "Меню" }, { href: "#process", label: "Як працює" }, { href: "#gallery", label: "Галерея" }, { href: "#social-proof", label: "Відгуки" }];
+const NAV = [{ href: "#pizza", label: "Меню" }, { href: "#speed", label: "Як працює" }, { href: "#craft", label: "Про нас" }, { href: "#gallery", label: "Галерея" }, { href: "#booking", label: "Контакти" }];
 
 export default function Page() {
   return (
@@ -39,14 +38,13 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionTrustBar /></ActBoundary>
+        <ActBoundary><SectionPricing /></ActBoundary>
+        <ActBoundary><SectionPizza /></ActBoundary>
+        <ActBoundary><SectionSpeed /></ActBoundary>
         <ActBoundary><SectionCraft /></ActBoundary>
-        <ActBoundary><SectionMenuPreview /></ActBoundary>
-        <ActBoundary><SectionInterstitialMarquee /></ActBoundary>
-        <ActBoundary><SectionGuarantee /></ActBoundary>
-        <ActBoundary><SectionProcess /></ActBoundary>
-        <ActBoundary><SectionFamily /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
+        <ActBoundary><SectionFamily /></ActBoundary>
+        <ActBoundary><SectionBooking /></ActBoundary>
         <ActBoundary><SectionSocialProof /></ActBoundary>
         <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
