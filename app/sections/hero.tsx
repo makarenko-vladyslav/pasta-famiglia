@@ -1,73 +1,67 @@
 "use client";
-import { Reveal, Magnetic, Marquee } from "@/components/mechanics";
+import { Reveal, Magnetic, Marquee, AmbientCanvas } from "@/components/mechanics";
 import { Star } from "@phosphor-icons/react";
 
-/**
- * ACT I: Arrival.
- * Full-viewport immersive atmosphere for Pasta Famiglia.
- * Implements the vetted skeleton with poster-scale typography and selling headline.
- */
 export function SectionHero() {
-  const headline = "Справжня паста ручної роботи";
-  const words = headline.split(" ");
-
+  const h1Text = "Паста ручної роботи";
   const marqueeItems = [
-    "PASTA FRESCA",
-    "PIZZA NAPOLETANA",
-    "VINO ITALIANO",
-    "TRADIZIONE",
-    "DOLCI",
-    "FAMIGLIA",
-    "AUTHENTIC TASTE"
+    "Pasta Famiglia",
+    "Київ",
+    "Carbonara",
+    "Fettuccine",
+    "Vino Italiano",
+    "Antipasti",
+    "Dolci",
+    "Aperitivo"
   ];
 
   return (
     <section id="hero" className="relative min-h-[100svh] overflow-hidden bg-foreground text-background">
-      {/* Full-bleed photo: The room you walk into */}
-      <img 
-        src="https://images.pexels.com/photos/5947611/pexels-photo-5947611.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" 
-        alt="Свіжа паста ручної роботи в Pasta Famiglia" 
-        className="absolute inset-0 h-full w-full object-cover opacity-90" 
-        loading="eager"
-      />
-      
-      {/* Scrims and Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/45 to-foreground/70" />
-      <div className="rp-grain absolute inset-0 pointer-events-none" />
+      {/* Ambient dust effect */}
+      <div className="absolute inset-0 z-0 opacity-30">
+        <AmbientCanvas />
+      </div>
 
-      {/* Vertical Locality Label */}
+      {/* Full-bleed photo, graded dark */}
+      <img 
+        src="https://images.pexels.com/photos/6287379/pexels-photo-6287379.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200" 
+        alt="Інтер'єр ресторану Pasta Famiglia" 
+        className="rp-graded absolute inset-0 h-full w-full object-cover opacity-90" 
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/45 to-foreground/70" />
+      <div className="rp-grain absolute inset-0" />
+
+      {/* Vertical locality label */}
       <span className="absolute right-4 top-28 hidden lg:block text-xs tracking-[0.35em] uppercase text-background/60 [writing-mode:vertical-rl]">
         Київ
       </span>
 
-      {/* Content Container */}
+      {/* Content Layer */}
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[92rem] flex-col justify-end px-4 pb-28 lg:px-10 lg:pb-16">
-        <Reveal delay={0.1}>
+        <Reveal>
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-accent">
             Pasta Famiglia
           </p>
         </Reveal>
 
-        {/* Trust Line: Real facts only */}
-        <Reveal delay={0.2}>
+        {/* Trust line: facts only */}
+        <Reveal delay={0.1}>
           <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-background/75">
-            <div className="flex text-accent">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} weight="fill" size={14} />
-              ))}
+            <div className="flex items-center gap-1 text-accent">
+              <Star size={14} weight="fill" />
+              <span className="font-display">4.9</span>
             </div>
-            <span>4.9 рейтинг</span>
-            <span className="opacity-30"></span>
-            <span>127 відгуків</span>
+            <span className="opacity-40">/</span>
+            <span>127 відгуків у Google</span>
           </div>
         </Reveal>
 
-        <Reveal delay={0.3}>
+        <Reveal delay={0.2}>
           <h1 className="font-display font-extrabold text-background [text-wrap:balance] text-[clamp(3.2rem,11vw,10rem)] max-w-[12ch]">
-            {words.map((word, i) => (
+            {h1Text.split(" ").map((word, i) => (
               <span 
                 key={i} 
-                className="inline-block mr-[0.2em] last:mr-0 word-rise" 
+                className="word-rise inline-block mr-[0.2em]" 
                 style={{ animationDelay: `${0.15 + i * 0.09}s` }}
               >
                 {word}{" "}
@@ -77,21 +71,20 @@ export function SectionHero() {
         </Reveal>
 
         <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
-          <Reveal delay={0.5}>
-            <p className="max-w-md text-base lg:text-lg leading-relaxed text-background/80 font-body">
-              Відчуйте автентичний смак Італії у самому серці Києва. Традиційні рецепти, 
-              добірні інгредієнти та любов у кожній страві.
+          <Reveal delay={0.4}>
+            <p className="max-w-md text-base leading-relaxed text-background/80">
+              Традиційні рецепти італійської кухні, власне виробництво пасти та добірна винна карта у центрі міста.
             </p>
           </Reveal>
-          
-          <Reveal delay={0.6}>
+
+          <Reveal delay={0.5}>
             <Magnetic>
               <a 
-                href="#booking" 
-                className="inline-flex items-center gap-3 bg-accent px-8 py-4 text-base font-semibold text-accent-foreground transition-transform hover:scale-[1.02]" 
+                href="tel:+380443332211" 
+                className="inline-flex items-center gap-3 bg-accent px-8 py-4 text-base font-semibold text-accent-foreground transition-colors hover:bg-accent/90" 
                 style={{ borderRadius: "var(--radius-control)" }}
               >
-                Забронювати стіл
+                Забронювати столику
                 <span aria-hidden className="text-xl">→</span>
               </a>
             </Magnetic>
@@ -99,11 +92,11 @@ export function SectionHero() {
         </div>
       </div>
 
-      {/* Living Idle Layer: Marquee riding the edge */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-background/15 bg-foreground/70 py-4 backdrop-blur-sm">
+      {/* Marquee riding the bottom edge */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-background/15 bg-foreground/70 py-3 backdrop-blur-sm">
         <Marquee 
           items={marqueeItems} 
-          className="font-display text-xs lg:text-sm uppercase tracking-[0.25em] text-background/70" 
+          className="font-display text-sm uppercase tracking-[0.25em] text-background/70" 
         />
       </div>
     </section>

@@ -1,19 +1,16 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionOfferingIntro } from "./sections/offering_intro";
-import { SectionMenuPasta } from "./sections/menu_pasta";
-import { SectionMenuPizza } from "./sections/menu_pizza";
-import { SectionInterstitialMarquee } from "./sections/interstitial_marquee";
+import { SectionMenuSignatures } from "./sections/menu_signatures";
+import { SectionMenuFull } from "./sections/menu_full";
+import { SectionMarqueeSeparator } from "./sections/marquee_separator";
 import { SectionStory } from "./sections/story";
 import { SectionProcess } from "./sections/process";
-import { SectionMood } from "./sections/mood";
-import { SectionProof } from "./sections/proof";
 import { SectionGallery } from "./sections/gallery";
+import { SectionProof } from "./sections/proof";
 import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
-import { SectionBooking } from "./sections/booking";
 
-const NAV = [{ href: "#offering_intro", label: "Меню" }, { href: "#story", label: "Про нас" }, { href: "#process", label: "Як працює" }, { href: "#mood", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
+const NAV = [{ href: "#menu_signatures", label: "Меню" }, { href: "#story", label: "Про нас" }, { href: "#process", label: "Як працює" }, { href: "#gallery", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
 
 export default function Page() {
   return (
@@ -40,18 +37,15 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionOfferingIntro /></ActBoundary>
-        <ActBoundary><SectionMenuPasta /></ActBoundary>
-        <ActBoundary><SectionMenuPizza /></ActBoundary>
-        <ActBoundary><SectionInterstitialMarquee /></ActBoundary>
+        <ActBoundary><SectionMenuSignatures /></ActBoundary>
+        <ActBoundary><SectionMenuFull /></ActBoundary>
+        <ActBoundary><SectionMarqueeSeparator /></ActBoundary>
         <ActBoundary><SectionStory /></ActBoundary>
         <ActBoundary><SectionProcess /></ActBoundary>
-        <ActBoundary><SectionMood /></ActBoundary>
-        <ActBoundary><SectionProof /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
+        <ActBoundary><SectionProof /></ActBoundary>
         <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
-        <ActBoundary><SectionBooking /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
         {/* Footer is navigation + brand only — the address/hours/map live in
