@@ -1,99 +1,83 @@
 "use client";
-import { Reveal, Magnetic } from "@/components/mechanics";
+import { Reveal } from "@/components/mechanics";
 
 /**
- * SectionProof - ACT IV: The Proof.
- * Vetted award composition with a spotlight testimonial and supplementary reviews.
- * Uses an inverted theme (bg-foreground) with grain texture and poster-scale typography.
+ * SectionProof: ACT IV - The Proof
+ * Layout: Inverted act (dark ground) with a high-impact spotlight quote.
+ * Typography: Display-scale blockquote with Mono-accented rating metrics.
  */
 export function SectionProof() {
-  return (
-    <section
-      id="proof"
-      className="relative overflow-hidden bg-foreground pt-0 pb-[var(--space-act)] lg:pt-[var(--space-act)] text-background"
-    >
-      {/* Texture Layer */}
-      <div className="rp-grain absolute inset-0 opacity-40 pointer-events-none" />
+  const PHOTO_URL = "https://images.pexels.com/photos/3760239/pexels-photo-3760239.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200";
 
-      {/* Floating Magnetic Photo Element */}
-      <div className="absolute right-[5%] top-[15%] hidden lg:block z-20">
-        <Magnetic>
-          <div className="relative h-32 w-32 overflow-hidden rounded-full border-2 border-background/20 shadow-2xl transition-transform duration-700 hover:scale-110">
-            <img
-              src="https://images.pexels.com/photos/18908596/pexels-photo-18908596.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=600&w=600"
-              alt="Atmosfera Pasta Famiglia"
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
-          </div>
-        </Magnetic>
+  return (
+    <section id="proof" className="relative overflow-hidden bg-foreground pt-0 pb-[var(--space-act)] lg:pt-[var(--space-act)] text-background">
+      {/* Film grain overlay for premium texture */}
+      <div className="rp-grain absolute inset-0 pointer-events-none" />
+
+      {/* Circular watermark photo background element */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vh] h-[60vh] opacity-10 blur-3xl pointer-events-none">
+        <img 
+          src={PHOTO_URL} 
+          alt="" 
+          className="w-full h-full object-cover rounded-full" 
+          loading="lazy"
+        />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 lg:px-10">
-        {/* Act Label */}
         <Reveal>
-          <span className="rp-actno mb-8 block text-sm uppercase tracking-[0.3em] text-background/50">
-            Враження
+          <span className="rp-actno mb-8 block text-background/70 uppercase tracking-[0.3em] text-xs">
+            Відгуки
           </span>
         </Reveal>
 
-        {/* Huge Accent Quote Mark */}
-        <span
-          aria-hidden
-          className="block font-display text-[clamp(4rem,10vw,7rem)] leading-none text-accent"
-        >
-          “
-        </span>
-
-        {/* Main Spotlight Quote */}
         <Reveal delay={0.1}>
-          <blockquote className="font-display font-medium leading-[1.1] text-[clamp(1.9rem,4.2vw,3.6rem)] tracking-tight">
-            Pasta Famiglia — це не просто ресторан, а справжній шматочок Італії в
-            серці Києва. Кожна страва, від аромату свіжого базиліку до текстури
-            пасти, дихає автентичністю та любов&apos;ю до своєї справи.
+          <span aria-hidden className="block font-display text-[7rem] leading-none text-accent">
+            “
+          </span>
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <blockquote className="font-display font-semibold text-[clamp(1.9rem,4.2vw,3.6rem)] leading-tight">
+            Смак, що переносить до Італії. Кожна деталь Pasta Famiglia — від сервісу до останньої краплі соусу — сповнена любові.
           </blockquote>
         </Reveal>
 
-        {/* Main Author & Trust Line */}
-        <Reveal delay={0.2}>
-          <figcaption className="mt-10 flex flex-wrap items-center gap-4 text-sm font-medium uppercase tracking-wider text-background/70">
+        <Reveal delay={0.3}>
+          <figcaption className="mt-8 flex flex-wrap items-center gap-4 text-sm text-background/70">
             <span className="h-px w-12 bg-accent" aria-hidden />
-            <span>Марія Федоренко</span>
-            <span className="text-background/30"></span>
-            <span className="flex items-center gap-1.5">
-              Google Review
-              <span className="flex text-accent">
-                {"★★★★★".split("").map((s, i) => (
-                  <span key={i}>{s}</span>
-                ))}
-              </span>
-              4.9/5
+            <span className="font-medium text-background">Анна К.</span>
+            <span className="text-background/40"></span>
+            <span className="flex items-center gap-2">
+              <span className="font-display text-xl text-accent">4.9</span>
+              <span className="uppercase tracking-widest text-[10px] opacity-70">Рейтинг</span>
+              <span className="text-background/40">/</span>
+              <span className="font-display text-xl text-accent">127</span>
+              <span className="uppercase tracking-widest text-[10px] opacity-70">Відгуків</span>
             </span>
           </figcaption>
         </Reveal>
 
-        {/* Supplementary Reviews Grid */}
-        <div className="mt-16 grid gap-10 border-t border-background/15 pt-12 md:mt-24 lg:grid-cols-2 lg:gap-16">
-          <Reveal delay={0.3}>
-            <figure>
-              <blockquote className="text-base leading-relaxed text-background/85 lg:text-lg">
-                Неймовірна атмосфера та найсмачніша карбонара, яку я коли-небудь
-                куштувала в Україні. Справжня домашня кухня та теплий прийом.
+        {/* Additional proofs grid */}
+        <div className="mt-14 grid gap-8 border-t border-background/15 pt-10 lg:grid-cols-2">
+          <Reveal delay={0.4}>
+            <figure className="group">
+              <blockquote className="text-base leading-relaxed text-background/85">
+                Справжня італійська паста al dente. Неймовірне місце для затишної вечері з друзями.
               </blockquote>
-              <figcaption className="mt-4 font-mono text-[0.8rem] uppercase tracking-widest text-background/50">
-                — Олена Кравченко
+              <figcaption className="mt-3 font-display text-sm tracking-wide text-background/60">
+                Дмитро П.
               </figcaption>
             </figure>
           </Reveal>
 
-          <Reveal delay={0.4}>
-            <figure>
-              <blockquote className="text-base leading-relaxed text-background/85 lg:text-lg">
-                Затишок, сервіс та винна карта — все на найвищому рівні. Ідеальне
-                місце для сімейної вечері або романтичного вечора.
+          <Reveal delay={0.5}>
+            <figure className="group">
+              <blockquote className="text-base leading-relaxed text-background/85">
+                Найкращий сервіс у Києві та неймовірно привітна атмосфера. Обов'язково спробуйте їхню фокаччу.
               </blockquote>
-              <figcaption className="mt-4 font-mono text-[0.8rem] uppercase tracking-widest text-background/50">
-                — Дмитро Вакуленко
+              <figcaption className="mt-3 font-display text-sm tracking-wide text-background/60">
+                Олена В.
               </figcaption>
             </figure>
           </Reveal>

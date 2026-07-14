@@ -1,25 +1,39 @@
 "use client";
 import { Reveal, Magnetic, AmbientCanvas } from "@/components/mechanics";
 
+/**
+ * ACT V: The Close (Part B)
+ * Layout: Accent-flooded curtain call with one definitive question and CTA.
+ * No visible contact facts (address/hours/phone) are rendered as text per the strict rejection policy.
+ */
 export function SectionBooking() {
   return (
     <section 
       id="booking" 
-      className="relative overflow-hidden bg-accent py-[var(--space-act)] text-accent-foreground"
+      className="relative overflow-hidden bg-accent pt-0 pb-[var(--space-act)] lg:pt-[var(--space-act)] text-accent-foreground min-h-[80vh] flex flex-col justify-center"
     >
-      {/* Background Ambience */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Layer: Ambient Canvas for terracotta/accent drifts */}
+      <div className="absolute inset-0 z-0 opacity-40">
         <AmbientCanvas />
       </div>
 
+      {/* Textured Background Image */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div className="rp-grain absolute inset-0 z-10" />
+        <img 
+          src="https://images.pexels.com/photos/36331654/pexels-photo-36331654.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800" 
+          alt="" 
+          className="h-full w-full object-cover grayscale"
+          loading="lazy"
+        />
+      </div>
+
       <div className="relative z-10 mx-auto max-w-[88rem] px-4 lg:px-10">
-        <span className="rp-actno mb-6 block text-sm uppercase tracking-[0.3em]">
-          Бронювання
-        </span>
+        <span className="rp-actno mb-6 block">Резерв</span>
         
         <Reveal>
           <h2 className="font-display font-extrabold text-[clamp(3rem,9vw,8rem)] max-w-[14ch]">
-            Чекаємо на вашу родину
+            Вечір починається з Pasta Famiglia
           </h2>
         </Reveal>
 
@@ -27,43 +41,35 @@ export function SectionBooking() {
           <Magnetic>
             <a 
               href="tel:+380443332211" 
-              className="inline-flex items-center gap-3 bg-foreground px-10 py-5 text-lg font-semibold text-background transition-transform duration-300 hover:scale-[1.02]" 
+              className="inline-flex items-center gap-3 bg-foreground px-10 py-5 text-lg font-semibold text-background transition-transform duration-500 hover:scale-[1.02]" 
               style={{ borderRadius: "var(--radius-control)" }}
             >
-              Забронювати стіл
-              <span aria-hidden className="text-xl">→</span>
+              Забронювати<span aria-hidden className="ml-1">→</span>
             </a>
           </Magnetic>
           
           <a 
             href="tel:+380443332211" 
-            className="text-lg font-medium underline underline-offset-8 opacity-70 transition-opacity hover:opacity-100"
+            className="text-lg font-medium opacity-60 hover:opacity-100 transition-opacity underline underline-offset-8 decoration-foreground/20"
           >
-            Переглянути меню
+            Зарезервувати стіл
           </a>
         </div>
 
-        <div className="mt-20 grid gap-6 border-t border-foreground/10 pt-10 text-sm uppercase tracking-widest lg:grid-cols-3">
+        <div className="mt-14 grid gap-4 text-sm text-accent-foreground/80 lg:grid-cols-3 border-t border-accent-foreground/10 pt-8">
           <div className="flex flex-col gap-1">
-            <span className="opacity-50">Локація</span>
-            <span className="font-display text-lg tracking-normal">Київ, Україна</span>
+            <span className="font-display text-lg text-accent-foreground">Автентичність</span>
+            <p className="max-w-xs">Справжня італійська паста, виготовлена вручну за сімейними рецептами.</p>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="opacity-50">Кухня</span>
-            <span className="font-display text-lg tracking-normal">Італійська душа</span>
+            <span className="font-display text-lg text-accent-foreground">Атмосфера</span>
+            <p className="max-w-xs">Затишний інтер'єр у серці міста для ваших особливих моментів.</p>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="opacity-50">Атмосфера</span>
-            <span className="font-display text-lg tracking-normal">Сімейний затишок</span>
+            <span className="font-display text-lg text-accent-foreground">Вишуканість</span>
+            <p className="max-w-xs">Ретельно підібрана винна карта та винятковий сервіс</p>
           </div>
         </div>
-      </div>
-
-      {/* Decorative Watermark */}
-      <div className="pointer-events-none absolute -bottom-10 -right-10 hidden overflow-hidden lg:block">
-        <span className="rp-watermark text-[20rem] font-display opacity-[0.03] select-none">
-          FAMIGLIA
-        </span>
       </div>
     </section>
   );

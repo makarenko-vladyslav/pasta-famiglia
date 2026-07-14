@@ -1,17 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionTrustBar } from "./sections/trust_bar";
-import { SectionMenuFeatured } from "./sections/menu_featured";
-import { SectionMenuList } from "./sections/menu_list";
-import { SectionInterstitialMarquee } from "./sections/interstitial_marquee";
-import { SectionStory } from "./sections/story";
+import { SectionUspSpeed } from "./sections/usp_speed";
+import { SectionMenuHighlights } from "./sections/menu_highlights";
+import { SectionIngredientsMarquee } from "./sections/ingredients_marquee";
+import { SectionCraftStory } from "./sections/craft_story";
+import { SectionFamilyAtmosphere } from "./sections/family_atmosphere";
 import { SectionGallery } from "./sections/gallery";
-import { SectionKidsVibe } from "./sections/kids_vibe";
 import { SectionProof } from "./sections/proof";
+import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 import { SectionBooking } from "./sections/booking";
 
-const NAV = [{ href: "#menu_featured", label: "Меню" }, { href: "#story", label: "Про нас" }, { href: "#gallery", label: "Галерея" }, { href: "#proof", label: "Відгуки" }, { href: "#location", label: "Контакти" }];
+const NAV = [{ href: "#usp_speed", label: "Як працює" }, { href: "#menu_highlights", label: "Меню" }, { href: "#craft_story", label: "Про нас" }, { href: "#family_atmosphere", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
 
 export default function Page() {
   return (
@@ -38,14 +38,14 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionTrustBar /></ActBoundary>
-        <ActBoundary><SectionMenuFeatured /></ActBoundary>
-        <ActBoundary><SectionMenuList /></ActBoundary>
-        <ActBoundary><SectionInterstitialMarquee /></ActBoundary>
-        <ActBoundary><SectionStory /></ActBoundary>
+        <ActBoundary><SectionUspSpeed /></ActBoundary>
+        <ActBoundary><SectionMenuHighlights /></ActBoundary>
+        <ActBoundary><SectionIngredientsMarquee /></ActBoundary>
+        <ActBoundary><SectionCraftStory /></ActBoundary>
+        <ActBoundary><SectionFamilyAtmosphere /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionKidsVibe /></ActBoundary>
         <ActBoundary><SectionProof /></ActBoundary>
+        <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
         <ActBoundary><SectionBooking /></ActBoundary>
       </main>
