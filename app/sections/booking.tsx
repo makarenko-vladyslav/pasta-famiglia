@@ -5,7 +5,6 @@ import { Reveal, Magnetic } from "@/components/mechanics";
 
 export function SectionBooking() {
   return (
-    {/* [FIXED] Added id="booking" to resolve dead anchors in navigation */}
     <section id="booking" className="mx-auto max-w-5xl px-4 lg:px-6 relative">
       <div className="bg-foreground text-background p-10 md:p-16 text-center relative overflow-hidden" style={{ borderRadius: "var(--radius-surface)" }}>
         <div className="relative z-10">

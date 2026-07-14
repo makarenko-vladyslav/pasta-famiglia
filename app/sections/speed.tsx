@@ -5,7 +5,6 @@ import { Reveal } from "@/components/mechanics";
 
 export function SectionSpeed() {
   return (
-    {/* [FIXED] Added id="speed" to match the header navigation links */}
     <section id="speed" className="mx-auto max-w-6xl px-4 lg:px-6 relative">
       <Reveal>
         <div className="rp-actno mb-8">Як працює</div>

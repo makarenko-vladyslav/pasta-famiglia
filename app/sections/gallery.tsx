@@ -5,7 +5,6 @@ import { Reveal } from "@/components/mechanics";
 
 export function SectionGallery() {
   return (
-    {/* [FIXED] Added id="gallery" to resolve dead anchor */}
     <section id="gallery" className="mx-auto max-w-6xl px-4 lg:px-6 relative">
       <Reveal>
         <div className="rp-actno mb-8">Галерея</div>

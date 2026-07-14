@@ -5,7 +5,6 @@ import { Reveal } from "@/components/mechanics";
 
 export function SectionCraft() {
   return (
-    {/* [FIXED] Added id="craft" to link correctly with navigation */}
     <section id="craft" className="mx-auto max-w-6xl px-4 lg:px-6 relative">
       <Reveal>
         <div className="rp-actno mb-8">Про нас</div>

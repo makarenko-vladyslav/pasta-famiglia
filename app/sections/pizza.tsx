@@ -5,7 +5,6 @@ import { Reveal, Magnetic, TiltCard } from "@/components/mechanics";
 
 export function SectionPizza() {
   return (
-    {/* [FIXED] Added id="pizza" to match the header/footer navigation links */}
     <section id="pizza" className="mx-auto max-w-6xl px-4 lg:px-6 relative">
       <Reveal>
         <div className="rp-actno mb-8">Меню</div>

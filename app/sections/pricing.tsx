@@ -5,7 +5,6 @@ import { Reveal } from "@/components/mechanics";
 
 export function SectionPricing() {
   return (
-    {/* [FIXED] Added id="pricing" to the root wrapper for navigation functionality */}
     <section id="pricing" className="mx-auto max-w-6xl px-4 lg:px-6 relative">
       <Reveal>
         <div className="rp-actno mb-8">Ціноутворення</div>
