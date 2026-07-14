@@ -3,92 +3,96 @@
 import { useState } from "react";
 import { Reveal } from "@/components/mechanics";
 
-const faqData = [
-  {
-    q: "Де залишити авто?",
-    a: "Біля закладу працює платний міський паркінг, місця зазвичай звільняються кожні 15 хвилин.",
-  },
-  {
-    q: "А якщо паста здасться надто твердою?",
-    a: "Ми варимо al dente за замовчуванням. Якщо любите м'якше тісто, скажіть про це під час замовлення.",
-  },
-  {
-    q: "Чи потрібна передоплата за стіл?",
-    a: "Ні, бронювання через сайт або бот абсолютно безкоштовне.",
-  },
-  {
-    q: "Як працює доставка?",
-    a: "Відправляємо кур'єрами, пакуємо у вентильовані коробки, щоб пар виходив і тісто не розмокало.",
-  },
-];
-
 export function SectionFaq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openId, setOpenId] = useState<number | null>(0);
+
+  const faqs = [
+    {
+      q: "Що, як ми запізнимося на бронь?",
+      a: "Тримаємо стіл 15 хвилин, далі телефонуємо для уточнення."
+    },
+    {
+      q: "Чи можна прийти без запису?",
+      a: "Так, але в години пік доведеться чекати. Бронь онлайн займає пів хвилини."
+    },
+    {
+      q: "Як працює гарантія подачі?",
+      a: "Час фіксується у чеку. Якщо за 20 хвилин тарілки немає на столі — пригощаємо напоєм."
+    }
+  ];
 
   return (
-    <section className="bg-background py-[var(--space-act)]">
-      <div className="mx-auto max-w-6xl px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 relative items-start">
+    <section className="py-[var(--space-act)] relative overflow-hidden bg-background text-foreground border-t border-border">
+      {/* Giant Background Watermark */}
+      <div 
+        className="rp-watermark absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center opacity-[0.03] pointer-events-none select-none z-0"
+        aria-hidden="true"
+      >
+        FAQ
+      </div>
+
+      <div className="mx-auto max-w-6xl px-4 lg:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
           
-          {/* Sticky Heading Column */}
-          <div className="md:col-span-4 md:col-start-1">
-            <div className="md:sticky md:top-[20vh]">
-              <Reveal delay={0.1}>
-                <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] text-foreground">
-                  Часті запитання
-                </h2>
-              </Reveal>
-            </div>
+          {/* Left Column (1-4): Headline */}
+          <div className="lg:col-span-4 lg:sticky lg:top-[20vh]">
+            <Reveal>
+              <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[0.9] uppercase">
+                Часті запитання
+              </h2>
+            </Reveal>
           </div>
 
-          {/* Accordion Column */}
-          <div className="md:col-span-7 md:col-start-6 mt-8 md:mt-0">
-            <div className="flex flex-col border-t border-foreground/10">
-              {faqData.map((item, idx) => {
-                const isOpen = openIndex === idx;
-
-                return (
-                  <Reveal key={idx} delay={0.15 + idx * 0.1}>
-                    <div className="border-b border-foreground/10">
-                      <button
-                        onClick={() => setOpenIndex(isOpen ? null : idx)}
-                        className="group flex w-full items-center justify-between py-6 md:py-8 text-left outline-none"
-                        aria-expanded={isOpen}
-                      >
-                        <span className="font-display text-2xl text-foreground pr-8 transition-transform duration-[400ms] ease-[var(--ease-out-cubic)] group-hover:translate-x-2">
-                          {item.q}
-                        </span>
-                        
-                        {/* Animated Plus/Minus Icon */}
-                        <span className="relative flex h-6 w-6 shrink-0 items-center justify-center">
-                          <span
-                            className={`absolute h-[1.5px] w-5 bg-foreground transition-all duration-[700ms] ease-[var(--ease-out-cubic)] ${
-                              isOpen ? "rotate-180 opacity-40" : "rotate-0 opacity-100"
-                            }`}
-                          />
-                          <span
-                            className={`absolute h-5 w-[1.5px] bg-foreground transition-all duration-[700ms] ease-[var(--ease-out-cubic)] ${
-                              isOpen ? "rotate-90 scale-y-0 opacity-40" : "rotate-0 scale-y-100 opacity-100"
-                            }`}
-                          />
-                        </span>
-                      </button>
-                      
-                      <div
-                        className={`grid transition-[grid-template-rows] duration-[700ms] ease-[var(--ease-out-cubic)] ${
-                          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                        }`}
-                      >
-                        <div className="overflow-hidden">
-                          <p className="font-body text-base text-muted pb-6 md:pb-8 pr-12 md:pr-24">
-                            {item.a}
-                          </p>
-                        </div>
+          {/* Right Column (5-12): Accordion List */}
+          <div className="lg:col-span-8 lg:col-start-5 flex flex-col">
+            <div className="border-t border-foreground/10">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="border-b border-foreground/10 group"
+                >
+                  <Reveal delay={0.1 * index}>
+                    <button
+                      onClick={() => setOpenId(openId === index ? null : index)}
+                      className="w-full text-left py-6 lg:py-8 flex items-center justify-between gap-6 cursor-pointer"
+                      aria-expanded={openId === index}
+                    >
+                      <span className="font-display text-xl lg:text-[1.5rem] leading-tight pr-4 transition-colors duration-200 group-hover:text-accent-foreground">
+                        {faq.q}
+                      </span>
+                      <span className="shrink-0 text-muted group-hover:text-foreground transition-colors duration-200">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          className={`transition-transform duration-[700ms] ease-[var(--ease-out-cubic)] ${
+                            openId === index ? "rotate-45" : "rotate-0"
+                          }`}
+                        >
+                          <line x1="12" y1="5" x2="12" y2="19"></line>
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                      </span>
+                    </button>
+                    <div
+                      className="grid transition-[grid-template-rows] duration-[700ms] ease-[var(--ease-out-cubic)]"
+                      style={{
+                        gridTemplateRows: openId === index ? "1fr" : "0fr"
+                      }}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="font-body text-base lg:text-lg text-muted pb-8 lg:pb-10 pr-12 lg:pr-24 leading-relaxed">
+                          {faq.a}
+                        </p>
                       </div>
                     </div>
                   </Reveal>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
 

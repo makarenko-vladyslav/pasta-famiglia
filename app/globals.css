@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: hsl(42 8% 95%);
-  --color-surface: hsl(42 8% 89%);
-  --color-foreground: hsl(25 25% 12%);
-  --color-accent: hsl(12 85% 42%);
-  --color-accent-foreground: hsl(42 20% 95%);
-  --color-muted: hsl(25 15% 32%);
-  --color-border: hsl(25 20% 82%);
+  --color-background: hsl(40 8% 95%);
+  --color-surface: hsl(40 8% 100%);
+  --color-foreground: hsl(30 15% 12%);
+  --color-accent: hsl(10 85% 45%);
+  --color-accent-foreground: hsl(40 20% 98%);
+  --color-muted: hsl(35 10% 45%);
+  --color-border: hsl(35 12% 85%);
 
   --font-display: "Jost", sans-serif;
   --font-body: "Rubik", sans-serif;
 
-  --radius-control: 2.4px;
-  --radius-surface: 4px;
+  --radius-control: 0px;
+  --radius-surface: 0px;
 
   --spacing-s1: 0.25rem;
-  --spacing-s2: 0.75rem;
+  --spacing-s2: 0.5rem;
   --spacing-s3: 1.25rem;
-  --spacing-s4: 3rem;
-  --spacing-s5: 6rem;
+  --spacing-s4: 2.5rem;
+  --spacing-s5: 5rem;
   --spacing-s6: 10rem;
 }
 
@@ -32,7 +32,7 @@
    * display tracking, one easing voice — the details that read expensive. */
   body { background: var(--color-background); overscroll-behavior-y: none; color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: var(--tracking-display, -0.04em); line-height: var(--leading-display, 1); }
-  ::selection { background: hsl(12 85% 42%); color: hsl(42 20% 95%); }
+  ::selection { background: hsl(10 85% 45%); color: hsl(40 20% 98%); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 }
 

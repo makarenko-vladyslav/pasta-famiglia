@@ -3,102 +3,104 @@
 import { Reveal, Magnetic } from "@/components/mechanics";
 
 export function SectionLocation() {
-  const facts = {
-    address: "вул. Антоновича, 44, Київ",
-    phone: "+380 (44) 333-22-11"
-  };
+  const address = "вул. Антоновича, 44, Київ";
+  const hours = "Пн–Нд 11:00–22:00";
+  const phone = "+380 (44) 333-22-11";
+  const email = "e2e-pasta-client@example.com";
 
-  const copy = {
-    headline: "Де нас знайти",
-    items: [
-      "вул. Антоновича, 44, Київ",
-      "Пн–Нд 11:00–22:00",
-      "+380 (44) 333-22-11",
-      "e2e-pasta-client@example.com"
-    ],
-    cta: "Прокласти маршрут"
-  };
-
-  const mapImage = "https://images.pexels.com/photos/35380430/pexels-photo-35380430.png?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800";
-  const mapsSearchUrl = `https://maps.google.com/?q=${encodeURIComponent(facts.address)}`;
+  const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
+  const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
   return (
-    <section className="py-[var(--space-act)] px-4 md:px-8 bg-accent text-accent-foreground relative overflow-hidden">
-      <div className="mx-auto max-w-6xl w-full flex flex-col gap-12 md:gap-16 lg:px-6">
+    <section className="bg-accent text-accent-foreground py-[var(--space-act)] px-4 lg:px-6 relative overflow-hidden">
+      <div className="mx-auto max-w-6xl flex flex-col items-center text-center">
         
-        {/* Headline Row */}
-        <div className="w-full">
-          <Reveal>
-            <h2 className="text-[clamp(3rem,7vw,6.5rem)] font-display leading-[0.92] uppercase">
-              {copy.headline}
-            </h2>
-          </Reveal>
-        </div>
+        {/* Header Block */}
+        <Reveal delay={0.1}>
+          <h2 className="font-display text-[clamp(3rem,7vw,6rem)] leading-[0.9] mb-6">
+            Як нас знайти
+          </h2>
+        </Reveal>
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
-          
-          {/* Contacts & CTA Column (Cols 1-4) */}
-          <div className="md:col-span-4 md:col-start-1 flex flex-col justify-between h-full gap-10">
-            <Reveal delay={0.1}>
-              <ul className="flex flex-col border-t border-accent-foreground/15">
-                {copy.items.map((item, index) => (
-                  <li 
-                    key={index}
-                    className="py-4 lg:py-5 border-b border-accent-foreground/15 flex items-center justify-between"
-                  >
-                    <span className="font-mono text-sm lg:text-base leading-tight tracking-tight">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+        <Reveal delay={0.2}>
+          <p className="font-body text-lg lg:text-xl text-accent-foreground/80 max-w-2xl mx-auto mb-10 lg:mb-12">
+            Замовляйте доставку, приходьте на обід або забирайте пасту з собою.
+          </p>
+        </Reveal>
 
-            <Reveal delay={0.2}>
-              <Magnetic>
-                <a 
-                  href={mapsSearchUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-3.5 text-base font-medium bg-accent-foreground text-accent w-full md:w-auto hover:opacity-90 transition-opacity duration-200"
-                  style={{ borderRadius: "var(--radius-control)" }}
-                >
-                  {copy.cta}
-                  <svg 
-                    className="ml-2 w-4 h-4" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor" 
-                    strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </Magnetic>
-            </Reveal>
-          </div>
-
-          {/* Map / Image Container Column (Cols 6-12) */}
-          <div className="md:col-span-7 md:col-start-6">
-            <Reveal delay={0.3}>
-              <div 
-                className="relative w-full aspect-[4/5] md:aspect-[16/10] overflow-hidden group bg-accent-foreground/5"
-                style={{ borderRadius: "var(--radius-surface)" }}
+        <Reveal delay={0.3} className="w-full md:w-auto z-10">
+          <Magnetic>
+            <a
+              href={mapsLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-foreground text-background px-6 py-3.5 text-base uppercase tracking-[0.2em] font-display hover:scale-[1.04] transition-transform duration-300 ease-[var(--ease-out-cubic)] w-full md:w-auto group"
+              style={{ borderRadius: "var(--radius-control)" }}
+            >
+              Прокласти маршрут
+              <svg
+                className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 ease-[var(--ease-out-cubic)]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                {/* Simulated scale-down entrance overlay mask */}
-                <div className="absolute inset-0 z-10 pointer-events-none mix-blend-overlay bg-accent-foreground/10 transition-opacity duration-1000 group-hover:opacity-0" />
-                
-                <img 
-                  src={mapImage} 
-                  alt={copy.headline}
-                  loading="lazy"
-                  className="w-full h-full object-cover grayscale-[20%] transition-transform duration-1000 ease-out hover:scale-[1.04]"
-                />
-              </div>
-            </Reveal>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </Magnetic>
+        </Reveal>
+
+        {/* 8-Column Grid Layout */}
+        <div className="w-full max-w-5xl mt-16 lg:mt-24 grid grid-cols-1 md:grid-cols-8 gap-10 md:gap-12 lg:gap-16 items-start text-left relative z-0">
+          
+          {/* Left Column: Info Editiorial Rows */}
+          <div className="md:col-span-3 flex flex-col w-full border-t border-accent-foreground/15 mt-2 md:mt-0">
+            {[
+              { label: "Адреса", val: address, link: null },
+              { label: "Години", val: hours, link: null },
+              { label: "Телефон", val: phone, link: "tel:+380443332211" },
+              { label: "Email", val: email, link: `mailto:${email}` }
+            ].map((item, idx) => (
+              <Reveal delay={0.4 + idx * 0.1} key={idx}>
+                <div className="flex flex-col py-5 border-b border-accent-foreground/15 group">
+                  <span className="text-xs uppercase tracking-[0.25em] text-accent-foreground/50 mb-2">
+                    {item.label}
+                  </span>
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      className="font-mono text-base lg:text-lg text-accent-foreground group-hover:text-accent-foreground/60 transition-colors duration-200 ease-[var(--ease-out-cubic)]"
+                    >
+                      {item.val}
+                    </a>
+                  ) : (
+                    <span className="font-mono text-base lg:text-lg text-accent-foreground">
+                      {item.val}
+                    </span>
+                  )}
+                </div>
+              </Reveal>
+            ))}
           </div>
 
+          {/* Right Column: Google Maps Iframe */}
+          <Reveal delay={0.5} className="md:col-span-5 w-full aspect-square md:aspect-[16/10] relative overflow-hidden group">
+            <div
+              className="absolute inset-0 bg-accent-foreground/10 z-10 pointer-events-none group-hover:bg-transparent transition-colors duration-700 ease-[var(--ease-out-cubic)]"
+              style={{ borderRadius: "var(--radius-surface)" }}
+            />
+            <iframe
+              src={mapUrl}
+              width="100%"
+              height="100%"
+              style={{ border: 0, borderRadius: "var(--radius-surface)" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 w-full h-full object-cover grayscale opacity-90 contrast-125 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 ease-[var(--ease-out-cubic)]"
+            ></iframe>
+          </Reveal>
+          
         </div>
       </div>
     </section>

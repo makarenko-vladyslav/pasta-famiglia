@@ -1,17 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionPricing } from "./sections/pricing";
-import { SectionPizza } from "./sections/pizza";
-import { SectionSpeed } from "./sections/speed";
+import { SectionConcept } from "./sections/concept";
 import { SectionCraft } from "./sections/craft";
-import { SectionGallery } from "./sections/gallery";
-import { SectionFamily } from "./sections/family";
+import { SectionMenu } from "./sections/menu";
+import { SectionKids } from "./sections/kids";
+import { SectionDelivery } from "./sections/delivery";
 import { SectionBooking } from "./sections/booking";
-import { SectionSocialProof } from "./sections/social_proof";
+import { SectionReviews } from "./sections/reviews";
+import { SectionRetail } from "./sections/retail";
 import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 
-const NAV = [{ href: "#pizza", label: "Меню" }, { href: "#speed", label: "Як працює" }, { href: "#craft", label: "Про нас" }, { href: "#gallery", label: "Галерея" }, { href: "#booking", label: "Контакти" }];
+const NAV = [{ href: "#craft", label: "Про нас" }, { href: "#menu", label: "Меню" }, { href: "#booking", label: "Контакти" }, { href: "#reviews", label: "Відгуки" }, { href: "#faq", label: "Питання" }];
 
 export default function Page() {
   return (
@@ -38,14 +38,14 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionPricing /></ActBoundary>
-        <ActBoundary><SectionPizza /></ActBoundary>
-        <ActBoundary><SectionSpeed /></ActBoundary>
+        <ActBoundary><SectionConcept /></ActBoundary>
         <ActBoundary><SectionCraft /></ActBoundary>
-        <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionFamily /></ActBoundary>
+        <ActBoundary><SectionMenu /></ActBoundary>
+        <ActBoundary><SectionKids /></ActBoundary>
+        <ActBoundary><SectionDelivery /></ActBoundary>
         <ActBoundary><SectionBooking /></ActBoundary>
-        <ActBoundary><SectionSocialProof /></ActBoundary>
+        <ActBoundary><SectionReviews /></ActBoundary>
+        <ActBoundary><SectionRetail /></ActBoundary>
         <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
       </main>
