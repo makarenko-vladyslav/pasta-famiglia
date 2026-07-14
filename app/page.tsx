@@ -1,18 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionOfferingIntro } from "./sections/offering_intro";
 import { SectionMenuSignature } from "./sections/menu_signature";
-import { SectionMarqueeIngredients } from "./sections/marquee_ingredients";
-import { SectionStoryCraft } from "./sections/story_craft";
-import { SectionProcessSteps } from "./sections/process_steps";
+import { SectionMenuLunch } from "./sections/menu_lunch";
+import { SectionMarqueeSeparator } from "./sections/marquee_separator";
+import { SectionCraft } from "./sections/craft";
+import { SectionFamilyValues } from "./sections/family_values";
+import { SectionProof } from "./sections/proof";
 import { SectionGallery } from "./sections/gallery";
-import { SectionProofStats } from "./sections/proof_stats";
-import { SectionTestimonials } from "./sections/testimonials";
 import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 import { SectionBooking } from "./sections/booking";
 
-const NAV = [{ href: "#offering_intro", label: "Меню" }, { href: "#story_craft", label: "Про нас" }, { href: "#process_steps", label: "Як працює" }, { href: "#gallery", label: "Галерея" }, { href: "#proof_stats", label: "Відгуки" }];
+const NAV = [{ href: "#menu_signature", label: "Меню" }, { href: "#craft", label: "Про нас" }, { href: "#proof", label: "Відгуки" }, { href: "#gallery", label: "Галерея" }, { href: "#faq", label: "Питання" }];
 
 export default function Page() {
   return (
@@ -39,14 +38,13 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionOfferingIntro /></ActBoundary>
         <ActBoundary><SectionMenuSignature /></ActBoundary>
-        <ActBoundary><SectionMarqueeIngredients /></ActBoundary>
-        <ActBoundary><SectionStoryCraft /></ActBoundary>
-        <ActBoundary><SectionProcessSteps /></ActBoundary>
+        <ActBoundary><SectionMenuLunch /></ActBoundary>
+        <ActBoundary><SectionMarqueeSeparator /></ActBoundary>
+        <ActBoundary><SectionCraft /></ActBoundary>
+        <ActBoundary><SectionFamilyValues /></ActBoundary>
+        <ActBoundary><SectionProof /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionProofStats /></ActBoundary>
-        <ActBoundary><SectionTestimonials /></ActBoundary>
         <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
         <ActBoundary><SectionBooking /></ActBoundary>

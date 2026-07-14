@@ -2,53 +2,54 @@
 import { Reveal } from "@/components/mechanics";
 
 /**
- * SectionFaq - ACT IV: Transparency & Details
- * Layout: 5:7 Grid with sticky editorial intro and native details-based accordion.
- * Constraints: No contact facts (phone, address, hours) allowed in this section.
+ * SectionFaq - Act IV: The Proof - Logistics
+ * Styled editorially with a sticky intro and native-details accordion.
  */
 export function SectionFaq() {
   const faqItems = [
     {
-      question: "Чи є у вас паркування для гостей?",
-      answer: "Поруч із закладом розташована міська зона паркування. Оскільки ми знаходимося в центрі міста, рекомендуємо приїжджати заздалегідь у вечірні години або скористатися послугами таксі для вашого максимального комфорту."
+      question: "Чи потрібно бронювати столик заздалегідь?",
+      answer: "Ми наполегливо рекомендуємо бронювати столик завчасно, особливо у вечірній час та у вихідні дні. Це дозволить нам підготувати найкраще місце для вашого візиту та забезпечити бездоганний сервіс."
     },
     {
-      question: "Як забронювати стіл для великої компанії?",
-      answer: "Ми з радістю приймаємо групи до 12 осіб. Для організації масштабних сімейних обідів або святкувань, ми пропонуємо обговорити меню та деталі посадки з нашим адміністратором для забезпечення найкращого сервісу."
+      question: "Чи готуєте ви пасту власноруч?",
+      answer: "Так, це серце нашої кухні. Щоранку ми замішуємо тісто за автентичними італійськими рецептами, використовуючи лише борошно твердих сортів пшениці та фермерські яйця."
     },
     {
-      question: "Чи передбачений обов'язковий сервісний збір?",
-      answer: "Ми підтримуємо політику повної фінансової прозорості: у нашому ресторані немає обов'язкових відсотків за обслуговування чи прихованих платежів. Винагорода команді за гарний сервіс залишається виключно на ваш розсуд."
+      question: "Чи є у вашому меню вегетаріанські страви?",
+      answer: "Безумовно. Наше меню включає різноманітні позиції для вегетаріанців: від класичної пасти з домашнім песто та овочами гриль до вишуканих салатів та антипасті."
     },
     {
-      question: "Чи пристосований ресторан для дітей?",
-      answer: "Так, Pasta Famiglia — це сімейний простір. У нас є зручні крісла для малечі, а наш шеф-кухар розробив спеціальне дитяче меню з корисними стравами, які подобаються навіть найвибагливішим маленьким гурманам."
+      question: "Чи можна замовити страву з собою?",
+      answer: "Ви можете оформити замовлення на самовивіз безпосередньо в закладі. Ми дбайливо запакуємо ваші улюблені страви так, щоб вони зберегли свій смак та температуру до вашого столу."
     },
     {
-      question: "Чи можна замовити пасту без глютену?",
-      answer: "Ми дбаємо про здоров'я кожного гостя. Більшість наших класичних соусів можна поєднати з безглютеновою пастою. Будь ласка, повідомте офіціанта про ваші дієтичні обмеження перед замовленням."
+      question: "Чи підходить ресторан для приватних подій?",
+      answer: "Наш інтер'єр ідеально підходить для камерних святкувань, сімейних обідів або ділових зустрічей. Ми з радістю допоможемо вам скласти спеціальне меню для вашого свята."
     }
   ];
 
   return (
-    <section id="faq" className="relative bg-background py-[var(--space-act)]">
+    <section id="faq" className="relative bg-surface py-[var(--space-act)]">
       <div className="mx-auto grid max-w-[88rem] gap-12 px-4 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:px-10">
+        {/* Sticky Intro Sidebar */}
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <span className="rp-actno mb-5 block text-sm font-display uppercase tracking-[0.3em] text-muted">
+          <span className="text-sm uppercase tracking-[0.3em] text-muted mb-5 block">
             Запитання
           </span>
           <Reveal>
             <h2 className="font-display font-bold text-[clamp(2.4rem,5vw,4.5rem)]">
-              Важливі деталі
+              Смачні деталі візиту
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
             <p className="mt-6 max-w-sm text-base leading-relaxed text-muted">
-              Ми прагнемо до повної прозорості в усьому — від інгредієнтів у вашій тарілці до умов обслуговування та комфорту кожного гостя.
+              Ми подбали про те, щоб ваш досвід у Pasta Famiglia був ідеальним. Тут ми зібрали відповіді на найпоширеніші запитання наших гостей.
             </p>
           </Reveal>
         </div>
-        
+
+        {/* Accordion List */}
         <div className="divide-y divide-foreground/10">
           {faqItems.map((item, index) => (
             <details key={index} className="group py-6">
@@ -63,9 +64,11 @@ export function SectionFaq() {
                   +
                 </span>
               </summary>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
-                {item.answer}
-              </p>
+              <Reveal delay={0.05}>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+                  {item.answer}
+                </p>
+              </Reveal>
             </details>
           ))}
         </div>
