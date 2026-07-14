@@ -1,17 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionUspSpeed } from "./sections/usp_speed";
-import { SectionMenuHighlights } from "./sections/menu_highlights";
-import { SectionIngredientsMarquee } from "./sections/ingredients_marquee";
-import { SectionCraftStory } from "./sections/craft_story";
-import { SectionFamilyAtmosphere } from "./sections/family_atmosphere";
+import { SectionMarqueeInterstitial } from "./sections/marquee_interstitial";
+import { SectionMenu } from "./sections/menu";
+import { SectionOfferingUsp } from "./sections/offering_usp";
+import { SectionStory } from "./sections/story";
+import { SectionProcess } from "./sections/process";
 import { SectionGallery } from "./sections/gallery";
 import { SectionProof } from "./sections/proof";
 import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 import { SectionBooking } from "./sections/booking";
 
-const NAV = [{ href: "#usp_speed", label: "Як працює" }, { href: "#menu_highlights", label: "Меню" }, { href: "#craft_story", label: "Про нас" }, { href: "#family_atmosphere", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
+const NAV = [{ href: "#menu", label: "Меню" }, { href: "#story", label: "Про нас" }, { href: "#process", label: "Як працює" }, { href: "#gallery", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
 
 export default function Page() {
   return (
@@ -38,11 +38,11 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionUspSpeed /></ActBoundary>
-        <ActBoundary><SectionMenuHighlights /></ActBoundary>
-        <ActBoundary><SectionIngredientsMarquee /></ActBoundary>
-        <ActBoundary><SectionCraftStory /></ActBoundary>
-        <ActBoundary><SectionFamilyAtmosphere /></ActBoundary>
+        <ActBoundary><SectionMarqueeInterstitial /></ActBoundary>
+        <ActBoundary><SectionMenu /></ActBoundary>
+        <ActBoundary><SectionOfferingUsp /></ActBoundary>
+        <ActBoundary><SectionStory /></ActBoundary>
+        <ActBoundary><SectionProcess /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
         <ActBoundary><SectionProof /></ActBoundary>
         <ActBoundary><SectionFaq /></ActBoundary>
@@ -50,12 +50,17 @@ export default function Page() {
         <ActBoundary><SectionBooking /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-8 pt-16 lg:grid-cols-3 lg:px-6">
-          <a href="tel:+380443332211" className="text-2xl font-semibold tracking-tight hover:text-accent transition-colors">+380 (44) 333-22-11</a>
-          <div className="text-sm leading-relaxed text-background/70"><p>вул. Антоновича, 44, Київ</p><p>Пн–Нд 11:00–22:00</p></div>
-          <div className="flex flex-col gap-1 text-sm text-background/70 lg:items-end">
-            {NAV.map((l) => (<a key={l.href} href={l.href} className="hover:text-background transition-colors">{l.label}</a>))}
+        {/* Footer is navigation + brand only — the address/hours/map live in
+            the location section, never duplicated here (owner: «футер має бути
+            футером»). The phone stays as a clickable convenience. */}
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 pb-8 pt-16 lg:flex-row lg:items-start lg:justify-between lg:px-6">
+          <div>
+            <span className="font-display text-2xl font-semibold">Pasta Famiglia</span>
+            <a href="tel:+380443332211" className="mt-3 block text-lg text-background/80 hover:text-accent transition-colors">+380 (44) 333-22-11</a>
           </div>
+          <nav className="flex flex-col gap-2 text-sm text-background/70 lg:items-end">
+            {NAV.map((l) => (<a key={l.href} href={l.href} className="hover:text-background transition-colors">{l.label}</a>))}
+          </nav>
         </div>
         <div aria-hidden className="select-none whitespace-nowrap px-2 font-display font-bold leading-[0.78] tracking-[-0.04em] text-background/15" style={{ fontSize: "clamp(4rem, 14.5vw, 15rem)" }}>Pasta Famiglia</div>
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 pb-6 pt-2 text-xs text-background/50 lg:px-6">

@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: hsl(38 8% 96%);
-  --color-surface: hsl(38 8% 91%);
-  --color-foreground: hsl(24 15% 10%);
-  --color-accent: hsl(14 75% 45%);
-  --color-accent-foreground: hsl(38 8% 98%);
-  --color-muted: hsl(24 10% 32%);
-  --color-border: hsl(24 10% 86%);
+  --color-background: hsl(35 8% 95%);
+  --color-surface: hsl(35 8% 91%);
+  --color-foreground: hsl(35 15% 12%);
+  --color-accent: hsl(22 75% 45%);
+  --color-accent-foreground: hsl(35 10% 98%);
+  --color-muted: hsl(35 10% 45%);
+  --color-border: hsl(35 15% 82%);
 
   --font-display: "Playfair Display", sans-serif;
   --font-body: "Lora", sans-serif;
 
-  --radius-control: 24px;
-  --radius-surface: calc(24px * 3);
+  --radius-control: 14px;
+  --radius-surface: 22px;
 
-  --spacing-s1: 4px;
-  --spacing-s2: 8px;
-  --spacing-s3: 16px;
-  --spacing-s4: 48px;
-  --spacing-s5: 96px;
-  --spacing-s6: 160px;
+  --spacing-s1: 0.25rem;
+  --spacing-s2: 0.5rem;
+  --spacing-s3: 1rem;
+  --spacing-s4: 2rem;
+  --spacing-s5: 4rem;
+  --spacing-s6: 8rem;
 }
 
 @layer base {
@@ -32,7 +32,7 @@
    * display tracking, one easing voice — the details that read expensive. */
   body { background: var(--color-foreground); color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: var(--tracking-display, -0.04em); line-height: var(--leading-display, 1); }
-  ::selection { background: hsl(14 75% 45%); color: hsl(38 8% 98%); }
+  ::selection { background: hsl(22 75% 45%); color: hsl(35 10% 98%); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 }
 
@@ -109,7 +109,7 @@ main section > :last-child { margin-bottom: 0 !important; }
    display word («БЕЗКОШТОВНИЙ») widens the whole layout viewport past the
    phone screen. Kill the class systemically, not per-case. */
 main [class~="grid"] > *, footer [class~="grid"] > * { min-width: 0; }
-main h1, main h2, main h3, main h4 { overflow-wrap: anywhere; hyphens: auto; }
+main h1, main h2, main h3, main h4 { overflow-wrap: break-word; hyphens: manual; }
 .rp-watermark { position: absolute; inset-inline: 0; pointer-events: none; user-select: none; font-family: var(--font-display); font-weight: 700; line-height: 0.8; letter-spacing: -0.04em; font-size: clamp(6rem, 24vw, 22rem); opacity: 0.05; white-space: nowrap; }
 .rp-graded { filter: saturate(0.94) contrast(1.06) brightness(0.99); }
 .rp-actno { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.55; display: inline-flex; align-items: center; gap: 0.75rem; }
