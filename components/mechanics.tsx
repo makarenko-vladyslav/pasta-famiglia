@@ -381,8 +381,8 @@ export function MobileMenu({ links = [], cta, phone, openLabel = "Menu", closeLa
         <span className={"absolute h-0.5 w-6 bg-current transition-all duration-300 " + (open ? "-rotate-45" : "translate-y-2")} />
       </button>
       <div className={"fixed inset-0 z-[70] transition-opacity duration-300 " + (open ? "opacity-100" : "pointer-events-none opacity-0")}
-        style={{ background: "var(--color-background, hsl(40 30% 96%))", backgroundColor: "var(--color-background, hsl(40 30% 96%))" }}>
-        <div aria-hidden style={{ position: "absolute", inset: 0, background: "var(--color-background, hsl(40 30% 96%))" }} />
+        style={{ backgroundColor: "var(--color-background, hsl(40 30% 96%))" }}>
+        <div aria-hidden className="absolute inset-0 bg-background" style={{ backgroundColor: "var(--color-background, hsl(40 30% 96%))" }} />
         <nav className="relative flex h-full w-full flex-col justify-between px-6 pb-10 pt-24" onClick={(e) => e.stopPropagation()}>
           <ul className="flex flex-col">
             {links.map((l, i) => (

@@ -2,81 +2,96 @@
 import { Reveal, HorizontalPan } from "@/components/mechanics";
 
 /**
- * ACT III The Soul — Atmosphere
- * Layout: Horizontal scrolling editorial strip
+ * ACT IV: The Proof. Visual abundance.
+ * A sideways-scrolling editorial strip showcasing the aesthetic and culinary soul of Pasta Famiglia.
  */
 export function SectionGallery() {
   const photos = [
     {
-      url: "https://images.pexels.com/photos/6223167/pexels-photo-6223167.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
-      caption: "Затишок кожного вечора",
+      src: "https://images.pexels.com/photos/3184191/pexels-photo-3184191.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=960",
+      alt: "Свіжа домашня паста",
+      caption: "Автентична паста",
     },
     {
-      url: "https://images.pexels.com/photos/2433978/pexels-photo-2433978.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
-      caption: "Мистецтво деталі",
+      src: "https://images.pexels.com/photos/9621641/pexels-photo-9621641.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=960",
+      alt: "Келихи вина на столі",
+      caption: "Атмосфера вечора",
     },
     {
-      url: "https://images.pexels.com/photos/18386859/pexels-photo-18386859.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
-      caption: "Ритм нашої кухні",
+      src: "https://images.pexels.com/photos/1435895/pexels-photo-1435895.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=960",
+      alt: "Процес приготування страви",
+      caption: "Мистецтво смаку",
     },
     {
-      url: "https://images.pexels.com/photos/34896773/pexels-photo-34896773.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
-      caption: "Світло та простір",
+      src: "https://images.pexels.com/photos/1273765/pexels-photo-1273765.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=960",
+      alt: "Піца з печі",
+      caption: "Дров'яна піч",
     },
     {
-      url: "https://images.pexels.com/photos/6287262/pexels-photo-6287262.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
-      caption: "Сервірування з любов'ю",
+      src: "https://images.pexels.com/photos/2092916/pexels-photo-2092916.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=960",
+      alt: "Шеф-кухар Pasta Famiglia",
+      caption: "Шеф за роботою",
     },
     {
-      url: "https://images.pexels.com/photos/6223167/pexels-photo-6223167.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
-      caption: "Атмосфера дому",
+      src: "https://images.pexels.com/photos/5412440/pexels-photo-5412440.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=960",
+      alt: "Інтер'єр ресторану",
+      caption: "Деталі інтер'єру",
     },
     {
-      url: "https://images.pexels.com/photos/2433978/pexels-photo-2433978.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
-      caption: "Естетика смаку",
+      src: "https://images.pexels.com/photos/5638732/pexels-photo-5638732.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=960",
+      alt: "Італійський десерт",
+      caption: "Солодкий фінал",
     },
     {
-      url: "https://images.pexels.com/photos/18386859/pexels-photo-18386859.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
-      caption: "Pasta Famiglia",
+      src: "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=960",
+      alt: "Гості за вечерею",
+      caption: "Наша родина",
     },
   ];
 
   return (
-    <section id="gallery" className="relative overflow-hidden bg-surface">
+    <section id="gallery" className="relative overflow-hidden bg-background">
+      {/* Header Container */}
       <div className="mx-auto max-w-[92rem] px-4 pt-[var(--space-act)] lg:px-10">
-        <span className="rp-actno mb-8 block font-display text-[18px] italic leading-none text-muted">
-          Атмосфера
+        <span className="rp-actno mb-5 block text-sm font-medium tracking-[0.3em] text-muted uppercase">
+          Галерея
         </span>
         <Reveal>
           <h2 className="font-display font-bold text-[clamp(2.4rem,5vw,4.5rem)] max-w-[16ch]">
-            Душа нашого дому
+            Смак у кожній миті
           </h2>
         </Reveal>
       </div>
 
+      {/* Horizontal Scroll Content */}
       <HorizontalPan heightVh={220}>
-        {photos.map((photo, index) => (
-          <figure
-            key={`${index}-${photo.caption}`}
-            className="rp-pan-item relative w-[75vw] shrink-0 overflow-hidden lg:w-[35vw]"
-          >
-            <div className="overflow-hidden bg-surface" style={{ borderRadius: "var(--radius-surface)" }}>
-              <img
-                src={photo.url}
-                alt={photo.caption}
-                className="rp-graded aspect-[4/5] w-full object-cover transition-transform duration-1000 hover:scale-[1.04]"
-                loading="lazy"
-              />
-            </div>
-            <figcaption className="mt-4 flex items-baseline justify-between text-sm uppercase tracking-widest text-muted lg:text-base">
-              <span>{photo.caption}</span>
-              <span className="font-display text-lg not-italic">
-                {(index + 1).toString().padStart(2, "0")}
-              </span>
-            </figcaption>
-          </figure>
-        ))}
+        <div className="flex h-full items-center gap-6 px-4 py-12 lg:gap-12 lg:px-10 lg:py-24">
+          {photos.map((photo, index) => (
+            <figure
+              key={index}
+              className="rp-pan-item relative w-[75vw] shrink-0 overflow-hidden md:w-[45vw] lg:w-[32vw]"
+            >
+              <div className="overflow-hidden bg-surface" style={{ borderRadius: "var(--radius-surface)" }}>
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="rp-graded aspect-[4/5] w-full object-cover transition-transform duration-1000 hover:scale-[1.04]"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption className="mt-4 flex items-baseline justify-between text-sm text-muted">
+                <span className="uppercase tracking-wider">{photo.caption}</span>
+                <span className="font-display text-lg lg:text-xl">
+                  {(index + 1).toString().padStart(2, "0")}
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </HorizontalPan>
+
+      {/* Spacing alignment for mobile flow */}
+      <div className="h-20 lg:hidden" />
     </section>
   );
 }
