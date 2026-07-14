@@ -1,17 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionMarqueeInterstitial } from "./sections/marquee_interstitial";
-import { SectionMenu } from "./sections/menu";
-import { SectionOfferingUsp } from "./sections/offering_usp";
-import { SectionStory } from "./sections/story";
-import { SectionProcess } from "./sections/process";
+import { SectionMenuIntro } from "./sections/menu_intro";
+import { SectionMenuPasta } from "./sections/menu_pasta";
+import { SectionMenuPizza } from "./sections/menu_pizza";
+import { SectionMarqueeUsp } from "./sections/marquee_usp";
+import { SectionStoryCraft } from "./sections/story_craft";
 import { SectionGallery } from "./sections/gallery";
-import { SectionProof } from "./sections/proof";
+import { SectionProofSpotlight } from "./sections/proof_spotlight";
 import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 import { SectionBooking } from "./sections/booking";
 
-const NAV = [{ href: "#menu", label: "Меню" }, { href: "#story", label: "Про нас" }, { href: "#process", label: "Як працює" }, { href: "#gallery", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
+const NAV = [{ href: "#menu_intro", label: "Меню" }, { href: "#story_craft", label: "Про нас" }, { href: "#gallery", label: "Галерея" }, { href: "#proof_spotlight", label: "Відгуки" }, { href: "#faq", label: "Питання" }];
 
 export default function Page() {
   return (
@@ -38,13 +38,13 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionMarqueeInterstitial /></ActBoundary>
-        <ActBoundary><SectionMenu /></ActBoundary>
-        <ActBoundary><SectionOfferingUsp /></ActBoundary>
-        <ActBoundary><SectionStory /></ActBoundary>
-        <ActBoundary><SectionProcess /></ActBoundary>
+        <ActBoundary><SectionMenuIntro /></ActBoundary>
+        <ActBoundary><SectionMenuPasta /></ActBoundary>
+        <ActBoundary><SectionMenuPizza /></ActBoundary>
+        <ActBoundary><SectionMarqueeUsp /></ActBoundary>
+        <ActBoundary><SectionStoryCraft /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionProof /></ActBoundary>
+        <ActBoundary><SectionProofSpotlight /></ActBoundary>
         <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
         <ActBoundary><SectionBooking /></ActBoundary>
