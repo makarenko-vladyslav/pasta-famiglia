@@ -1,8 +1,8 @@
 import { Reveal, Magnetic } from "@/components/mechanics";
 
-export function SectionBooking() {
+export function SectionBookingFinal() {
   return (
-<section id="booking" className="relative overflow-hidden bg-accent py-[var(--space-act)] text-accent-foreground">
+<section id="booking_final" className="relative overflow-hidden bg-accent py-[var(--space-act)] text-accent-foreground">
   <div className="relative z-10 mx-auto max-w-[88rem] px-4 lg:px-10">
     <span className="rp-actno mb-6">Контакти</span>
     <Reveal><h2 className="font-display font-extrabold text-[clamp(3rem,9vw,8rem)] max-w-[14ch]">Pasta Famiglia</h2></Reveal>

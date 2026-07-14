@@ -1,17 +1,15 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionMenuSignature } from "./sections/menu_signature";
-import { SectionMenuLunch } from "./sections/menu_lunch";
-import { SectionMarqueeSeparator } from "./sections/marquee_separator";
-import { SectionCraft } from "./sections/craft";
-import { SectionFamilyValues } from "./sections/family_values";
-import { SectionProof } from "./sections/proof";
-import { SectionGallery } from "./sections/gallery";
-import { SectionFaq } from "./sections/faq";
-import { SectionLocation } from "./sections/location";
-import { SectionBooking } from "./sections/booking";
+import { SectionSignatureDishes } from "./sections/signature_dishes";
+import { SectionMarqueeBrand } from "./sections/marquee_brand";
+import { SectionMenuFull } from "./sections/menu_full";
+import { SectionProcessCraft } from "./sections/process_craft";
+import { SectionGalleryAtmosphere } from "./sections/gallery_atmosphere";
+import { SectionProofSocial } from "./sections/proof_social";
+import { SectionLocationDetails } from "./sections/location_details";
+import { SectionBookingFinal } from "./sections/booking_final";
 
-const NAV = [{ href: "#menu_signature", label: "Меню" }, { href: "#craft", label: "Про нас" }, { href: "#proof", label: "Відгуки" }, { href: "#gallery", label: "Галерея" }, { href: "#faq", label: "Питання" }];
+const NAV = [{ href: "#signature_dishes", label: "Меню" }, { href: "#process_craft", label: "Про нас" }, { href: "#gallery_atmosphere", label: "Галерея" }, { href: "#proof_social", label: "Відгуки" }, { href: "#location_details", label: "Контакти" }];
 
 export default function Page() {
   return (
@@ -38,16 +36,14 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionMenuSignature /></ActBoundary>
-        <ActBoundary><SectionMenuLunch /></ActBoundary>
-        <ActBoundary><SectionMarqueeSeparator /></ActBoundary>
-        <ActBoundary><SectionCraft /></ActBoundary>
-        <ActBoundary><SectionFamilyValues /></ActBoundary>
-        <ActBoundary><SectionProof /></ActBoundary>
-        <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionFaq /></ActBoundary>
-        <ActBoundary><SectionLocation /></ActBoundary>
-        <ActBoundary><SectionBooking /></ActBoundary>
+        <ActBoundary><SectionSignatureDishes /></ActBoundary>
+        <ActBoundary><SectionMarqueeBrand /></ActBoundary>
+        <ActBoundary><SectionMenuFull /></ActBoundary>
+        <ActBoundary><SectionProcessCraft /></ActBoundary>
+        <ActBoundary><SectionGalleryAtmosphere /></ActBoundary>
+        <ActBoundary><SectionProofSocial /></ActBoundary>
+        <ActBoundary><SectionLocationDetails /></ActBoundary>
+        <ActBoundary><SectionBookingFinal /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-8 pt-16 lg:grid-cols-3 lg:px-6">
