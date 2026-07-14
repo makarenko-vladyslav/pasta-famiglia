@@ -1,15 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionSignatureDishes } from "./sections/signature_dishes";
-import { SectionMarqueeBrand } from "./sections/marquee_brand";
-import { SectionMenuFull } from "./sections/menu_full";
-import { SectionProcessCraft } from "./sections/process_craft";
-import { SectionGalleryAtmosphere } from "./sections/gallery_atmosphere";
-import { SectionProofSocial } from "./sections/proof_social";
-import { SectionLocationDetails } from "./sections/location_details";
-import { SectionBookingFinal } from "./sections/booking_final";
+import { SectionTrustBar } from "./sections/trust_bar";
+import { SectionMenuFeatured } from "./sections/menu_featured";
+import { SectionMenuList } from "./sections/menu_list";
+import { SectionInterstitialMarquee } from "./sections/interstitial_marquee";
+import { SectionStory } from "./sections/story";
+import { SectionGallery } from "./sections/gallery";
+import { SectionKidsVibe } from "./sections/kids_vibe";
+import { SectionProof } from "./sections/proof";
+import { SectionLocation } from "./sections/location";
+import { SectionBooking } from "./sections/booking";
 
-const NAV = [{ href: "#signature_dishes", label: "Меню" }, { href: "#process_craft", label: "Про нас" }, { href: "#gallery_atmosphere", label: "Галерея" }, { href: "#proof_social", label: "Відгуки" }, { href: "#location_details", label: "Контакти" }];
+const NAV = [{ href: "#menu_featured", label: "Меню" }, { href: "#story", label: "Про нас" }, { href: "#gallery", label: "Галерея" }, { href: "#proof", label: "Відгуки" }, { href: "#location", label: "Контакти" }];
 
 export default function Page() {
   return (
@@ -36,14 +38,16 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionSignatureDishes /></ActBoundary>
-        <ActBoundary><SectionMarqueeBrand /></ActBoundary>
-        <ActBoundary><SectionMenuFull /></ActBoundary>
-        <ActBoundary><SectionProcessCraft /></ActBoundary>
-        <ActBoundary><SectionGalleryAtmosphere /></ActBoundary>
-        <ActBoundary><SectionProofSocial /></ActBoundary>
-        <ActBoundary><SectionLocationDetails /></ActBoundary>
-        <ActBoundary><SectionBookingFinal /></ActBoundary>
+        <ActBoundary><SectionTrustBar /></ActBoundary>
+        <ActBoundary><SectionMenuFeatured /></ActBoundary>
+        <ActBoundary><SectionMenuList /></ActBoundary>
+        <ActBoundary><SectionInterstitialMarquee /></ActBoundary>
+        <ActBoundary><SectionStory /></ActBoundary>
+        <ActBoundary><SectionGallery /></ActBoundary>
+        <ActBoundary><SectionKidsVibe /></ActBoundary>
+        <ActBoundary><SectionProof /></ActBoundary>
+        <ActBoundary><SectionLocation /></ActBoundary>
+        <ActBoundary><SectionBooking /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 pb-8 pt-16 lg:grid-cols-3 lg:px-6">
