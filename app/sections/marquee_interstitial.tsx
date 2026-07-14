@@ -2,35 +2,42 @@
 import { Reveal, Marquee } from "@/components/mechanics";
 
 /**
- * SECTION: Marquee Interstitial
- * ROLE: Transition. Continuous movement between The Offer and The Soul.
- * STYLING: Typographic band with high-end display font and infinite scroll.
+ * SectionMarqueeInterstitial - The living rhythm of the page.
+ * A high-energy typographic band that separates content acts with movement.
+ * Uses a poster-scale display font and hairline borders for a premium feel.
  */
 export function SectionMarqueeInterstitial() {
-  // Translated items from SPEC to SITE LANGUAGE (uk)
-  // Maintains the "•" separator and uppercase styling as per typography requirements.
-  const marqueeItems = [
-    "СВІЖА ПАСТА ЩОДНЯ",
-    "БЕЗ СЕРВІСНИХ ЗБОРІВ",
-    "ТІЛЬКИ AL DENTE",
-    "ІМПОРТНА СЕМОЛА",
+  // Phrases from SPEC translated to SITE LANGUAGE (uk) where applicable
+  // Technical Italian culinary terms (Semola, Al Dente) are preserved for authenticity
+  const marqueePhrases = [
+    "СВІЖА ПАСТА",
+    "SEMOLA",
+    "AL DENTE",
+    "ПІЦА НА ДРОВАХ",
+    "PASTA FAMIGLIA",
+    "СВІЖА ПАСТА",
+    "SEMOLA",
+    "AL DENTE",
+    "ПІЦА НА ДРОВАХ",
+    "PASTA FAMIGLIA",
   ];
 
   return (
     <section 
-      className="w-full py-6 lg:py-8 border-y border-foreground/10 overflow-hidden bg-surface relative z-10"
+      className="relative w-full border-y border-foreground/10 bg-background overflow-hidden py-[var(--space-act)]"
       aria-hidden="true"
     >
-      <Reveal delay={0.05}>
-        <div className="flex items-center overflow-hidden">
-          <div className="font-display uppercase tracking-[0.2em] text-[clamp(1.8rem,5vw,2.25rem)] text-foreground leading-none whitespace-nowrap">
-            <Marquee 
-              items={marqueeItems} 
-              // The Marquee mechanic handles the mapping and duplication
-            />
-          </div>
+      <Reveal delay={0.1}>
+        <div className="flex items-center w-full h-20 lg:h-[120px]">
+          <Marquee 
+            items={marqueePhrases} 
+            className="font-display font-medium uppercase tracking-tighter text-[clamp(2rem,5vw,3.5rem)] text-foreground flex gap-12 lg:gap-24"
+          />
         </div>
       </Reveal>
+
+      {/* Decorative grain for texture depth */}
+      <div className="absolute inset-0 pointer-events-none rp-grain opacity-20" />
     </section>
   );
 }
