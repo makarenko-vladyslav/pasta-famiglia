@@ -1,17 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionMenuIntro } from "./sections/menu_intro";
-import { SectionMenuPasta } from "./sections/menu_pasta";
-import { SectionMenuPizza } from "./sections/menu_pizza";
-import { SectionMarqueeUsp } from "./sections/marquee_usp";
+import { SectionMenuSignature } from "./sections/menu_signature";
+import { SectionMarqueeInterstitial } from "./sections/marquee_interstitial";
 import { SectionStoryCraft } from "./sections/story_craft";
+import { SectionProcessGuarantee } from "./sections/process_guarantee";
+import { SectionAtmosphereKids } from "./sections/atmosphere_kids";
 import { SectionGallery } from "./sections/gallery";
-import { SectionProofSpotlight } from "./sections/proof_spotlight";
-import { SectionFaq } from "./sections/faq";
+import { SectionProofTestimonials } from "./sections/proof_testimonials";
+import { SectionFaqTrust } from "./sections/faq_trust";
 import { SectionLocation } from "./sections/location";
-import { SectionBooking } from "./sections/booking";
+import { SectionFinalCta } from "./sections/final_cta";
 
-const NAV = [{ href: "#menu_intro", label: "Меню" }, { href: "#story_craft", label: "Про нас" }, { href: "#gallery", label: "Галерея" }, { href: "#proof_spotlight", label: "Відгуки" }, { href: "#faq", label: "Питання" }];
+const NAV = [{ href: "#menu_signature", label: "Меню" }, { href: "#story_craft", label: "Про нас" }, { href: "#process_guarantee", label: "Як працює" }, { href: "#atmosphere_kids", label: "Галерея" }, { href: "#proof_testimonials", label: "Відгуки" }];
 
 export default function Page() {
   return (
@@ -31,23 +31,23 @@ export default function Page() {
             {NAV.map((l) => (<a key={l.href} href={l.href} className="hover:text-accent transition-colors">{l.label}</a>))}
           </nav>
           <div className="flex items-center gap-2">
-            <Magnetic><a href={"tel:+380443332211"} className="rp-header-cta hidden lg:inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Звʼязатися</a></Magnetic>
-            <MobileMenu links={NAV} cta={{ href: "tel:+380443332211", label: "Звʼязатися" }} phone={"+380 (44) 333-22-11"} />
+            <Magnetic><a href={"#final_cta"} className="rp-header-cta hidden lg:inline-flex items-center bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity duration-300 hover:opacity-90" style={{ borderRadius: "var(--radius-control)" }}>Звʼязатися</a></Magnetic>
+            <MobileMenu links={NAV} cta={{ href: "#final_cta", label: "Звʼязатися" }} phone={"+380 (44) 333-22-11"} />
           </div>
         </div>
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionMenuIntro /></ActBoundary>
-        <ActBoundary><SectionMenuPasta /></ActBoundary>
-        <ActBoundary><SectionMenuPizza /></ActBoundary>
-        <ActBoundary><SectionMarqueeUsp /></ActBoundary>
+        <ActBoundary><SectionMenuSignature /></ActBoundary>
+        <ActBoundary><SectionMarqueeInterstitial /></ActBoundary>
         <ActBoundary><SectionStoryCraft /></ActBoundary>
+        <ActBoundary><SectionProcessGuarantee /></ActBoundary>
+        <ActBoundary><SectionAtmosphereKids /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
-        <ActBoundary><SectionProofSpotlight /></ActBoundary>
-        <ActBoundary><SectionFaq /></ActBoundary>
+        <ActBoundary><SectionProofTestimonials /></ActBoundary>
+        <ActBoundary><SectionFaqTrust /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
-        <ActBoundary><SectionBooking /></ActBoundary>
+        <ActBoundary><SectionFinalCta /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
         {/* Footer is navigation + brand only — the address/hours/map live in

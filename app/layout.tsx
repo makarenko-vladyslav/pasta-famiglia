@@ -3,8 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Pasta Famiglia — Київ",
-  description: "Pasta Famiglia — це сімейний італійський ресторан у центрі Києва, де мешканці навколишніх ЖК та офісні працівники отримують автентичну пасту ручної роботи ",
-  openGraph: { title: "Pasta Famiglia", description: "Pasta Famiglia — це сімейний італійський ресторан у центрі Києва, де мешканці навколишніх ЖК та офісні працівники отримують автентичну пасту ручної роботи ", type: "website" },
+  description: "Автентичний італійський ресторан у центрі Києва, що поєднує власне виробництво свіжої пасти з сімейним затишком та спеціалізованою дитячою інфраструктурою.",
+  openGraph: { title: "Pasta Famiglia", description: "Автентичний італійський ресторан у центрі Києва, що поєднує власне виробництво свіжої пасти з сімейним затишком та спеціалізованою дитячою інфраструктурою.", type: "website" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
