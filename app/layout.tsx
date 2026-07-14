@@ -3,8 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Pasta Famiglia — Київ",
-  description: "Автентичний італійський ресторан у центрі Києва для сімей та офісних працівників, що спеціалізується на домашній пасті ручної роботи та піці з печі на дров",
-  openGraph: { title: "Pasta Famiglia", description: "Автентичний італійський ресторан у центрі Києва для сімей та офісних працівників, що спеціалізується на домашній пасті ручної роботи та піці з печі на дров", type: "website" },
+  description: "Pasta Famiglia — це ресторан автентичної італійської кухні в центрі Києва для молодих сімей та офісних працівників, що спеціалізується на домашній пасті вл",
+  openGraph: { title: "Pasta Famiglia", description: "Pasta Famiglia — це ресторан автентичної італійської кухні в центрі Києва для молодих сімей та офісних працівників, що спеціалізується на домашній пасті вл", type: "website" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: "try{history.scrollRestoration='manual'}catch(e){};if(!location.hash){window.scrollTo(0,0);addEventListener('load',function(){setTimeout(function(){window.scrollTo(0,0)},1)})}" }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"LocalBusiness\",\"name\":\"Pasta Famiglia\",\"address\":\"вул. Антоновича, 44, Київ\",\"areaServed\":\"Київ\",\"telephone\":\"+380 (44) 333-22-11\",\"aggregateRating\":{\"@type\":\"AggregateRating\",\"ratingValue\":4.9,\"reviewCount\":127}}" }} />
       </head>
       <body>{children}</body>

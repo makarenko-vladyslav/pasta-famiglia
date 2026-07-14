@@ -1,16 +1,16 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionOfferingPasta } from "./sections/offering_pasta";
-import { SectionInterstitialMarquee } from "./sections/interstitial_marquee";
-import { SectionOfferingPizza } from "./sections/offering_pizza";
-import { SectionStory } from "./sections/story";
+import { SectionSignatureMarquee } from "./sections/signature_marquee";
+import { SectionMenuPasta } from "./sections/menu_pasta";
+import { SectionMenuPizza } from "./sections/menu_pizza";
 import { SectionProcess } from "./sections/process";
+import { SectionStory } from "./sections/story";
+import { SectionMood } from "./sections/mood";
 import { SectionGallery } from "./sections/gallery";
 import { SectionProof } from "./sections/proof";
-import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 
-const NAV = [{ href: "#offering_pasta", label: "Меню" }, { href: "#story", label: "Про нас" }, { href: "#process", label: "Як працює" }, { href: "#gallery", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
+const NAV = [{ href: "#signature_marquee", label: "Меню" }, { href: "#process", label: "Як працює" }, { href: "#story", label: "Про нас" }, { href: "#mood", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
 
 export default function Page() {
   return (
@@ -37,14 +37,14 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionOfferingPasta /></ActBoundary>
-        <ActBoundary><SectionInterstitialMarquee /></ActBoundary>
-        <ActBoundary><SectionOfferingPizza /></ActBoundary>
-        <ActBoundary><SectionStory /></ActBoundary>
+        <ActBoundary><SectionSignatureMarquee /></ActBoundary>
+        <ActBoundary><SectionMenuPasta /></ActBoundary>
+        <ActBoundary><SectionMenuPizza /></ActBoundary>
         <ActBoundary><SectionProcess /></ActBoundary>
+        <ActBoundary><SectionStory /></ActBoundary>
+        <ActBoundary><SectionMood /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
         <ActBoundary><SectionProof /></ActBoundary>
-        <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
       </main>
       <footer className="relative overflow-hidden bg-foreground text-background">
