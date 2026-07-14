@@ -1,43 +1,40 @@
 "use client";
-import { Reveal, Marquee } from "@/components/mechanics";
+import { Marquee, Reveal } from "@/components/mechanics";
 
 /**
- * SectionMarqueeInterstitial - The living rhythm of the page.
- * A high-energy typographic band that separates content acts with movement.
- * Uses a poster-scale display font and hairline borders for a premium feel.
+ * SECTION: Marquee Interstitial
+ * ROLE: Mandatory living idle layer for Pasta Famiglia.
+ * STYLE: Editorial monospaced marquee, high tracking, hairline borders.
  */
 export function SectionMarqueeInterstitial() {
-  // Phrases from SPEC translated to SITE LANGUAGE (uk) where applicable
-  // Technical Italian culinary terms (Semola, Al Dente) are preserved for authenticity
-  const marqueePhrases = [
-    "СВІЖА ПАСТА",
-    "SEMOLA",
-    "AL DENTE",
+  // Ukrainian translation of the SPEC strings to adhere to SITE LANGUAGE law
+  const marqueeItems = [
+    "ПАСТА РУЧНОЇ РОБОТИ",
     "ПІЦА НА ДРОВАХ",
-    "PASTA FAMIGLIA",
-    "СВІЖА ПАСТА",
-    "SEMOLA",
-    "AL DENTE",
+    "БЕЗ СЕРВІСНОГО ЗБОРУ",
+    "СВІЖЕ ЩОДНЯ",
+    "ПАСТА РУЧНОЇ РОБОТИ",
     "ПІЦА НА ДРОВАХ",
-    "PASTA FAMIGLIA",
+    "БЕЗ СЕРВІСНОГО ЗБОРУ",
+    "СВІЖЕ ЩОДНЯ",
   ];
 
   return (
     <section 
-      className="relative w-full border-y border-foreground/10 bg-background overflow-hidden py-[var(--space-act)]"
+      className="relative w-full overflow-hidden border-y border-foreground/10 py-8 lg:py-12"
       aria-hidden="true"
     >
       <Reveal delay={0.1}>
-        <div className="flex items-center w-full h-20 lg:h-[120px]">
+        <div className="flex items-center justify-center">
           <Marquee 
-            items={marqueePhrases} 
-            className="font-display font-medium uppercase tracking-tighter text-[clamp(2rem,5vw,3.5rem)] text-foreground flex gap-12 lg:gap-24"
+            items={marqueeItems} 
+            className="font-body text-lg lg:text-xl uppercase tracking-[0.2em] text-foreground/90"
           />
         </div>
       </Reveal>
-
-      {/* Decorative grain for texture depth */}
-      <div className="absolute inset-0 pointer-events-none rp-grain opacity-20" />
+      
+      {/* Subtle Grain Overlay for texture depth without breaking the "transparent background" spec */}
+      <div className="absolute inset-0 pointer-events-none rp-grain opacity-[0.03]" />
     </section>
   );
 }

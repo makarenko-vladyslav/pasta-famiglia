@@ -2,62 +2,89 @@
 import { Reveal, HorizontalPan } from "@/components/mechanics";
 
 /**
- * ACT III: The Soul.
- * A horizontal immersion into the aesthetic of Pasta Famiglia.
- * Translates the sensory experience through a scrolling editorial strip.
+ * ACT III: The Soul. Visual atmosphere.
+ * A full-bleed horizontal scrolling strip showcasing the restaurant's aesthetic.
  */
 export function SectionGallery() {
-  const images = [
-    { url: "https://images.pexels.com/photos/8108055/pexels-photo-8108055.jpeg", caption: "Процес приготування" },
-    { url: "https://images.pexels.com/photos/7436113/pexels-photo-7436113.jpeg", caption: "Інтер’єр залу" },
-    { url: "https://images.pexels.com/photos/35380430/pexels-photo-35380430.png", caption: "Свіжа паста" },
-    { url: "https://images.pexels.com/photos/10802332/pexels-photo-10802332.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200", caption: "Винна карта" },
-    { url: "https://images.pexels.com/photos/8108055/pexels-photo-8108055.jpeg", caption: "Атмосфера вечора" },
-    { url: "https://images.pexels.com/photos/7436113/pexels-photo-7436113.jpeg", caption: "Деталі декору" },
-    { url: "https://images.pexels.com/photos/35380430/pexels-photo-35380430.png", caption: "Авторська подача" },
-    { url: "https://images.pexels.com/photos/10802332/pexels-photo-10802332.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200", caption: "Ранкова кава" },
-    { url: "https://images.pexels.com/photos/8108055/pexels-photo-8108055.jpeg", caption: "Родинна вечеря" },
-    { url: "https://images.pexels.com/photos/7436113/pexels-photo-7436113.jpeg", caption: "Шеф-кухар за роботою" },
+  const photos = [
+    {
+      src: "https://images.pexels.com/photos/30406651/pexels-photo-30406651.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+      caption: "Процес приготування",
+      index: "01",
+    },
+    {
+      src: "https://images.pexels.com/photos/30406651/pexels-photo-30406651.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1201&w=801",
+      caption: "Традиційні рецепти",
+      index: "02",
+    },
+    {
+      src: "https://images.pexels.com/photos/30406651/pexels-photo-30406651.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1202&w=802",
+      caption: "Атмосфера Pasta Famiglia",
+      index: "03",
+    },
+    {
+      src: "https://images.pexels.com/photos/30406651/pexels-photo-30406651.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1203&w=803",
+      caption: "Деталі інтер'єру",
+      index: "04",
+    },
+    {
+      src: "https://images.pexels.com/photos/30406651/pexels-photo-30406651.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1204&w=804",
+      caption: "Смак Італії у Києві",
+      index: "05",
+    },
+    {
+      src: "https://images.pexels.com/photos/30406651/pexels-photo-30406651.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1205&w=805",
+      caption: "Свіжі інгредієнти",
+      index: "06",
+    },
+    {
+      src: "https://images.pexels.com/photos/30406651/pexels-photo-30406651.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1206&w=806",
+      caption: "Затишний вечір",
+      index: "07",
+    },
+    {
+      src: "https://images.pexels.com/photos/30406651/pexels-photo-30406651.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1207&w=807",
+      caption: "Серце закладу",
+      index: "08",
+    },
   ];
 
   return (
     <section id="gallery" className="relative overflow-hidden bg-background">
-      {/* Header section with defined padding to maintain site rhythm */}
       <div className="mx-auto max-w-[92rem] px-4 pt-[var(--space-act)] lg:px-10">
-        <span className="rp-actno mb-5">Галерея</span>
+        <span className="rp-actno mb-5 text-sm uppercase tracking-[0.3em]">
+          Атмосфера
+        </span>
         <Reveal>
-          <h2 className="font-display font-bold text-[clamp(2.4rem,5vw,4.5rem)] max-w-[16ch]">
-            Атмосфера Pasta Famiglia
+          <h2 className="font-display font-bold text-[clamp(2.4rem,5vw,4.5rem)] max-w-[16ch] mb-12">
+            Естетика італійського смаку
           </h2>
         </Reveal>
       </div>
 
-      {/* The Horizontal Pan component manages the scroll-driven translation */}
       <HorizontalPan heightVh={220}>
-        {images.map((img, index) => (
-          <figure 
-            key={index} 
-            className="rp-pan-item relative shrink-0 overflow-hidden"
-            style={{ width: "clamp(280px, 35vw, 500px)" }}
-          >
-            <div className="overflow-hidden">
-              <img 
-                src={img.url} 
-                alt={img.caption} 
-                className="rp-graded aspect-[4/5] w-full object-cover transition-transform duration-1000 hover:scale-[1.04]" 
-                loading="lazy" 
-              />
-            </div>
-            <figcaption className="mt-3 flex items-baseline justify-between text-sm text-muted">
-              <span>{img.caption}</span>
-              <span className="font-display">{(index + 1).toString().padStart(2, '0')}</span>
-            </figcaption>
-          </figure>
-        ))}
+        <div className="flex gap-6 px-4 lg:gap-10 lg:px-10">
+          {photos.map((item, i) => (
+            <figure
+              key={i}
+              className="rp-pan-item relative w-[75vw] shrink-0 overflow-hidden md:w-[45vw] lg:w-[35vw]"
+            >
+              <div className="overflow-hidden">
+                <img
+                  src={item.src}
+                  alt={item.caption}
+                  className="rp-graded aspect-[4/5] w-full object-cover transition-transform duration-1000 hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption className="mt-3 flex items-baseline justify-between text-sm text-muted">
+                <span className="font-body">{item.caption}</span>
+                <span className="font-display">{item.index}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </HorizontalPan>
-      
-      {/* Subtle bottom padding to balance the vertical space before the next act */}
-      <div className="pb-[var(--space-act)]" />
     </section>
   );
 }

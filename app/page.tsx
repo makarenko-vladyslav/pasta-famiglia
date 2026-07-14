@@ -1,18 +1,17 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionMenuIntro } from "./sections/menu_intro";
-import { SectionSignatureDishes } from "./sections/signature_dishes";
+import { SectionSignatureItems } from "./sections/signature_items";
+import { SectionMenuMain } from "./sections/menu_main";
 import { SectionMarqueeInterstitial } from "./sections/marquee_interstitial";
-import { SectionMenuFull } from "./sections/menu_full";
-import { SectionStory } from "./sections/story";
-import { SectionProcess } from "./sections/process";
+import { SectionLunchSpecial } from "./sections/lunch_special";
+import { SectionCraftProcess } from "./sections/craft_process";
 import { SectionGallery } from "./sections/gallery";
 import { SectionProof } from "./sections/proof";
 import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 import { SectionFinale } from "./sections/finale";
 
-const NAV = [{ href: "#menu_intro", label: "Меню" }, { href: "#story", label: "Про нас" }, { href: "#process", label: "Як працює" }, { href: "#gallery", label: "Галерея" }, { href: "#proof", label: "Відгуки" }];
+const NAV = [{ href: "#signature_items", label: "Меню" }, { href: "#craft_process", label: "Про нас" }, { href: "#gallery", label: "Галерея" }, { href: "#proof", label: "Відгуки" }, { href: "#faq", label: "Питання" }];
 
 export default function Page() {
   return (
@@ -39,12 +38,11 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionMenuIntro /></ActBoundary>
-        <ActBoundary><SectionSignatureDishes /></ActBoundary>
+        <ActBoundary><SectionSignatureItems /></ActBoundary>
+        <ActBoundary><SectionMenuMain /></ActBoundary>
         <ActBoundary><SectionMarqueeInterstitial /></ActBoundary>
-        <ActBoundary><SectionMenuFull /></ActBoundary>
-        <ActBoundary><SectionStory /></ActBoundary>
-        <ActBoundary><SectionProcess /></ActBoundary>
+        <ActBoundary><SectionLunchSpecial /></ActBoundary>
+        <ActBoundary><SectionCraftProcess /></ActBoundary>
         <ActBoundary><SectionGallery /></ActBoundary>
         <ActBoundary><SectionProof /></ActBoundary>
         <ActBoundary><SectionFaq /></ActBoundary>
