@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: hsl(38 8% 95%);
-  --color-surface: hsl(38 12% 89%);
-  --color-foreground: hsl(25 10% 12%);
-  --color-accent: hsl(20 70% 45%);
-  --color-accent-foreground: hsl(38 10% 98%);
-  --color-muted: hsl(38 10% 45%);
-  --color-border: hsl(38 15% 82%);
+  --color-background: hsl(35 12% 95%);
+  --color-surface: hsl(35 12% 89%);
+  --color-foreground: hsl(20 20% 12%);
+  --color-accent: hsl(18 70% 45%);
+  --color-accent-foreground: hsl(35 15% 98%);
+  --color-muted: hsl(35 10% 32%);
+  --color-border: hsl(35 15% 84%);
 
   --font-display: "Playfair Display", sans-serif;
   --font-body: "Lora", sans-serif;
@@ -15,12 +15,12 @@
   --radius-control: 12px;
   --radius-surface: 19px;
 
-  --spacing-s1: 4px;
-  --spacing-s2: 8px;
-  --spacing-s3: 16px;
-  --spacing-s4: 32px;
-  --spacing-s5: 64px;
-  --spacing-s6: 128px;
+  --spacing-s1: 0.5rem;
+  --spacing-s2: 1rem;
+  --spacing-s3: 2rem;
+  --spacing-s4: 4rem;
+  --spacing-s5: 8rem;
+  --spacing-s6: 12rem;
 }
 
 @layer base {
@@ -32,7 +32,7 @@
    * display tracking, one easing voice — the details that read expensive. */
   body { background: var(--color-background); overscroll-behavior-y: none; color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: var(--tracking-display, -0.04em); line-height: var(--leading-display, 1); }
-  ::selection { background: hsl(20 70% 45%); color: hsl(38 10% 98%); }
+  ::selection { background: hsl(18 70% 45%); color: hsl(35 15% 98%); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 }
 

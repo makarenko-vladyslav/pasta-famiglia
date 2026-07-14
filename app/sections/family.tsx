@@ -1,81 +1,101 @@
 "use client";
 
 import { Reveal, Magnetic } from "@/components/mechanics";
-import { ArrowRight } from "@phosphor-icons/react";
+import { Heart } from "@phosphor-icons/react";
 
 /**
- * ACT III: The Soul (Atmosphere)
- * Layout: Centered text block with an arched photo frame below.
- * Typography: Poster scale display + readable lead copy.
+ * SectionFamily - ACT III: The Soul
+ * A narrative section focusing on the family atmosphere and kids' area.
+ * Layout: Reverse asymmetric (7/5) with a soft arch photo crop.
  */
 export function SectionFamily() {
   return (
-    <section className="relative py-[var(--space-act)] bg-background overflow-hidden">
-      <div className="container mx-auto max-w-6xl px-4 lg:px-6">
-        {/* Text Content Block */}
-        <div className="flex flex-col items-center text-center mb-16 lg:mb-24">
-          <Reveal delay={0.1}>
-            <span className="inline-block text-sm uppercase tracking-[0.3em] text-muted mb-6">
-              СІМЕЙНИЙ ЗАТИШОК
-            </span>
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <h2 className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] mb-8 max-w-[20ch]">
-              Відпочинок для всієї родини
-            </h2>
-          </Reveal>
-
-          <Reveal delay={0.3}>
-            <p className="font-body text-lg lg:text-xl text-foreground/80 max-w-[60ch] mb-10">
-              Поки ви спілкуєтеся, діти проводять час у спеціально обладнаній ігровій кімнаті з аніматором (працює у вихідні).
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.4}>
-            <Magnetic>
-              <a
-                href="#hero"
-                className="group flex items-center gap-2 bg-foreground text-background px-5 py-3 text-sm lg:text-base transition-transform hover:scale-105"
-                style={{ borderRadius: "var(--radius-control)" }}
-              >
-                Переглянути дитяче меню
-                <ArrowRight weight="bold" size={18} className="transition-transform group-hover:translate-x-1" />
-              </a>
-            </Magnetic>
-          </Reveal>
-        </div>
-
-        {/* Arched Media Frame */}
-        <div className="relative w-full max-w-4xl mx-auto px-4 lg:px-0">
-          <Reveal delay={0.5}>
-            <div 
-              className="relative aspect-[4/5] lg:aspect-[16/10] overflow-hidden group"
-              style={{ 
-                borderTopLeftRadius: "500px", 
-                borderTopRightRadius: "500px",
-                borderBottomLeftRadius: "var(--radius-surface)",
-                borderBottomRightRadius: "var(--radius-surface)"
-              }}
-            >
-              <img
-                src="https://images.pexels.com/photos/3661365/pexels-photo-3661365.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
-                alt="Family atmosphere at Pasta Famiglia"
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.04]"
-              />
-              <div className="absolute inset-0 bg-foreground/5 pointer-events-none" />
-              <div className="rp-grain absolute inset-0 opacity-20 pointer-events-none" />
-            </div>
-          </Reveal>
+    <section className="relative overflow-hidden bg-surface py-[var(--space-act)]">
+      <div className="mx-auto max-w-6xl px-4 lg:px-6">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-20">
           
-          {/* Decorative side label (lg only) */}
-          <div className="hidden lg:block absolute -right-12 top-1/2 -translate-y-1/2 rotate-90 origin-center">
-            <span className="text-xs uppercase tracking-[0.5em] text-muted/40 whitespace-nowrap">
-              PASTA FAMIGLIA MOMENTS
-            </span>
+          {/* Right: Large photo cropped into a soft arch shape (Stacked first on mobile) */}
+          <div className="order-first lg:order-last lg:col-span-5">
+            <Reveal delay={0.2}>
+              <div 
+                className="group relative overflow-hidden aspect-[4/5] w-full"
+                style={{ borderRadius: "500px 500px var(--radius-surface) var(--radius-surface)" }}
+              >
+                <div className="absolute inset-0 bg-foreground/5 z-10 pointer-events-none" />
+                <img
+                  src="https://images.pexels.com/photos/5907532/pexels-photo-5907532.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                  alt="Family dining and kids zone at Pasta Famiglia"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-1000 ease-[var(--ease-out-cubic)] group-hover:scale-[1.04]"
+                />
+                <div className="rp-grain absolute inset-0 pointer-events-none opacity-40" />
+              </div>
+            </Reveal>
           </div>
+
+          {/* Left: Narrative content */}
+          <div className="lg:col-span-7">
+            <div className="flex flex-col space-y-8">
+              <Reveal delay={0.1}>
+                <div className="flex items-center gap-3">
+                  <span className="h-px w-8 bg-foreground/20" />
+                  <span className="text-sm font-medium uppercase tracking-[0.3em] text-muted">
+                    СІМЕЙНИЙ ЗАТИШОК
+                  </span>
+                </div>
+              </Reveal>
+
+              <div className="space-y-6">
+                <Reveal delay={0.2}>
+                  <h2 className="font-display text-[clamp(2.2rem,4.5vw,4rem)] leading-[1.1] text-foreground">
+                    Відпочинок для батьків
+                  </h2>
+                </Reveal>
+
+                <Reveal delay={0.3}>
+                  <p className="font-body text-lg leading-relaxed text-foreground lg:text-xl max-w-xl">
+                    У нас є обладнана дитяча зона з аніматором. Поки діти грають, ви можете спокійно насолодитися вечерею.
+                  </p>
+                </Reveal>
+              </div>
+
+              <div className="pt-4 border-t border-foreground/10 max-w-md">
+                <Reveal delay={0.4}>
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1 flex-shrink-0">
+                      <Heart size={20} weight="fill" className="text-foreground/40" />
+                    </div>
+                    <p className="text-sm text-muted leading-relaxed">
+                      Ми створили простір, де кожна деталь працює на ваш спокій. Pasta Famiglia — це місце, куди приходять цілими поколіннями за автентичними смаками та щирим теплом.
+                    </p>
+                  </div>
+                </Reveal>
+              </div>
+
+              <div className="pt-6">
+                <Reveal delay={0.5}>
+                  <Magnetic>
+                    <a
+                      href="#hero"
+                      className="inline-flex items-center justify-center bg-foreground px-6 py-3.5 text-base text-background transition-colors hover:bg-foreground/90"
+                      style={{ borderRadius: "var(--radius-control)" }}
+                    >
+                      Замовити столик
+                    </a>
+                  </Magnetic>
+                </Reveal>
+              </div>
+            </div>
+          </div>
+
         </div>
+      </div>
+      
+      {/* Decorative vertical label for wide screens */}
+      <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 translate-x-1/2 rotate-90 opacity-5 pointer-events-none">
+        <span className="font-display text-[8rem] whitespace-nowrap uppercase tracking-widest text-foreground">
+          FAMIGLIA
+        </span>
       </div>
     </section>
   );

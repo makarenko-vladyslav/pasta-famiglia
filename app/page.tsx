@@ -1,18 +1,18 @@
 import { MobileMenu, PreloaderCurtain, CustomCursor, Magnetic, HeaderShell, ActBoundary } from "@/components/mechanics";
 import { SectionHero } from "./sections/hero";
-import { SectionTransparency } from "./sections/transparency";
+import { SectionTrustBar } from "./sections/trust-bar";
 import { SectionCraft } from "./sections/craft";
-import { SectionPizza } from "./sections/pizza";
-import { SectionLunch } from "./sections/lunch";
-import { SectionMarqueeDishes } from "./sections/marquee_dishes";
-import { SectionFamily } from "./sections/family";
-import { SectionOffers } from "./sections/offers";
-import { SectionSocialProof } from "./sections/social_proof";
+import { SectionMenuPreview } from "./sections/menu-preview";
+import { SectionInterstitialMarquee } from "./sections/interstitial-marquee";
 import { SectionGuarantee } from "./sections/guarantee";
+import { SectionProcess } from "./sections/process";
+import { SectionFamily } from "./sections/family";
+import { SectionGallery } from "./sections/gallery";
+import { SectionSocialProof } from "./sections/social-proof";
 import { SectionFaq } from "./sections/faq";
 import { SectionLocation } from "./sections/location";
 
-const NAV = [{ href: "#craft", label: "Про нас" }, { href: "#pizza", label: "Меню" }, { href: "#social_proof", label: "Відгуки" }, { href: "#faq", label: "Питання" }, { href: "#location", label: "Контакти" }];
+const NAV = [{ href: "#craft", label: "Про нас" }, { href: "#menu-preview", label: "Меню" }, { href: "#process", label: "Як працює" }, { href: "#gallery", label: "Галерея" }, { href: "#social-proof", label: "Відгуки" }];
 
 export default function Page() {
   return (
@@ -39,15 +39,15 @@ export default function Page() {
       </HeaderShell>
       <main id="top" className="bg-background text-foreground">
         <ActBoundary><SectionHero /></ActBoundary>
-        <ActBoundary><SectionTransparency /></ActBoundary>
+        <ActBoundary><SectionTrustBar /></ActBoundary>
         <ActBoundary><SectionCraft /></ActBoundary>
-        <ActBoundary><SectionPizza /></ActBoundary>
-        <ActBoundary><SectionLunch /></ActBoundary>
-        <ActBoundary><SectionMarqueeDishes /></ActBoundary>
-        <ActBoundary><SectionFamily /></ActBoundary>
-        <ActBoundary><SectionOffers /></ActBoundary>
-        <ActBoundary><SectionSocialProof /></ActBoundary>
+        <ActBoundary><SectionMenuPreview /></ActBoundary>
+        <ActBoundary><SectionInterstitialMarquee /></ActBoundary>
         <ActBoundary><SectionGuarantee /></ActBoundary>
+        <ActBoundary><SectionProcess /></ActBoundary>
+        <ActBoundary><SectionFamily /></ActBoundary>
+        <ActBoundary><SectionGallery /></ActBoundary>
+        <ActBoundary><SectionSocialProof /></ActBoundary>
         <ActBoundary><SectionFaq /></ActBoundary>
         <ActBoundary><SectionLocation /></ActBoundary>
       </main>
