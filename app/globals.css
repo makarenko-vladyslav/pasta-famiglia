@@ -1,123 +1,98 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: hsl(35 14% 95%);
-  --color-surface: hsl(35 25% 99%);
+  --color-background: hsl(38 12% 94%);
+  --color-surface: hsl(38 12% 99%);
   --color-foreground: hsl(25 20% 12%);
-  --color-accent: hsl(12 85% 45%);
-  --color-accent-foreground: hsl(0 0% 100%);
-  --color-muted: hsl(30 10% 40%);
-  --color-border: hsl(35 15% 85%);
+  --color-accent: hsl(12 85% 40%);
+  --color-accent-foreground: hsl(38 12% 99%);
+  --color-muted: hsl(38 10% 86%);
+  --color-border: hsl(38 12% 80%);
 
-  --font-display: "Playfair Display", sans-serif;
-  --font-body: "Lora", sans-serif;
+  --font-display: "Playfair Display", serif;
+  --font-body: "Lora", serif;
 
-  --radius-control: 0px;
-  --radius-surface: 0px;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.5rem;
+  --radius-3xl: 0.5rem;
 
-  --spacing-s1: 0.25rem;
-  --spacing-s2: 0.75rem;
-  --spacing-s3: 1.5rem;
-  --spacing-s4: 2.5rem;
-  --spacing-s5: 5rem;
-  --spacing-s6: 8rem;
+  --spacing-act: clamp(6.5rem, 10vw, 12.5rem);
+
+  --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+  
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-hero-1: crossfade-1 16s ease-in-out infinite;
+  --animate-hero-2: crossfade-2 16s ease-in-out infinite;
+  --animate-fade-up: slide-up-fade 0.8s var(--ease-out-cubic) forwards;
 }
 
 @layer base {
-  *:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-  /* html carries the FOOTER color: iOS rubber-band past the footer shows the
-     html canvas — a light canvas there reads as "the page keeps scrolling". */
-  html { background: var(--color-background); overscroll-behavior: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
-  /* Premium foundation (awwwards-web-architect): light body weight, tight
-   * display tracking, one easing voice — the details that read expensive. */
-  body { background: var(--color-background); overscroll-behavior-y: none; color: var(--color-foreground); font-family: var(--font-body); font-weight: 400; }
-  h1, h2, h3 { font-family: var(--font-display); letter-spacing: var(--tracking-display, -0.04em); line-height: var(--leading-display, 1); }
-  ::selection { background: hsl(12 85% 45%); color: hsl(0 0% 100%); }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
 }
 
-:root {
-  --ease-out-cubic: cubic-bezier(0.2, 0.6, 0.35, 1);
-  --ease-in-out-quart: cubic-bezier(0.8, 0, 0.2, 1);
-  --space-act: clamp(3.5rem, 10vw, 12.5rem);
-  --tracking-display: -0.005em;
-  --leading-display: 1.14;
+@layer utilities {
+  .text-balance-display {
+    font-family: var(--font-display);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+  }
+  
+  .rp-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .rp-watermark {
+    position: absolute;
+    z-index: -1;
+    color: color-mix(in srgb, var(--color-border) 20%, transparent);
+    font-family: var(--font-display);
+    font-size: clamp(10rem, 20vw, 15rem);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
-/* — WOW layer — */
-.rp-cursor-on, .rp-cursor-on a, .rp-cursor-on button { cursor: none; }
-@keyframes rpPreRise { from { opacity: 0; transform: translateY(1.2em); } to { opacity: 1; transform: translateY(0); } }
-/* Preloader curtain: JS drives phases; the delayed auto-open keyframes are a
-   no-JS/broken-hydration fallback so the page can never stay walled. */
-.rp-curtain-top, .rp-curtain-bot { transition: transform 0.9s cubic-bezier(0.76,0,0.24,1); }
-.rp-curtain-top { animation: rpCurtainTop 0.9s cubic-bezier(0.76,0,0.24,1) 3.2s forwards; }
-.rp-curtain-bot { animation: rpCurtainBot 0.9s cubic-bezier(0.76,0,0.24,1) 3.2s forwards; }
-.rp-curtain-open .rp-curtain-top { transform: translateY(-100%); }
-.rp-curtain-open .rp-curtain-bot { transform: translateY(100%); }
-.rp-curtain-brand { animation: rpPreRise 0.8s cubic-bezier(0.16,1,0.3,1) both, rpCurtainFade 0.5s ease 3s forwards; }
-.rp-curtain-open .rp-curtain-brand { opacity: 0; transform: translateY(-1.4rem); transition: opacity 0.5s ease, transform 0.5s ease; animation: none; }
-.rp-curtain-line > span { transform: scaleX(0); animation: rpCurtainLine 1.05s cubic-bezier(0.65,0,0.35,1) 0.15s forwards; }
-@keyframes rpCurtainLine { to { transform: scaleX(1); } }
-@keyframes rpCurtainTop { to { transform: translateY(-100%); } }
-@keyframes rpCurtainBot { to { transform: translateY(100%); } }
-@keyframes rpCurtainFade { to { opacity: 0; } }
-/* The hero owns the booking CTA — while the header floats transparent over
-   it, its own CTA duplicate stays hidden and returns with the solid state. */
-.rp-header-transparent .rp-header-cta { opacity: 0; pointer-events: none; }
-/* NO overflow mask — an overflow:hidden clip cut the ascenders/descenders of
-   large serif headings (owner: «букви обрізаються зверху та знизу»). The
-   entrance is a plain fade + short slide, so nothing is ever clipped. */
-.rp-reveal { overflow: visible; }
-.rp-reveal-inner { display: block; transform: translateY(28px); opacity: 0; }
-.rp-revealed .rp-reveal-inner { transform: translateY(0); opacity: 1; transition: transform 0.85s cubic-bezier(0.22,1,0.36,1) var(--rp-delay, 0s), opacity 0.6s ease var(--rp-delay, 0s); }
-@keyframes rpMarquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
-.rp-marquee { animation: rpMarquee var(--rp-marquee-s, 26s) linear infinite; }
-.rp-marquee:hover { animation-play-state: paused; }
-.rp-pan-item { width: clamp(280px, 42vw, 460px); }
-/* Native pan strip (touch/reduced): momentum swipe + soft snap, no scrollbar */
-.rp-pan-native { -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; scrollbar-width: none; }
-.rp-pan-native::-webkit-scrollbar { display: none; }
-.rp-pan-native .rp-pan-item { scroll-snap-align: center; flex-shrink: 0; }
-/* Flat scene (touch/reduced): neutralise every --scene-p-driven inline style
-   so the complete poster simply shows. */
-.rp-scene-flat [style*="scene-p"] { opacity: 1 !important; transform: none !important; }
-/* Pre-hydration touch safety: if JS has not switched the pinned variants to
-   their flat/native forms yet (or never will), unpin them with pure CSS —
-   no 200vh+ runways, no sticky, native sideways scroll, no hidden text. */
-@media (pointer: coarse) {
-  .rp-scene { height: auto !important; }
-  .rp-scene .rp-scene-win { position: relative; height: auto; min-height: 100svh; }
-  .rp-scene [style*="scene-p"] { opacity: 1 !important; transform: none !important; }
-  .rp-pan { height: auto !important; }
-  .rp-pan .rp-pan-win { position: relative; height: auto; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .rp-pan .rp-pan-track { transform: none !important; padding-block: 1rem; }
-  .rp-reveal-inner, .rp-revealed .rp-reveal-inner { transform: none !important; opacity: 1 !important; }
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
-/* Poster watermarks need a wide canvas — on phones they clip into noise
-   («FIRF») and fight the headings. Desktop-only. */
-@media (max-width: 1023px) {
-  .rp-watermark { display: none; }
+
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-/* Section edge discipline: vertical air comes from the section padding —
-   a first-child top margin or last-child bottom margin doubles it and makes
-   every act breathe differently (owner: «різні відступи зверху та знизу»). */
-/* One breathing rhythm for every act (owner: «різні відступи», «франкенштейн»):
-   content sections share the act token; hero and the accent finale opt out. */
-main > section:not(#hero):not(:first-child):not(:last-child) { padding-block: var(--space-act); }
-main section > :first-child { margin-top: 0 !important; }
-main section > :last-child { margin-bottom: 0 !important; }
-/* Grid blowout guard: a grid child has min-width:auto, so one long Ukrainian
-   display word («БЕЗКОШТОВНИЙ») widens the whole layout viewport past the
-   phone screen. Kill the class systemically, not per-case. */
-main [class~="grid"] > *, footer [class~="grid"] > * { min-width: 0; }
-main h1, main h2, main h3, main h4 { overflow-wrap: break-word; hyphens: manual; }
-.rp-watermark { position: absolute; inset-inline: 0; pointer-events: none; user-select: none; font-family: var(--font-display); font-weight: 700; line-height: 0.8; letter-spacing: -0.04em; font-size: clamp(6rem, 24vw, 22rem); opacity: 0.05; white-space: nowrap; }
-.rp-graded { filter: saturate(0.94) contrast(1.06) brightness(0.99); }
-.rp-actno { font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.55; display: inline-flex; align-items: center; gap: 0.75rem; }
-.rp-actno::before { content: ""; width: 2.5rem; height: 1px; background: currentColor; opacity: 0.6; }
-.rp-grain { position: relative; }
-.rp-grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.05; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E"); }
-@media (prefers-reduced-motion: reduce) {
-  .rp-marquee { animation: none; }
-  .rp-reveal-inner, .rp-revealed .rp-reveal-inner { transform: none; opacity: 1; transition: none; }
+
+@keyframes crossfade-1 {
+  0%, 40%, 100% { opacity: 1; transform: scale(1); }
+  50%, 90% { opacity: 0; transform: scale(1.05); }
 }
+
+@keyframes crossfade-2 {
+  0%, 40%, 100% { opacity: 0; transform: scale(1.05); }
+  50%, 90% { opacity: 1; transform: scale(1); }
+}
+
+/* Base styles for Details/Summary Accordion */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@keyframes wordRise { from { opacity: 0; transform: translateY(0.6em); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+.word-rise { display: inline-block; opacity: 0; animation: wordRise 0.9s cubic-bezier(0.16,1,0.3,1) forwards; margin-inline-end: 0.26em; }
+.word-rise:last-child { margin-inline-end: 0; }
+@media (prefers-reduced-motion: reduce) { .word-rise { animation: none; opacity: 1; filter: none; } }

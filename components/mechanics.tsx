@@ -375,7 +375,7 @@ export function MobileMenu({ links = [], cta, phone, openLabel = "Menu", closeLa
   return (
     <div className="lg:hidden">
       <button type="button" onClick={() => setOpen(v => !v)} aria-label={open ? closeLabel : openLabel} aria-expanded={open}
-        className="relative z-[80] grid h-11 w-11 place-items-center">
+        className="relative z-[80] grid h-11 w-11 place-items-center rounded-full border border-current/15 bg-background/70 backdrop-blur-sm">
         <span className={"absolute h-0.5 w-6 bg-current transition-all duration-300 " + (open ? "rotate-45" : "-translate-y-2")} />
         <span className={"absolute h-0.5 w-6 bg-current transition-all duration-300 " + (open ? "opacity-0" : "")} />
         <span className={"absolute h-0.5 w-6 bg-current transition-all duration-300 " + (open ? "-rotate-45" : "translate-y-2")} />
