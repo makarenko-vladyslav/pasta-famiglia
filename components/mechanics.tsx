@@ -402,46 +402,6 @@ export function MobileMenu({ links = [], cta, phone, openLabel = "Menu", closeLa
   );
 }
 
-export function SpotlightReveal({ baseUrl, revealUrl, alt }: { baseUrl: string; revealUrl: string; alt: string }) {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      el.style.setProperty("--spot-r", "0px");
-      return;
-    }
-    const target = { x: -999, y: -999 };
-    const cur = { x: -999, y: -999 };
-    let raf = 0;
-    const loop = () => {
-      cur.x += (target.x - cur.x) * 0.1;
-      cur.y += (target.y - cur.y) * 0.1;
-      el.style.setProperty("--spot-x", cur.x + "px");
-      el.style.setProperty("--spot-y", cur.y + "px");
-      raf = requestAnimationFrame(loop);
-    };
-    const onMove = (e: PointerEvent) => {
-      const r = el.getBoundingClientRect();
-      target.x = e.clientX - r.left;
-      target.y = e.clientY - r.top;
-    };
-    el.addEventListener("pointermove", onMove, { passive: true });
-    raf = requestAnimationFrame(loop);
-    return () => { el.removeEventListener("pointermove", onMove); cancelAnimationFrame(raf); };
-  }, []);
-  return (
-    <div ref={wrapRef} className="relative h-full w-full overflow-hidden" style={{ ["--spot-x" as string]: "-999px", ["--spot-y" as string]: "-999px", ["--spot-r" as string]: "240px" }}>
-      <img src={baseUrl} alt={alt} className="absolute inset-0 h-full w-full object-cover" />
-      <img src={revealUrl} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover"
-        style={{
-          WebkitMaskImage: "radial-gradient(circle var(--spot-r) at var(--spot-x) var(--spot-y), #000 0%, #000 45%, rgba(0,0,0,0.6) 65%, transparent 100%)",
-          maskImage: "radial-gradient(circle var(--spot-r) at var(--spot-x) var(--spot-y), #000 0%, #000 45%, rgba(0,0,0,0.6) 65%, transparent 100%)",
-        }} />
-    </div>
-  );
-}
-
 export function CountUp({ to, suffix = "", duration = 1400, locale = "uk-UA" }: { to: number; suffix?: string; duration?: number; locale?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   useEffect(() => {
