@@ -1,0 +1,8 @@
+{
+  "currency": "₴",
+  "estimationLogic": "range",
+  "basePricePerGuest": 850,
+  "minGuests": 5,
+  "maxGuests": 40,
+  "step": 1
+}
